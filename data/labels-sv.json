@@ -5,6 +5,9 @@
 	"createQuestions": "Skapa frågor",
 	"participatePoll": "Delta",
 	"question": "Fråga",
+	"words": "Ord",
+	"explanation": "Förklaring",
+	"createWordExplanation": "Skapa ord och förklaringar",
 	"changeLanguage": "Change to English",
 	"connectPoll": "connect to poll"
 }

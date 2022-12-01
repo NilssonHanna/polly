@@ -5,6 +5,9 @@
 	"createQuestions": "Create questions",
 	"participatePoll": "participate in poll",
 	"question": "Question",
+	"words": "Word",
+	"explanation": "Explanation",
+	"createWordExplanation": "Create words and explanations",
 	"changeLanguage": "Byt till svenska",
 	"connectPoll": "connect to poll"
 }

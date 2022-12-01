@@ -55,6 +55,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/QuestionsView.vue')
   },
 
+  {
+    path: '/waiting/:lang/',
+    name: 'WaitingView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/WaitingView.vue')
+  }
+
 ]
 
 const router = createRouter({

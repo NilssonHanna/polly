@@ -5,6 +5,7 @@
     <button v-on:click="createPoll">
       Create poll
     </button>
+    <!--Fixa nickname!!-->
     <!--<button v-on:click="createQuestions">Create questions</button>-->
     <router-link id="questions" v-bind:to="'/questions/'+lang">{{uiLabels.createPoll}}</router-link>
   </div>
