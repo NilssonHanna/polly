@@ -1,6 +1,6 @@
 <template>
     <div>
-      Poll link: 
+      Enter game code: 
       <input type="text" v-model="pollId">
       <button v-on:click="createPoll">
         Create poll
