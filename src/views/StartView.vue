@@ -3,7 +3,11 @@
     <div v-bind:class="['hamburger', {'close': !hideNav}]" 
          v-on:click="toggleNav"> 
     </div>
-    <div class="logo"> WELCOME TO XPLANANDUM</div>
+    <div class="logo"> 
+      {{uiLabels.Welcometext}} 
+    </div>
+
+    
 
    <!--<div>
       <label>
@@ -13,35 +17,38 @@
         <router-link v-bind:to="'/poll/'+id">{{uiLabels.participatePoll}}</router-link> 
     </div>--> 
  
-  <ResponsiveNav v-bind:hideNav="hideNav">
+  <!--<ResponsiveNav v-bind:hideNav="hideNav">
     <button id="language" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
-    <router-link id="create" v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>
-  </ResponsiveNav>
+    <router-link id="create" v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>  
+  </ResponsiveNav> -->
+  <button id="language" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
 
-  <label>
-    Write poll id: 
-    <input type="text" v-model="id">
-  </label>
-  <router-link v-bind:to="'/poll/'+id">{{uiLabels.participatePoll}}</router-link> 
- <label>
+  <div id="create">
+    <router-link id="createlink" v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link> 
+  </div>
+
   
-    Write poll id: 
-    <input type="text" v-model="id">
-  </label>
-  <router-link v-bind:to="'/nickname/'+id">{{uiLabels.participatePoll}}</router-link> 
+  <div id="joingame">
+  <label id="pollid">
+      Write poll id: 
+      <input type="text" v-model="id">
+    </label> <br>
+    <router-link v-bind:to="'/nickname/'+id" id="join">{{uiLabels.participatePoll}}</router-link> 
+  </div>
+
 </body>
 </template>
 
 <script>
-import ResponsiveNav from '@/components/ResponsiveNav.vue';
+//import ResponsiveNav from '@/components/ResponsiveNav.vue';
 import io from 'socket.io-client';
 const socket = io();
 
 export default {
   name: 'StartView',
-  components: {
+  /*components: {
     ResponsiveNav
-  },
+  },*/
   data: function () {
     return {
       uiLabels: {},
@@ -80,7 +87,7 @@ export default {
   
   .logo {
     text-transform: uppercase;
-    margin: 300px;
+    margin: 150px;
     letter-spacing: 0.1em;
     font-size: 3rem;
     color: rgb(0, 0, 0);
@@ -94,7 +101,7 @@ export default {
     vertical-align: bottom;
     margin-right: 0.5rem; 
   } */
-  .hamburger {
+  /*.hamburger {
     color:rgb(138, 246, 155);
     width:1em;
     display: flex;
@@ -106,7 +113,7 @@ export default {
     height: 2rem;
     cursor: pointer;
     font-size: 1.5rem;
-  }
+  }*/
 
   #language {
   background-color: rgb(254, 190, 201);
@@ -124,23 +131,43 @@ export default {
   font-size: 1.5rem;
   color: rgb(255, 255, 255);
   padding: 30px;
-  margin-top: -200px;
+  margin-top: 300px;
   position: absolute;
-  left: 40%;
+  left: 35%;
   transform: translateX(-50%);
   font-family: "Fjord one";
 }
 
+#createlink{
+  color: rgb(255, 255, 255);
+}
+
+/*#or{
+  margin-left: 530px;
+  margin-top: 10px;
+  font-size: 1.5rem;
+  font-family: "Fjord one"; 
+}
+
+/*#pollid {
+  font-family: "Fjord one";
+  font-size: 1.5rem;
+}*/
+
 #join {
+  color: rgb(255, 255, 255);
+}
+
+#joingame{
   background-color: rgb(90, 58, 64);
   font-size: 1.5rem;
   color: rgb(255, 255, 255);
   padding: 30px;
-  margin-top: -200px;
+  margin-top: 300px;
   position: absolute;
   left: 60%;
   transform: translateX(-50%);
-  font-family: "Fjord one";
+  font-family: "Fjord one"; 
 }
 
 

@@ -1,5 +1,5 @@
 {
-	"sales-pitch": "Svar. Helt. Enkelt.",
+	"Welcometext": "Välkommen till Xplanandum",
 	"invite": "Bjud in deltagare med den här länken:",
 	"createPoll": "Skapa",
 	"createQuestions": "Skapa frågor",
@@ -9,5 +9,7 @@
 	"explanation": "Förklaring",
 	"createWordExplanation": "Skapa ord och förklaringar",
 	"changeLanguage": "Change to English",
-	"connectPoll": "connect to poll"
+	"connectPoll": "connect to poll",
+	"quitGame": "Avsluta",
+	"winnerAnn": "Vinnaren är..."
 }
