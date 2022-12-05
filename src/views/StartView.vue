@@ -86,7 +86,7 @@ export default {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 30px;
-  margin-top: -200px;
+  margin-top: 300px;
   position: absolute;
   left: 40%;
   width:100px;
@@ -100,17 +100,6 @@ export default {
   text-decoration: none;
 }
 
-/*#or{
-  margin-left: 530px;
-  margin-top: 10px;
-  font-size: 1.5rem;
-  font-family: "Fjord one"; 
-}
-
-/*#pollid {
-  font-family: "Fjord one";
-  font-size: 1.5rem;
-}*/
 
 #join {
   background-color: rgb(90, 58, 64);
@@ -119,7 +108,7 @@ export default {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 30px;
-  margin-top: -200px;
+  margin-top: 300px;
   position: absolute;
   left: 60%;
   width:100px;
