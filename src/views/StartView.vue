@@ -6,13 +6,11 @@
 
   <button id="language" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
 
-  <div id="create">
-    <router-link class="link" v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link> 
-  </div>
 
-  
-  <div id="join">
-    <router-link class="link" v-bind:to="'/join/'+lang" >{{uiLabels.participatePoll}}</router-link> 
+  <div >
+    <router-link id="create" v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link> 
+
+    <router-link id="join" v-bind:to="'/join/'+lang" >{{uiLabels.participatePoll}}</router-link> 
   </div>
 
 </body>
@@ -77,6 +75,7 @@ export default {
   right: 0px;
   font-family: "Fjord one";
   cursor:pointer;
+ 
 }
 
 #create {
@@ -92,12 +91,8 @@ export default {
   width:100px;
   transform: translateX(-50%);
   font-family: "Fjord one";
-
-}
-
-.link{
-  color: rgb(255, 255, 255);
   text-decoration: none;
+
 }
 
 
@@ -108,12 +103,13 @@ export default {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 30px;
-  margin-top: 300px;
+  margin-top:300px;
   position: absolute;
   left: 60%;
   width:100px;
   transform: translateX(-50%);
   font-family: "Fjord one";
+  text-decoration: none;
 }
 
 
