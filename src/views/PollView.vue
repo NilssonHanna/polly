@@ -16,35 +16,34 @@
   
  export default {
   name: 'PollView',
-
   components: {
-   QuestionComponent
- },
- data: function () {
-   return {
-     question: {
-       q: "",
-       a: []
-     },
-     pollId: "inactive poll",
-     submittedAnswers: {}
-   }
- },
- created: function () {
-   this.pollId = this.$route.params.id
-   socket.emit('joinPoll', this.pollId)
-   socket.on("newQuestion", q =>
-     this.question = q
-   )
-   socket.on("dataUpdate", answers =>
-     this.submittedAnswers = answers
-   )
- },
- methods: {
-   submitAnswer: function (answer) {
-     socket.emit("submitAnswer", {pollId: this.pollId, answer: answer})
-   }
+    QuestionComponent
+  },
+  data: function () {
+    return {
+      question: {
+        q: "",
+        a: []
+      },
+      pollId: "inactive poll",
+      submittedAnswers: {}
+    }
+  },
+  created: function () {
+    this.pollId = this.$route.params.id
+    socket.emit('joinPoll', this.pollId)
+    socket.on("newQuestion", q =>
+      this.question = q
+    )
+    socket.on("dataUpdate", answers =>
+      this.submittedAnswers = answers
+    )
+  },
+  methods: {
+    submitAnswer: function (answer) {
+      socket.emit("submitAnswer", {pollId: this.pollId, answer: answer})
+    }
+  }
  }
-}
-</script>
-
+ </script>
+ 
