@@ -1,27 +1,40 @@
 <template>
   <body>
-    <div>
-      <header class="header">
-        <h1>{{uiLabels.createWordExplanation}}</h1>
-  
-        <h3 id="word_header"> {{uiLabels.words}} </h3>
-      <!-- <h3 id="explanation_header">{{uiLabels.explanation}}</h3> -->
-  
-      </header>
-        <div class="wrapper">
-          <!--{{uiLabels.words}} {{}} {{uiLabels.explanation}}-->
-          <input class="wordExplanation" type="text" v-for="(_, i) in wordExplanation"
-              v-bind:key="'wordExplanation'+i">
+    <div id="questionDesign">
+        <h1>{{uiLabels.createQuestions}}</h1>
+      <div>
+        <div id="newQst">
+          {{uiLabels.question}}:
+          <input type="text" v-for="(_, i) in question"
+              v-model="question[i]"
+              v-bind:key="'question'+i">
           <button class="addQstBtn" v-on:click="addQuestion">
-            Add word and explanation
+            Add question
           </button>
         </div>
+        <div>
+          Answers:
+          <input v-for="(_, i) in answers" 
+                 v-model="answers[i]" 
+                 v-bind:key="'answer'+i">
+          <button v-on:click="addAnswer">
+            Add answer
+          </button>
         </div>
-        <router-link id="startGame" v-bind:to="('/waiting/'+lang)">Start game</router-link>
+      </div>
+      <input type="number" v-model="questionNumber">
+      <button class="runQstBtn" v-on:click="runQuestion">
+        Run question
+      </button>
+      {{data}}
+      <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
+    </div>
   </body>
   </template>
-   <script>
- import io from 'socket.io-client';
+  
+  <script>
+  //import QuestionComponent from '@/components/QuestionComponent.vue';
+import io from 'socket.io-client';
   const socket = io();
    export default {
     name: 'QuestionsView',
@@ -29,7 +42,6 @@
       return {
         lang: "",
         pollId: "",
-        wordExplanation: ["word", "explanation"],
         question: ["",""],
         answers: ["", ""],
         questionNumber: 0,
@@ -51,92 +63,39 @@
     },
   
     methods: {
-  
       addQuestion: function () {
-        this.wordExplanation.push("")
-        this.wordExplanation.push("")
-        socket.emit("addQuestion", {pollId: this.pollId, we: this.wordExplanation } )
-      },
+        this.question.push("")
         /*socket.emit("addQuestion", {pollId: this.pollId, q: this.question, a: this.answers } )*/
-        /*den ovan kanske behövs senare för att koppla till resultview!*/
-  
+        /*den ovan kanske behövs senare för att koppla till resultview!*/ 
+      },
+      addAnswer: function () {
+        this.answers.push("")
+      },
       runQuestion: function () {
         socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
-  
       },
     }
   }
   
   </script>
-  
-  <style scoped>
-  .v-text-field{
-    width:50px;
-  }
-  
- body {
+
+  <style>
+
+body {
     background-color: pink;
     width: 100%;
     display: grid;
-    /*grid-template-columns: 50em;*/
+    grid-template-columns: 30em auto;
     min-height: 100vh;
-    font-family: "Fjord one";
   }
-  
-  .header{
-    margin-top: 70px;
-    margin-bottom: 30px;
-    font-family: "Fjord one";
-    grid-template-columns: 5px 5px;
+
+
+  #questionDesign{
+    font-family: "Fjord one" ;
+
   }
+
   
-  .wordExplanation{
-    height:20px;
-    width:250px;
-    margin-right: 40px;
-    margin-bottom: 10px;
-    font-family: "Fjord one";
-  }
+
+</style>
   
-  .addQstBtn {
-    margin-right: 40px;
-    padding: 10px;
-    background-color: rgb(255, 254, 254);
-    font-size: 1rem;
-    font-family: "Fjord one";
-  
-  }
-  
-  #startGame{
-    background-color: rgb(207, 19, 53);
-    font-size: 1.25rem;
-    color: white;
-    padding: 20px;
-    margin-bottom: 100px;
-    margin-top: 550px;
-    position: absolute;
-    right: 3%;
-    transform: translateX(-50%);
-    font-family: "Fjord one";
-  }
-  
-  .wrapper{
-    grid-template-columns: 5px 5px;
-    margin-left: 300px;
-    margin-right: 300px;
-    font-family: "Fjord one";
-   
-  }
-  
-  #word_header{
-    margin-right: 320px;
-    margin-top: 50px; 
-  }
-  
-  
-  
-  
-  
-  
- </style>
- 
