@@ -1,15 +1,29 @@
-{
-	"sales-pitch": "Svar. Helt. Enkelt.",
+{	"changeLanguage": "Change to English",
+
+	"Welcometext": "Välkommen till Xplanandum",
 	"invite": "Bjud in deltagare med den här länken:",
 	"createPoll": "Skapa",
-	"createQuestions": "Skapa frågor",
 	"participatePoll": "Delta",
-	"question": "Fråga",
+	
+	
 	"words": "Ord",
 	"explanation": "Förklaring",
 	"createWordExplanation": "Skapa ord och förklaringar",
-	"changeLanguage": "Change to English",
-	"connectPoll": "connect to poll"
+
+	"gamecode":"Skriv gamecode",
+	"next":"Nästa",
+
+	"nickname":"Välj ett namn",
+
+	"connect":"Väntar på att spelare ansluter",
+
+	"createQuestions": "Skapa frågor",
+	"question": "Fråga",
+	"connectPoll": "connect to poll",
+
+
+	"quitGame": "Avsluta",
+	"winnerAnn": "Vinnaren är..."
  }
  
  
