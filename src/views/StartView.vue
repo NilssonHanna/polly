@@ -44,9 +44,9 @@ export default {
       socket.emit("switchLanguage", this.lang)
     },
   }
-}
-</script>
-<style scoped>
+ }
+ </script>
+ <style scoped>
   body {
     background-color: rgb(161, 255, 160);
     width: 100%;
@@ -54,8 +54,7 @@ export default {
     grid-template-columns: 2em auto;
     min-height: 100vh;
   }
-  
-  .logo {
+   .logo {
     text-transform: uppercase;
     margin-left: 350px;
     margin-top: 120px;
@@ -87,7 +86,7 @@ export default {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 30px;
-  margin-top: 300px;
+  margin-top: -200px;
   position: absolute;
   left: 40%;
   width:100px;
@@ -120,7 +119,7 @@ export default {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 30px;
-  margin-top: 300px;
+  margin-top: -200px;
   position: absolute;
   left: 60%;
   width:100px;
@@ -146,6 +145,7 @@ export default {
   .hide {
     left:-12em;
   }
-
-}
-</style>
+  
+ }
+ </style>
+ 
