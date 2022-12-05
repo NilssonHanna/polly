@@ -1,20 +1,21 @@
 <template>
   <div>
-    Poll link: 
+    Poll link:
     <input type="text" v-model="pollId">
     <button v-on:click="createPoll">
       Create poll
     </button>
+    <!--Fixa nickname!!-->
     <!--<button v-on:click="createQuestions">Create questions</button>-->
     <router-link id="questions" v-bind:to="'/questions/'+lang">{{uiLabels.createPoll}}</router-link>
   </div>
-</template>
-
-<script>
-import io from 'socket.io-client';
-const socket = io();
-
-export default {
+ </template>
+  
+ <script>
+ import io from 'socket.io-client';
+ const socket = io();
+  
+ export default {
   name: 'CreateView',
   data: function () {
     return {
@@ -25,12 +26,12 @@ export default {
     }
   },
   created: function () {
-    this.lang = this.$route.params.lang; 
+    this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
     })
-
+  
     socket.on("dataUpdate", (data) =>
       this.data = data
     )
@@ -40,10 +41,11 @@ export default {
   methods: {
    // createQuestions: function () {
    //  socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
-   // }, 
+   // },
     createPoll: function () {
       socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
     },
   }
-}
-</script>
+ }
+ </script>
+ 

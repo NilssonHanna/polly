@@ -72,6 +72,7 @@ och en så att man måste klicka för att få fram vinnaren (det sista borde ju 
             top: -10px;
             right: 0px;
             font-family: "Fjord one";
+            cursor: pointer;
        }
 
        .square{

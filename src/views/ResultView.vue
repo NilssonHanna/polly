@@ -3,17 +3,17 @@
     {{question}}
   </div>
   <BarsComponent v-bind:data="submittedAnswers"/>
-
+  
   <span>{{submittedAnswers}}</span>
-</template>
-
-<script>
-// @ is an alias to /src
-import BarsComponent from '@/components/BarsComponent.vue';
-import io from 'socket.io-client';
-const socket = io();
-
-export default {
+ </template>
+  
+ <script>
+ // @ is an alias to /src
+ import BarsComponent from '@/components/BarsComponent.vue';
+ import io from 'socket.io-client';
+ const socket = io();
+  
+ export default {
   name: 'ResultView',
   components: {
     BarsComponent
@@ -37,5 +37,6 @@ export default {
       this.data = {};
     })
   }
-}
-</script>
+ }
+ </script>
+ 
