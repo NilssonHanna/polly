@@ -31,7 +31,7 @@ import io from 'socket.io-client';
       return {
         lang: "",
         pollId: "",
-        wordExplanation: ["word","explanation"],
+        wordExplanation: ["word", "explanation"],
         question: ["",""],
         answers: ["", ""],
         questionNumber: 0,
@@ -57,6 +57,7 @@ import io from 'socket.io-client';
       addQuestion: function () {
         this.wordExplanation.push("")
         this.wordExplanation.push("")
+        socket.emit("addQuestion", {pollId: this.pollId, we: this.wordExplanation } )
       },
         /*socket.emit("addQuestion", {pollId: this.pollId, q: this.question, a: this.answers } )*/
         /*den ovan kanske behövs senare för att koppla till resultview!*/ 
@@ -123,8 +124,8 @@ body {
 
   .wrapper{
     grid-template-columns: 5px 5px;
-    margin-left: 200px;
-    margin-right: 200px;
+    margin-left: 300px;
+    margin-right: 300px;
     font-family: "Fjord one";
     
   }
