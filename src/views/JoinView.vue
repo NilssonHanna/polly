@@ -1,26 +1,30 @@
 <template>
   <body>
-    <button id="language" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
 
-  <div id="quit">
-    <router-link v-bind:to="'/'" class="link">{{uiLabels.quitGame}}</router-link>
+    <div >
+      <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
+      </div>
+    
+    
+    <div>
+    <div id="gamecode">
+      <h1> {{uiLabels.gamecode}}</h1>
+    </div>
+
+    <div id="input">
+      <label>
+        <!--Write poll id: -->
+        <input type="text" v-model="pin" id="text">
+      </label>
+    </div>
   </div>
-
-    <h1> {{uiLabels.gamecode}}</h1>
-
-  <label>
-    <!--Write poll id: -->
-    <input type="text" v-model="pin">
-  </label>
-
-  <div id="next">
-    <router-link v-bind:to="'/nickname/'+id" class="link">{{uiLabels.next}}</router-link>
-  </div>
-  
-  <div>
-  </div>
+   
+    
+    <div>
+      <router-link v-bind:to="'/nickname/'+id" id="next">{{uiLabels.next}}</router-link>
+    </div>
   </body>
-  </template>
+</template>
   
   <script>
   import io from 'socket.io-client';
@@ -59,65 +63,69 @@
     background-color: rgb(244, 185, 237);
     width: 100%;
     min-height: 100vh;
+    display: grid;
+    grid-template-columns: 2em auto;
   }
 
-  #language {
-  background-color: rgb(254, 190, 201);
-  font-size: 1.5rem;
-  color: black;
-  padding: 25px;
-  position: absolute;
-  top: -20px;
-  right: 0px;
+
+
+#gamecode{
+  margin-top: 120px;
+  font-size: 15pt;
   font-family: "Fjord one";
-  cursor:pointer;
-}
-
-  .text {
-    margin-top: 100px;
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 3rem;
-    color: rgb(0, 0, 0);
-    font-family: "Fjord one";
-    font-weight: bold;
-}
-
-.gamecode{
-  margin-top: 150px;
-  font-size: 20pt;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+  margin-left: 0%;
   
 }
+
+#text{
+  font-size: 10pt;
+  font-family: "Fjord one";
+  transform: scale(2);
+  margin-bottom: 100px;
+}
+
+#input{
+  padding:90px; 
+}
+
   
 #next{
   background-color: rgb(90, 58, 64);
   font-size: 1.5rem;
   color: rgb(255, 255, 255);
   padding: 30px;
-  margin-top: -200px;
+  margin-top: -150px;
   position: absolute;
-  left: 70%;
+  left: 85%;
   top:100%;
   transform: translateX(-50%);
   font-family: "Fjord one";
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+
 }
 
 #quit{
-  background-color: rgb(230, 120, 140);
+  background-color: rgb(255, 6, 52);
   font-size: 1.5rem;
   color: rgb(255, 255, 255);
   padding: 30px;
-  top: -20px;
+  top: 0px;
   left:50px;
+  letter-spacing: 0.1em;
   position: absolute;
   transform: translateX(-50%);
   font-family: "Fjord one";
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
 }
 
-.link{
-  color: white;
-}
 
 
 @media screen and (max-width:50em) {
