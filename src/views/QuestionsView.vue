@@ -10,8 +10,12 @@
       </header>
         <div class="wrapper">
           <!--{{uiLabels.words}} {{}} {{uiLabels.explanation}}-->
-          <input class="wordExplanation" type="text" v-for="(_, i) in wordExplanation"
-              v-bind:key="'wordExplanation'+i">
+
+          <input class="word" type="text" v-for="(_, i) in word"
+              v-bind:key="'word'+i">
+          <input class="explanation" type="text" v-for="(_, i) in explanation"
+              v-bind:key="'explanation'+i">
+
           <button class="addQstBtn" v-on:click="addQuestion">
             Add word and explanation
           </button>
@@ -29,6 +33,9 @@
       return {
         lang: "",
         pollId: "",
+        word: ["",""],
+        explanation: ["", ""],
+        msg: "",
         wordExplanation: ["word", "explanation"],
         question: ["",""],
         answers: ["", ""],
@@ -53,9 +60,13 @@
     methods: {
   
       addQuestion: function () {
-        this.wordExplanation.push("")
-        this.wordExplanation.push("")
-        socket.emit("addQuestion", {pollId: this.pollId, we: this.wordExplanation } )
+        this.word.push("")
+        this.explanation.push("")
+        let msg = {
+          words: this.word, 
+          explanations: this.explanation
+        }
+        socket.emit("msg", {pollId: this.pollId, msg } )
       },
         /*socket.emit("addQuestion", {pollId: this.pollId, q: this.question, a: this.answers } )*/
         /*den ovan kanske behövs senare för att koppla till resultview!*/
