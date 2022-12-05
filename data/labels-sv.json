@@ -2,7 +2,13 @@
 	"sales-pitch": "Svar. Helt. Enkelt.",
 	"invite": "Bjud in deltagare med den här länken:",
 	"createPoll": "Skapa",
+	"createQuestions": "Skapa frågor",
 	"participatePoll": "Delta",
 	"question": "Fråga",
-	"changeLanguage": "Change to English"
-}
+	"words": "Ord",
+	"explanation": "Förklaring",
+	"createWordExplanation": "Skapa ord och förklaringar",
+	"changeLanguage": "Change to English",
+	"connectPoll": "connect to poll"
+ }
+ 

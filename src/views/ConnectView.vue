@@ -1,41 +1,20 @@
 <template>
-    <div>
-      Enter game code: 
-      <input type="text" v-model="pollId">
-      <button v-on:click="createPoll">
-        Create poll
-      </button>
-      <div>
-        {{uiLabels.question}}:
-        <input type="text" v-model="question">
-        <div>
-          Answers:
-          <input v-for="(_, i) in answers" 
-                 v-model="answers[i]" 
-                 v-bind:key="'answer'+i">
-          <button v-on:click="addAnswer">
-            Hej jag heter Olivia
-          </button>
-        </div>
-      </div>
-      <button v-on:click="addQuestion">
-        Add question
-      </button>
-      <input type="number" v-model="questionNumber">
-      <button v-on:click="runQuestion">
-        Run question
-      </button>
-      {{data}}
-      <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
-    </div>
+  <body>
+     
+    
+ 
+ 
+  </body>
+ 
+ 
   </template>
-  
+ 
   <script>
   import io from 'socket.io-client';
   const socket = io();
-  
+ 
   export default {
-    name: 'CreateView',
+    name: 'ConnectView',
     data: function () {
       return {
         lang: "",
@@ -75,4 +54,18 @@
     }
   }
   </script>
-  
+ 
+ 
+ 
+  <style scoped>
+   body {
+      background-color: rgb(32, 88, 17);
+      width: 100%;
+      min-height: 100vh;
+    }
+ 
+   
+ 
+ 
+ 
+  </style>

@@ -2,7 +2,13 @@
 	"sales-pitch": "Simply. Great. Polling.",
 	"invite": "Invite participants with this link:",
 	"createPoll": "Create",
-	"participatePoll": "Join",
+	"createQuestions": "Create questions",
+	"participatePoll": "participate in poll",
 	"question": "Question",
-	"changeLanguage": "Byt till svenska"
-}
+	"words": "Word",
+	"explanation": "Explanation",
+	"createWordExplanation": "Create words and explanations",
+	"changeLanguage": "Byt till svenska",
+	"connectPoll": "connect to poll"
+ }
+ 
