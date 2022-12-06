@@ -98,6 +98,10 @@ export default {
 }
 
 
+
+
+
+
 #join {
   background-color: rgb(90, 58, 64);
   font-size: 1.5rem;
@@ -113,8 +117,6 @@ export default {
   font-family: "Fjord one";
   text-decoration: none;
 }
-
-
 
 @media screen and (max-width:50em) {
   .logo {

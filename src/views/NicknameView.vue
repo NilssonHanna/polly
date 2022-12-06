@@ -4,15 +4,11 @@
      <h1> WRITE NICKNAME</h1>
    
    
-     <label>
-     Write pnickname:
-     <input type="text" v-model="id">
-   </label>
-   
-   <!--<router-link id="connectstyle" v-bind:to="'/connect/'+lang">{{uiLabels.connectPoll}}</router-link>-->
-   
-   
-   
+   <div>
+     
+     <input type="text" v-model="nicknameId">
+     <router-link id="connect" v-bind:to="'/connect/'+lang">{{uiLabels.createNickname}}</router-link>
+   </div>
    
   </body>
    
@@ -20,7 +16,47 @@
    
   <script>
    
+  import io from 'socket.io-client';
+  const socket = io();
    
+  export default {
+   name: 'NicknameView',
+   data: function () {
+     return {
+       lang: "",
+       data: {},
+       uiLabels: {},
+       nicknameId: ""
+     }
+   },
+   
+   
+   created: function () {
+     this.lang = this.$route.params.lang;
+     socket.emit("pageLoaded", this.lang);
+     socket.on("init", (labels) => {
+       this.uiLabels = labels
+     })
+   
+     socket.on("dataUpdate", (data) =>
+       this.data = data,
+     
+       "nicknameCreated", (data) =>
+       this.data = data)
+   },
+    methods: {
+    // createNickname: function () {
+    //  socket.emit("createPoll", {nicknameId: this.pollId, lang: this.lang })
+    // },
+    createNickname: function () {
+       socket.emit("createNickname", {nicknameId: this.nicknameId, lang: this.lang })
+     },
+   }
+   
+   
+   
+   
+  }
    
    
    

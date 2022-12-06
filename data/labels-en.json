@@ -10,6 +10,10 @@
 	"explanation": "Explanation",
 	"createWordExplanation": "Create words and explanations",
 	"changeLanguage": "Byt till svenska",
+
+	
+	"createNickname":"create nickname"
+
 	"gamecode":"Enter game code:",
 	"next":"Next",
 
@@ -28,5 +32,6 @@
 
 	"quitGame": "Quit",
 	"winnerAnn": "The winner is..."
+
  }
  
