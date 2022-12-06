@@ -2,14 +2,36 @@
 	"sales-pitch": "Simply. Great. Polling.",
 	"invite": "Invite participants with this link:",
 	"createPoll": "Create",
-	"createQuestions": "Create questions",
-	"participatePoll": "participate in poll",
-	"question": "Question",
+	"participatePoll": "Join",
+
+
+
 	"words": "Word",
 	"explanation": "Explanation",
 	"createWordExplanation": "Create words and explanations",
 	"changeLanguage": "Byt till svenska",
-	"connectPoll": "connect to poll",
+
+	
 	"createNickname":"create nickname"
+
+	"gamecode":"Enter game code:",
+	"next":"Next",
+
+	"nickname":"Choose a nickname",
+
+	"connect":"Waiting for players to join",
+
+
+
+
+	"createQuestions": "Create questions",
+	"question": "Question",
+	
+	"connectPoll": "connect to poll",
+
+
+	"quitGame": "Quit",
+	"winnerAnn": "The winner is..."
+
  }
  

@@ -19,6 +19,7 @@
 <script>
 import io from 'socket.io-client';
 const socket = io();
+
 export default {
   name: 'StartView',
   data: function () {
@@ -65,6 +66,7 @@ export default {
     text-align: center;
 }
   
+
   #language {
   background-color: rgb(254, 190, 201);
   font-size: 1.5rem;
@@ -77,6 +79,7 @@ export default {
   cursor:pointer;
  
 }
+
 #create {
   background-color: rgb(90, 58, 64);
   font-size: 1.5rem;
@@ -91,7 +94,14 @@ export default {
   transform: translateX(-50%);
   font-family: "Fjord one";
   text-decoration: none;
+
 }
+
+
+
+
+
+
 #join {
   background-color: rgb(90, 58, 64);
   font-size: 1.5rem;
@@ -107,6 +117,7 @@ export default {
   font-family: "Fjord one";
   text-decoration: none;
 }
+
 @media screen and (max-width:50em) {
   .logo {
     font-size: 5vw;
