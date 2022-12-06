@@ -10,15 +10,15 @@
 	"explanation": "Förklaring",
 	"createWordExplanation": "Skapa ord och förklaringar",
 
-	"changeLanguage": "Change to English",
 	
-	"createNickname":"skapa spelnamn:",
+
+	"createNickname":"skapa spelnamn",
+
 
 
 	"gamecode":"Ange game code:",
 	
 	"next":"Nästa",
-
 
 	"connect":"Väntar på att spelare ansluter",
 
