@@ -40,6 +40,7 @@ export default {
       else
         this.lang = "en"
       socket.emit("switchLanguage", this.lang)
+      console.log(this.lang)
     },
   }
  }
@@ -59,9 +60,10 @@ export default {
     letter-spacing: 0.2em;
     font-size: 4rem;
     color: rgb(0, 0, 0);
-    padding-top:0.2em;
     font-family: "Fjord one";
     font-weight: bold;
+    position: absolute;
+    text-align: center;
 }
   
 

@@ -37,25 +37,20 @@
       return {
         uiLabels: {},
         pin: "",
-        lang: "en",
+        lang: "",
       }
     },
     created: function () {
       socket.on("init", (labels) => {
         this.uiLabels = labels
+        this.lang = this.$route.params.lang
+        socket.emit("pageLoaded", this.lang)
       })
-    },
-    methods: {
-      switchLanguage: function() {
-        if (this.lang === "en")
-          this.lang = "sv"
-        else
-          this.lang = "en"
-        socket.emit("switchLanguage", this.lang)
-      },
-
     }
   }
+
+        
+      
   </script>
 
 <style scoped>
@@ -96,6 +91,7 @@
   background-color: rgb(90, 58, 64);
   font-size: 1.5rem;
   color: rgb(255, 255, 255);
+  width:80px;
   padding: 30px;
   margin-top: -150px;
   position: absolute;
@@ -114,9 +110,10 @@
   background-color: rgb(255, 6, 52);
   font-size: 1.5rem;
   color: rgb(255, 255, 255);
+  width:110px;
   padding: 30px;
   top: 0px;
-  left:50px;
+  left:60px;
   letter-spacing: 0.1em;
   position: absolute;
   transform: translateX(-50%);
