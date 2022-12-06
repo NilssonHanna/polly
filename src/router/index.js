@@ -18,6 +18,7 @@ const routes = [
    component: () => import(/* webpackChunkName: "about" */ '../views/NicknameView.vue')
  },
  
+
  {
    path: '/create/:lang',
    name: 'CreateView',
