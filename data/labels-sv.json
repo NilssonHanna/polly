@@ -1,4 +1,4 @@
-{	"changeLanguage": "Change to English",
+{	
 
 	"Welcometext": "Välkommen till Xplanandum",
 	"invite": "Bjud in deltagare med den här länken:",
@@ -11,10 +11,13 @@
 	"createWordExplanation": "Skapa ord och förklaringar",
 
 	
+
 	"createNickname":"skapa spelnamn",
 
 
+
 	"gamecode":"Ange game code:",
+	
 	"next":"Nästa",
 
 	"connect":"Väntar på att spelare ansluter",

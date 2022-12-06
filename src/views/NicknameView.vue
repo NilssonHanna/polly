@@ -1,14 +1,25 @@
 <template>
   <body>
-    
-     <h1> WRITE NICKNAME</h1>
+
+
+    <div id="nickname">
+     <h1> {{uiLabels.createNickname}}</h1>
+    </div>
    
-   
-   <div>
-     
-     <input type="text" v-model="nicknameId">
-     <router-link id="connect" v-bind:to="'/connect/'+lang">{{uiLabels.createNickname}}</router-link>
-   </div>
+    <div id="input">
+      <label>
+        <input type="text" v-model="nicknameId" id="text">
+      </label>
+    </div>
+
+    <div>
+      <router-link v-bind:to="'/connect/'+lang" id="next">{{uiLabels.next}}</router-link>
+    </div>
+
+    <div >
+      <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
+    </div>
+
    
   </body>
    
@@ -66,23 +77,70 @@
    
   <style scoped>
   body {
-     background-color: rgb(254, 175, 126);
-     width: 100%;
-     min-height: 100vh;
+    background-color: rgb(184, 249, 253);
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 2em auto;
+   }
+
+   #nickname {
+    margin-top: 120px;
+    font-size: 15pt;
+    font-family: "Fjord one";
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+    margin-left: 0%;
    }
    
-   #connectstyle {
-   
-   background-color: rgb(170, 34, 59);
-   font-size: 1.5rem;
-   color: rgb(62, 4, 4);
-   padding: 30px;
-   margin-top: -200px;
-   position: absolute;
-   left: 40%;
-   transform: translateX(-50%);
-   font-family: "Fjord one";
-  }
+
+  #input{
+  padding:90px; 
+}
+
+#next{
+  background-color: rgb(90, 58, 64);
+  font-size: 1.5rem;
+  color: rgb(255, 255, 255);
+  width:80px;
+  padding: 30px;
+  margin-top: -150px;
+  position: absolute;
+  left: 85%;
+  top:100%;
+  transform: translateX(-50%);
+  font-family: "Fjord one";
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+
+}
+
+#text{
+  font-size: 10pt;
+  font-family: "Fjord one";
+  transform: scale(2);
+  margin-bottom: 300px;
+}
+
+#quit{
+  background-color: rgb(255, 6, 52);
+  font-size: 1.5rem;
+  color: rgb(255, 255, 255);
+  width:110px;
+  padding: 30px;
+  top: 0px;
+  left:60px;
+  letter-spacing: 0.1em;
+  position: absolute;
+  transform: translateX(-50%);
+  font-family: "Fjord one";
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+}
    
    
   </style>
