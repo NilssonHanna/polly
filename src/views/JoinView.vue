@@ -21,7 +21,7 @@
    
     
     <div>
-      <router-link v-bind:to="'/nickname/'+id" id="next">{{uiLabels.next}}</router-link>
+      <router-link v-bind:to="('/nickname/'+lang)" id="next">{{uiLabels.next}}</router-link>
     </div>
   </body>
 </template>
