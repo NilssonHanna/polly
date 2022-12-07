@@ -4,7 +4,7 @@
     Poll link:
     <input type="text" v-model="pollId">
     <button v-on:click="createPoll">
-      Create poll
+      Create poll hej
     </button>
     <!--Fixa nickname!!-->
     <!--<button v-on:click="createQuestions">Create questions</button>-->
