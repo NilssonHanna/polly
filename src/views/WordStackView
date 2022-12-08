@@ -1,4 +1,4 @@
-
+    
 <template>  
   <body>
   <div>
@@ -19,11 +19,11 @@
   </div>
 
   <div>
-    <router-link v-bind:to="'/questions/'+lang" id="choice_create">{{uiLabels.createWords}} Create your own words</router-link>
+    <router-link v-bind:to="'/questions/'+lang" id="choice_create">{{uiLabels.quitGame}} Create your own words</router-link>
   </div>
 
   <div>
-    <router-link v-bind:to="'/wordstack/'+lang" id="choice_finished">{{uiLabels.finishedWors}} Use already finished words</router-link>
+    <router-link v-bind:to="'/'" id="choice_finished">{{uiLabels.quitGame}} Use already finished words</router-link>
   </div>
 
 
