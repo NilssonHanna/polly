@@ -2,7 +2,7 @@
 	"sales-pitch": "Simply. Great. Polling.",
 	"invite": "Invite participants with this link:",
 	"createPoll": "Create",
-	"participatePoll": "Join",
+	"joinPoll": "Join",
 
 
 
@@ -12,7 +12,7 @@
 	"changeLanguage": "Byt till svenska",
 
 	
-	"createNickname":"create nickname",
+	"createNickname":"create nickname:",
 
 	"gamecode":"Enter game code:",
 	"next":"Next",
@@ -20,7 +20,8 @@
 	"nickname":"Choose a nickname",
 
 	"connect":"Waiting for players to join",
-
+	"playersjoin":"Waiting for players to join",
+	"vote:":"vote",
 
 
 

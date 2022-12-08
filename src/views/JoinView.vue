@@ -37,14 +37,15 @@
       return {
         uiLabels: {},
         pin: "",
-        lang: "",
+        lang: "en",
       }
     },
     created: function () {
+      socket.emit("pageLoaded", this.lang)
+      this.lang = this.$route.params.lang
       socket.on("init", (labels) => {
         this.uiLabels = labels
-        this.lang = this.$route.params.lang
-        socket.emit("pageLoaded", this.lang)
+      
       })
     }
   }
