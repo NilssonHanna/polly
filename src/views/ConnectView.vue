@@ -1,43 +1,38 @@
 <template>
   <body>
-
-
     <div>
-      <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
-    </div>
+       <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
+     </div>
 
-  <div class="playersjoin">
-      <h1> {{uiLabels.playersjoin}}</h1>
-  </div>  
+   <div class="playersjoin">
+       <h1> {{uiLabels.playersjoin}}</h1>
+   </div>  
 
-  <div>
-     <router-link  v-bind:to="'/voting/'+lang">{{uiLabels.vote}}</router-link>
-    </div>
-
-   
- 
-  </body>
+   <div>
+      <router-link  v-bind:to="'/voting/'+lang">{{uiLabels.vote}}</router-link>
+     </div>
+    
+    </body>
   
-  </template>
- 
+</template>
 
-  <script>
-  //import QuestionComponent from '@/components/QuestionComponent.vue';
+<script>
+//import QuestionComponent from '@/components/QuestionComponent.vue';
 import io from 'socket.io-client';
 const socket = io();
- export default {
-  name: 'ConnectView',
-  data: function () {
-    return {
-      lang: "",
-      pollId: "",
-      question: ["",""],
-      answers: ["", ""],
-      questionNumber: 0,
-      data: {},
-      uiLabels: {},
+export default {
+name: 'ConnectView',
+data: function () {
+  return {
+    lang: "",
+    pollId: "",
+    question: ["",""],
+    answers: ["", ""],
+    questionNumber: 0,
+    data: {},
+    uiLabels: {},
 
-    }
+  }
   },
   created: function () {
     this.lang = this.$route.params.lang;
@@ -51,7 +46,6 @@ const socket = io();
     socket.on("nicknameCreated", (data) =>
       this.data = data)
   },
-
   methods: {
     addQuestion: function () {
       this.question.push("")
@@ -66,52 +60,45 @@ const socket = io();
     },
   }
 }
-
-
-
 </script>
- 
- 
-  <style scoped>
-   body {
-    background-color: rgb(185, 242, 244);
-    width: 100%;
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 2em auto;
+   
+   
+   <style scoped>
+    body {
+      background-color: rgb(185, 242, 244);
+     width: 100%;
+     min-height: 100vh;
+     display: grid;
+     grid-template-columns: 2em auto;
+    }
+  
+    .playersjoin {
+  margin-top: 150px;
+   font-size: 15pt;
+   font-family: "Fjord one";
+   text-transform: uppercase;
+   text-align: center;
+   white-space: nowrap;
+   margin-left: 0%;}
+
+
+
+
+     #quit{
+   background-color: rgb(255, 6, 52);
+   font-size: 1.5rem;
+   color: rgb(255, 255, 255);
+   width:110px;
+   padding: 30px;
+   top: 0px;
+   left:60px;
+   letter-spacing: 0.1em;
+   position: absolute;
+   transform: translateX(-50%);
+   font-family: "Fjord one";
+   text-transform: uppercase;
+   cursor: pointer;
+   text-decoration: none;
    }
- 
-   .playersjoin {
- margin-top: 150px;
-  font-size: 15pt;
-  font-family: "Fjord one";
-  text-transform: uppercase;
-  text-align: center;
-  white-space: nowrap;
-  margin-left: 0%;}
 
-
-
-
-    #quit{
-  background-color: rgb(255, 6, 52);
-  font-size: 1.5rem;
-  color: rgb(255, 255, 255);
-  width:110px;
-  padding: 30px;
-  top: 0px;
-  left:60px;
-  letter-spacing: 0.1em;
-  position: absolute;
-  transform: translateX(-50%);
-  font-family: "Fjord one";
-  text-transform: uppercase;
-  cursor: pointer;
-  text-decoration: none;
-}
-   
-   
- 
- 
- 
-  </style>
+</style>

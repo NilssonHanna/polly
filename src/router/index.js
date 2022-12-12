@@ -9,76 +9,61 @@ const routes = [
  },
    {
    path: '/poll/:id',
-   name: 'PollView',
-   component: () => import(/* webpackChunkName: "about" */ '../views/PollView.vue')
- },
+    name: 'PollView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/PollView.vue')
+  },
 
- {
-  path: '/join/:lang',
-  name: 'JoinView',
-  // route level code-splitting
-  // this generates a separate chunk (about.[hash].js) for this route
-  // which is lazy-loaded when the route is visited.
-  component: () => import(/* webpackChunkName: "about" */ '../views/JoinView.vue')
-},
-
- {
-   path: '/nickname/:lang',
-   name: 'NicknameView',
-   component: () => import(/* webpackChunkName: "about" */ '../views/NicknameView.vue')
- },
- 
-
- {
-   path: '/create/:lang',
-   name: 'CreateView',
+  {
+   path: '/join/:lang',
+   name: 'JoinView',
    // route level code-splitting
    // this generates a separate chunk (about.[hash].js) for this route
    // which is lazy-loaded when the route is visited.
-   component: () => import(/* webpackChunkName: "about" */ '../views/CreateView.vue')
+   component: () => import(/* webpackChunkName: "about" */ '../views/JoinView.vue')
  },
- {
-   path: '/connect/:lang/',
-   name: 'ConnectView',
-   component: () => import(/* webpackChunkName: "about" */ '../views/ConnectView.vue')
- },
-
- {
-  path: '/voting/:lang/',
-  name: 'VotingView',
-  component: () => import(/* webpackChunkName: "about" */ '../views/VotingView.vue')
-},
-
-
-
 
   {
-   path: '/result/:id',
-   name: 'ResultView',
-   // route level code-splitting
+    path: '/nickname/:lang',
+    name: 'NicknameView',
+    name: 'ConnectView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ConnectView.vue')
+  },
+
+  {
+    path: '/voting/:lang/',
+    name: 'VotingView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/VotingView.vue')
+  },
+
+  {
+    path: '/result/:id',
+    name: 'ResultView',
+
+    // route level code-splitting
    // this generates a separate chunk (about.[hash].js) for this route
    // which is lazy-loaded when the route is visited.
    component: () => import(/* webpackChunkName: "about" */ '../views/ResultView.vue')
- },
- 
- {
-   path: '/questions/:lang/',
-   name: 'QuestionsView',
-   component: () => import(/* webpackChunkName: "about" */ '../views/QuestionsView.vue')
- },
- 
- {
-   path: '/waiting/:lang/',
-   name: 'WaitingView',
-   component: () => import(/* webpackChunkName: "about" */ '../views/WaitingView.vue')
- }
- 
-]
- 
-const router = createRouter({
- history: createWebHashHistory(),
- routes
-})
- 
-export default router
+  },
+  
+  {
+    path: '/questions/:lang/',
+    name: 'QuestionsView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/QuestionsView.vue')
+  },
+  
+  {
+    path: '/waiting/:lang/',
+    name: 'WaitingView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/WaitingView.vue')
+  }
+  
+ ]
 
+ const router = createRouter({
+  history: createWebHashHistory(),
+  routes
+ })
+  
+ export default router
+
+ 

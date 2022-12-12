@@ -1,37 +1,40 @@
-{	
-
+{	"changeLanguage": "Change to English",
+	
 	"Welcometext": "Välkommen till Xplanandum",
+	
 	"invite": "Bjud in deltagare med den här länken:",
+	
 	"createPoll": "Skapa",
+	
 	"participatePoll": "Delta",
 	
-	
 	"words": "Ord",
+	
 	"explanation": "Förklaring",
+	
 	"createWordExplanation": "Skapa ord och förklaringar",
-
 	
-
 	"createNickname":"skapa spelnamn",
-
-
-
-	"gamecode":"Ange game code:",
 	
+	"gamecode":"Ange game code:",
+ 	
 	"next":"Nästa",
 
-	"connect":"Väntar på att spelare ansluter",
+ 	"connect":"Väntar på att spelare ansluter",
+ 	
 	"playersjoin":"väntar på att spelare ansluter",
+ 	
 	"vote:":"rösta",
 
-	"createQuestions": "Skapa frågor",
+ 	"createQuestions": "Skapa frågor",
+ 	
 	"question": "Fråga",
+	
 	"connectPoll": "connect to poll",
-
-
+	
 	"quitGame": "Avsluta",
+	
 	"winnerAnn": "Vinnaren är..."
-
  }
  
  
