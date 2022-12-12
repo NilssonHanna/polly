@@ -21,7 +21,7 @@
    </div>
 
      <div>
-      <router-link id="connect" v-bind:to="'/connect/'+lang">{{uiLabels.createNickname}}</router-link>
+      <router-link id="connect" v-bind:to="'/connect/'+lang">{{uiLabels.next}}</router-link>
     </div>
 
 </body>
@@ -70,7 +70,7 @@ created: function () {
 
 <style scoped>
 body {
-  background-color: rgb(244, 240, 185);
+  background-color: rgb(255, 249, 172);
      width: 100%;
      min-height: 100vh;
      display: grid;
@@ -93,24 +93,26 @@ body {
    margin-bottom: 100px;
  }
 
-    #connect{
+   #connect{
+  background-color: rgb(90, 58, 64);
+  font-size: 1.5rem;
+  color: rgb(255, 255, 255);
+  width:80px;
+  padding: 30px;
+  margin-top: -150px;
+  position: absolute;
+  left: 85%;
+  top:100%;
+  transform: translateX(-50%);
+  font-family: "Fjord one";
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  }
     
-   background-color: rgb(90, 58, 64);
-   font-size: 1.5rem;
-   color: rgb(255, 255, 255);
-   width:160px;
-   padding: 30px;
-   margin-top: -150px;
-   position: absolute;
-   left: 85%;
-   top:100%;
-   transform: translateX(-50%);
-   font-family: "Fjord one";
-   letter-spacing: 0.1em;
-   text-transform: uppercase;
-   text-decoration: none;
-   cursor: pointer;
-   }
+
+  
 
    #quit{
    background-color: rgb(255, 6, 52);
