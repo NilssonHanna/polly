@@ -21,6 +21,8 @@
 	"next":"Nästa",
 
 	"connect":"Väntar på att spelare ansluter",
+	"playersjoin":"väntar på att spelare ansluter",
+	"vote:":"rösta",
 
 	"createQuestions": "Skapa frågor",
 	"question": "Fråga",
