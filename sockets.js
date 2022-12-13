@@ -11,6 +11,13 @@ function sockets(io, socket, data) {
    socket.on('createPoll', function(d) {
     socket.emit('pollCreated', data.createPoll(d.pollId, d.lang));
   });
+
+  // Testar för att skicka vidare nickname 
+ 
+socket.on('createNickname', function(pn) {
+  socket.emit('nicknameCreated', data.getNickname(pollId, pn));
+})
+
  socket.on('addQuestion', function(d) {
    data.addQuestion(d.pollId, {q: d.q, a: d.a});
    socket.emit('dataUpdate', data.getAnswers(d.pollId));
@@ -28,10 +35,12 @@ function sockets(io, socket, data) {
    io.to(d.pollId).emit('newQuestion', data.getQuestion(d.pollId, d.questionNumber));
    io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
  });
+ 
  socket.on('submitAnswer', function(d) {
    data.submitAnswer(d.pollId, d.answer);
    io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
  });
+ 
  socket.on('resetAll', () => {
    data = new Data();
    data.initializeData();

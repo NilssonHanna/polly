@@ -23,7 +23,7 @@ const routes = [
  },
 
   {
-    path: '/nickname/:lang',
+    path: '/nickname/:lang/:id',
     name: 'NicknameView',
    component: () => import(/* webpackChunkName: "about" */ '../views/NicknameView.vue')
  },
@@ -39,8 +39,6 @@ const routes = [
    name: 'VotingView',
    component: () => import(/* webpackChunkName: "about" */ '../views/VotingView.vue')
  },
-
-
 
 
    {

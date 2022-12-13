@@ -54,15 +54,17 @@ body {
 }
 .logo {
  text-transform: uppercase;
- margin-left: 350px;
- margin-top: 120px;
+ position: fixed;
  letter-spacing: 0.2em;
  font-size: 4rem;
  color: rgb(0, 0, 0);
  font-family: "Fjord one";
  font-weight: bold;
  position: absolute;
- text-align: center;
+ top: 150px;
+ right: 200px;
+ left: 200px;
+
 }
 
 #language {

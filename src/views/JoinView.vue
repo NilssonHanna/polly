@@ -9,18 +9,17 @@
     <div id="gamecode">
       <h1> {{uiLabels.gamecode}}</h1>
     </div>
-    <div id="input">
+    <div class="input">
       <label>
         <!--Write poll id: -->
 
-<input type="text" v-model="pin" id="text">
+<input type="text" v-model="id" class="text">
 </label>
 </div>
 </div>
 
-
 <div>
-<router-link v-bind:to="('/nickname/'+lang)" id="next">{{uiLabels.next}}</router-link>
+<router-link id="next" v-bind:to="('/nickname/'+lang+'/'+id)" >{{uiLabels.next}}</router-link>
 </div>
 </body>
 </template>
@@ -33,18 +32,22 @@ name: 'JoinView',
 data: function () {
  return {
    uiLabels: {},
-   pin: "",
    lang: "en",
+   data: {},
+   id: "",
        }
      },
-     created: function () {
-       socket.emit("pageLoaded", this.lang)
-       this.lang = this.$route.params.lang
-       socket.on("init", (labels) => {
-         this.uiLabels = labels
 
+     created: function () {
+      this.lang = this.$route.params.lang;
+      socket.emit("pageLoaded", this.lang);
+      socket.on("init", (labels) => {
+      this.uiLabels = labels
         })
+        
      }
+  
+  
    }
   </script>
 <style scoped>
@@ -65,13 +68,13 @@ data: function () {
   margin-left: 0%;
   
 }
-#text{
+.text{
   font-size: 10pt;
   font-family: "Fjord one";
   transform: scale(2);
   margin-bottom: 100px;
 }
-#input{
+.input{
   padding:90px; 
 }
   

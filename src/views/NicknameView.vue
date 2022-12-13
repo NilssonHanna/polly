@@ -11,10 +11,10 @@
       <h1> {{uiLabels.createNickname}}</h1>
      </div>
 
-     <div id="input">
+     <div class="input">
        <label>
          <!--Write poll id: -->
-         <input type="text" v-model="pin" id="text">
+         <input type="text" class="text">
        </label>
      </div>
 
@@ -54,15 +54,13 @@ created: function () {
   socket.on("dataUpdate", (data) =>
     this.data = data,
   
-    "nicknameCreated", (data) =>
-    this.data = data)
-},
+)},
  methods: {
  // createNickname: function () {
  //  socket.emit("createPoll", {nicknameId: this.pollId, lang: this.lang })
  // },
  createNickname: function () {
-    socket.emit("createNickname", {nicknameId: this.nicknameId, lang: this.lang })
+    socket.emit("createNickname", this.pn)
   },
 }
 }
@@ -77,23 +75,28 @@ body {
      grid-template-columns: 2em auto;
     }
 
-    #writeNickname {
-  margin-top: 120px;
-   font-size: 15pt;
-   font-family: "Fjord one";
-   text-transform: uppercase;
-   text-align: center;
-   white-space: nowrap;
-   margin-left: 0%;}
+#writeNickname {
+    margin-top: 120px;
+    font-size: 15pt;
+    font-family: "Fjord one";
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+    margin-left: 0%;
+    }
    
-   #text{
+.text{
    font-size: 10pt;
    font-family: "Fjord one";
    transform: scale(2);
    margin-bottom: 100px;
  }
 
-   #connect{
+ .input{
+  padding:90px; 
+}
+
+#connect{
   background-color: rgb(90, 58, 64);
   font-size: 1.5rem;
   color: rgb(255, 255, 255);

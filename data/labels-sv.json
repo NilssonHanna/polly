@@ -14,7 +14,7 @@
 	
 	"createWordExplanation": "Skapa ord och förklaringar",
 	
-	"createNickname":"skapa spelnamn",
+	"createNickname":"Skapa spelnamn:",
 	
 	"gamecode":"Ange game code:",
  	
@@ -24,13 +24,11 @@
  	
 	"playersjoin":"väntar på att spelare ansluter",
  	
-	"vote:":"rösta",
+	"vote:":"Rösta",
 
  	"createQuestions": "Skapa frågor",
  	
 	"question": "Fråga",
-	
-	"connectPoll": "connect to poll",
 	
 	"quitGame": "Avsluta",
 	
