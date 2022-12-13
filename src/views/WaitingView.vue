@@ -1,47 +1,50 @@
 <template>
-  <div>
-    Poll link:
-    <input type="text" v-model="pollId">
-    <button v-on:click="createPoll">
-      Create poll
-    </button>
-    <!--Fixa nickname!!-->
-    <!--<button v-on:click="createQuestions">Create questions</button>-->
-    <router-link id="result" v-bind:to="'/result/'+lang">{{uiLabels.createPoll}}</router-link>
-  </div>
+  <body>
+    <div>
+        <h1>Waiting for players..</h1>
+        <div v-for="(wordExplanation, key) in explanations" v-bind:key="'wordExplanation'+key">
+        #{{key}}: <dd>{{wordExplanation.wordExplanation}}</dd>
+        </div>
+    </div>
+  </body>
+
 </template>
- <script>
-import io from 'socket.io-client';
-const socket = io();
+
+<script>
+ // @ is an alias to /src
+ import io from 'socket.io-client';
+ const socket = io();
+  
  export default {
   name: 'WaitingView',
+
   data: function () {
     return {
-      lang: "",
-      pollId: "",
-      data: {},
-      uiLabels: {}
+      lang: "en",
+      wordExplanation: null,
+      submittedAnswers: {
+      }
     }
   },
   created: function () {
-    this.lang = this.$route.params.lang;
+    this.pollId = this.$route.params.id;
     socket.emit("pageLoaded", this.lang);
-    socket.on("init", (labels) => {
-      this.uiLabels = labels
+    socket.on("dataUpdate", (update) => {
+      this.submittedAnswers = update.a;
+      this.question = update.q;
+    });
+    socket.on("newQuestion", update => {
+      this.question = update.q;
+      this.data = {};
     })
-     socket.on("dataUpdate", (data) =>
-      this.data = data
-    )
-    socket.on("pollCreated", (data) =>
-      this.data = data)
-  },
-  methods: {
-   // createQuestions: function () {
-   //  socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
-   // },
-    createPoll: function () {
-      socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
-    },
   }
-}
-</script>
+ }
+ </script>
+
+ <style>
+
+body{
+  background-color: lightblue;
+ }
+
+</style>

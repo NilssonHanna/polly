@@ -1,4 +1,4 @@
-
+    
 <template>  
   <body>
   <div>
@@ -6,7 +6,6 @@
   </div>
       
   <div>
-
     <div id="gamecode">
       <h1> {{uiLabels.gamecode}} Enter gamecode </h1>
     </div>
@@ -14,19 +13,17 @@
     <div id="input">
       <label>
 
-        <input type="text" v-model="pollId" id="text"/>
-        <button id="choice_create" @click="wordstack">Use finished words</button>
-        <button id="choice_finished" @click="questions">Create your own words</button>
+        <input type="text" v-model="pin" id="text">
       </label>
     </div>
   </div>
 
   <div>
-    <router-link v-bind:to="'/questions/'+lang" id="choice_create">{{uiLabels.createWords}} Create your own words</router-link>
+    <router-link v-bind:to="'/questions/'+lang" id="choice_create">{{uiLabels.quitGame}} Create your own words</router-link>
   </div>
 
   <div>
-    <router-link v-bind:to="'/wordstack/'+lang" id="choice_finished">{{uiLabels.finishedWors}} Use already finished words</router-link>
+    <router-link v-bind:to="'/'" id="choice_finished">{{uiLabels.quitGame}} Use already finished words</router-link>
   </div>
 
 
@@ -48,9 +45,6 @@
       uiLabels: {}
     }
   },
-
-//how to pass a game code trough a whole quiz in vue
-
   created: function () {
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
@@ -71,19 +65,6 @@
     createPoll: function () {
       socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
     },
-
-    wordstack (){
-      this.router.push({
-        path: '/questions/:lang',
-        query: {pollId: this.pollId}
-      })
-    },
-    questions(){
-      this.router.push({
-        path: '/questions/:lang',
-        query: {pollId: this.pollId}
-      })
-    }
   }
  }
  </script>

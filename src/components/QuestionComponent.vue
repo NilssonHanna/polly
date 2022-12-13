@@ -1,19 +1,19 @@
 <template>
-<p>{{question.q}}</p>
-<button v-for="a in question.a" v-on:click="answer(a)" v-bind:key="a">
+<p> {{word.q}}</p>
+<button v-for="a in word.a" v-on:click="explanation(a)" v-bind:key="a">
   {{ a }}
 </button>
 </template>
-<script>
+<script> 
 export default {
   name: 'QuestionComponent',
   props: {
-    question: Object
+    word: Object
   },
-  emits: ["answer"],
+  emits: ["explanation"],
   methods: {
-    answer: function (answer) {
-      this.$emit("answer", answer);
+    explanation: function (explanation) {
+      this.$emit("explanation", explanation);
     } 
   }
 }
