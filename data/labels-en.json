@@ -37,5 +37,9 @@
 	
 	"quitGame": "Quit",
 	
-	"winnerAnn": "The winner is..."
+	"winnerAnn": "The winner is...",
+
+	"explanations": "Write your explanation . . .",
+
+	"word": "Word"
  }

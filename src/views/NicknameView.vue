@@ -21,7 +21,7 @@
    </div>
 
      <div>
-      <router-link id="connect" v-bind:to="'/connect/'+lang">{{uiLabels.next}}</router-link>
+      <router-link class="next" v-bind:to="'/connect/'+lang">{{uiLabels.next}}</router-link>
     </div>
 
 </body>
@@ -96,7 +96,7 @@ body {
   padding:90px; 
 }
 
-#connect{
+.next{
   background-color: rgb(90, 58, 64);
   font-size: 1.5rem;
   color: rgb(255, 255, 255);

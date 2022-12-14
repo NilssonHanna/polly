@@ -35,6 +35,12 @@ const routes = [
   },
 
   {
+    path: '/word/:lang/',
+     name: 'wordView',
+     component: () => import(/* webpackChunkName: "about" */ '../views/wordView.vue')
+   },
+
+  {
     path: '/voting/:lang/',
    name: 'VotingView',
    component: () => import(/* webpackChunkName: "about" */ '../views/VotingView.vue')
