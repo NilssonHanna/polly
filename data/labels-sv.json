@@ -22,7 +22,9 @@
 
  	"connect":"Väntar på att spelare ansluter . . .",
  	
-	"playersjoin":"väntar på att spelare ansluter . . .",
+	"playersjoin":"Väntar på att spelare ansluter . . .",
+
+	"playersanswer":"Väntar på att spelare ska svara . . .",
  	
 	"vote:":"Rösta",
 

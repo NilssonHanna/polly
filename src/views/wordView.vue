@@ -82,16 +82,12 @@
 font-family: "Fjord one";
 font-size: 20px;
 margin-top: 200px;
-
 }
  
 #explanation {
 font-family: "Fjord one";
 font-size: 30px;
 margin-top: 100px;
-
-
-
 }
  #writeNickname {
      margin-top: 120px;
