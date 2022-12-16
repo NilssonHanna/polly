@@ -19,7 +19,7 @@
 </div>
 
 <div>
-<router-link id="next" v-bind:to="('/nickname/'+lang+'/'+id)" >{{uiLabels.next}}</router-link>
+<router-link class="next" v-bind:to="('/nickname/'+lang+'/'+id)" >{{uiLabels.next}}</router-link>
 </div>
 </body>
 </template>
@@ -78,7 +78,7 @@ data: function () {
   padding:90px; 
 }
   
-#next{
+.next{
   background-color: rgb(90, 58, 64);
   font-size: 1.5rem;
   color: rgb(255, 255, 255);

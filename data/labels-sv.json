@@ -32,7 +32,11 @@
 	
 	"quitGame": "Avsluta",
 	
-	"winnerAnn": "Vinnaren är..."
+	"winnerAnn": "Vinnaren är...",
+
+	"explanations": "Skriv din förklaring . . .",
+
+	"word": "Ord"
  }
  
  
