@@ -40,6 +40,12 @@ const routes = [
      component: () => import(/* webpackChunkName: "about" */ '../views/wordView.vue')
    },
 
+   {
+    path: '/answer/:lang/',
+     name: 'answerView',
+     component: () => import(/* webpackChunkName: "about" */ '../views/answerView.vue')
+   },
+
   {
     path: '/voting/:lang/',
    name: 'VotingView',

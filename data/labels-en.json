@@ -26,8 +26,10 @@
  	"connect":"Waiting for players to join",
 
 	"playersjoin":"Waiting for players to join . . .",
+
+	"playersanswer":"Waiting for players to answer . . .",
  	
-	"vote:":"vote",
+	"vote:":"Vote",
 
 	"createQuestions": "Create questions",
 	

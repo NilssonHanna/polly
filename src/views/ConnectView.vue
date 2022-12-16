@@ -4,12 +4,12 @@
        <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
      </div>
 
-   <div class="playersjoin">
+   <div id="playersjoin">
        <h1> {{uiLabels.playersjoin}}</h1>
    </div>  
 
    <div>
-      <router-link  v-bind:to="'/voting/'+lang">{{uiLabels.vote}}</router-link>
+      <router-link  v-bind:to="'//'+lang">{{uiLabels.vote}}</router-link>
      </div>
     
     </body>
@@ -73,15 +73,19 @@ data: function () {
     }
   
     .playersjoin {
-  margin-top: 150px;
-   font-size: 15pt;
-   font-family: "Fjord one";
-   text-transform: uppercase;
-   text-align: center;
-   white-space: nowrap;
-   margin-left: 0%;}
+      text-transform: uppercase;
+      position: fixed;
+      letter-spacing: 0.2em;
+      font-size: 4rem;
+      color: rgb(0, 0, 0);
+      font-family: "Fjord one";
+      font-weight: bold;
+      position: absolute;
+      top: 150px;
+      right: 200px;
+      left: 200px;
 
-
+    }
 
 
      #quit{
