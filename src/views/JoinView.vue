@@ -1,6 +1,5 @@
 <template>
   <body>
-
     <div >
       <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
       </div>
@@ -10,18 +9,17 @@
     <div id="gamecode">
       <h1> {{uiLabels.gamecode}}</h1>
     </div>
-
-    <div id="input">
+    <div class="input">
       <label>
         <!--Write poll id: -->
-        <input type="text" v-model="pollId" id="text">
+        <input type="text" v-model="pollId" class="text">
       </label>
     </div>
   </div>
    
     
     <div>
-      <router-link v-bind:to="('/nickname/'+lang+'/'+pollId)" id="next">{{uiLabels.next}}</router-link>
+      <router-link v-bind:to="('/nickname/'+lang+'/'+pollId)" class="next">{{uiLabels.next}}</router-link>
     </div>
   </body>
 </template>
@@ -29,10 +27,7 @@
   <script>
   import io from 'socket.io-client';
   const socket = io();
-
-  export default {
-    name: 'JoinView',
-
+  export default{
     data: function () {
       return {
         uiLabels: {},
@@ -40,23 +35,24 @@
         lang: "en",
       }
     },
+  
     created: function () {
 
     this.pollId = this.$route.params.pollId
+    this.lang = this.$route.params.lang
     socket.emit('joinPoll', this.pollId)
     socket.emit("pageLoaded", this.lang)
-    this.lang = this.$route.params.lang
       socket.on("init", (labels) => {
         this.uiLabels = labels
       
       })
     }
+  
+
   }
 
-        
-      
-  </script>
 
+  </script>
 <style scoped>
   body {
     background-color: rgb(244, 185, 237);
@@ -65,9 +61,6 @@
     display: grid;
     grid-template-columns: 2em auto;
   }
-
-
-
 #gamecode{
   margin-top: 120px;
   font-size: 15pt;
@@ -78,20 +71,17 @@
   margin-left: 0%;
   
 }
-
-#text{
+.text{
   font-size: 10pt;
   font-family: "Fjord one";
   transform: scale(2);
   margin-bottom: 100px;
 }
-
-#input{
+.input{
   padding:90px; 
 }
-
   
-#next{
+.next{
   background-color: rgb(90, 58, 64);
   font-size: 1.5rem;
   color: rgb(255, 255, 255);
@@ -107,9 +97,7 @@
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
-
 }
-
 #quit{
   background-color: rgb(255, 6, 52);
   font-size: 1.5rem;
@@ -126,9 +114,6 @@
   cursor: pointer;
   text-decoration: none;
 }
-
-
-
 @media screen and (max-width:50em) {
   .logo {
     font-size: 5vw;
@@ -145,6 +130,5 @@
   .hide {
     left:-12em;
   }
-
 }
 </style>

@@ -23,6 +23,18 @@ Data.prototype.getUILabels = function (lang = "en") {
   return ui;
 }
 
+// Lagt in denna kod nu för att testa skicka vidare nickname
+
+Data.prototype.getNickname = function(pollId, pn) {
+  console.log("nickname")
+  const poll = this.polls[pollId];
+  console.log(this.polls[pollId]);
+  if (typeof poll !== 'undefined') {
+    poll.nicknameId.push(pn)
+  }
+  console.log(pn)
+}
+
 Data.prototype.createPoll = function(pollId, lang="en") {
   if (typeof this.polls[pollId] === "undefined") {
     let poll = {};

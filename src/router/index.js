@@ -8,53 +8,63 @@ const routes = [
    component: StartView
  },
    {
-   path: '/poll/:id',
-   name: 'PollView',
-   component: () => import(/* webpackChunkName: "about" */ '../views/PollView.vue')
- },
+   path: '/poll/:pollId',
+    name: 'PollView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/PollView.vue')
+  },
 
- {
-  path: '/join/:lang',
-  name: 'JoinView',
-  // route level code-splitting
-  // this generates a separate chunk (about.[hash].js) for this route
-  // which is lazy-loaded when the route is visited.
-  component: () => import(/* webpackChunkName: "about" */ '../views/JoinView.vue')
-},
+  {
+    path: '/create/:lang',
+    name: 'CreateView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/CreateView.vue')
+  },
 
- {
-   path: '/nickname/:lang/:pollId',
-   name: 'NicknameView',
-   component: () => import(/* webpackChunkName: "about" */ '../views/NicknameView.vue')
- },
- 
-
- {
-   path: '/create/:lang',
-   name: 'CreateView',
+  {
+   path: '/join/:lang',
+   name: 'JoinView',
    // route level code-splitting
    // this generates a separate chunk (about.[hash].js) for this route
    // which is lazy-loaded when the route is visited.
-   component: () => import(/* webpackChunkName: "about" */ '../views/CreateView.vue')
+   component: () => import(/* webpackChunkName: "about" */ '../views/JoinView.vue')
  },
- {
-   path: '/connect/:lang/:pollId',
-   name: 'ConnectView',
-   component: () => import(/* webpackChunkName: "about" */ '../views/ConnectView.vue')
- },
-
- {
-  path: '/voting/:lang',
-  name: 'VotingView',
-  component: () => import(/* webpackChunkName: "about" */ '../views/VotingView.vue')
-},
-
-
-
 
   {
-   path: '/result/:id',
-   name: 'ResultView',
+    path: '/nickname/:lang/:pollId',
+    name: 'NicknameView',
+   component: () => import(/* webpackChunkName: "about" */ '../views/NicknameView.vue')
+ },
+ 
+ {
+  path: '/connect/:lang/:pollId',
+  name: 'ConnectView',
+  component: () => import(/* webpackChunkName: "about" */ '../views/ConnectView.vue')
+},
+
+{
+  path: '/word/:lang',
+  name: 'wordView',
+  component: () => import(/* webpackChunkName: "about" */ '../views/wordView.vue')
+},
+
+{
+  path: '/answer/:lang',
+  name: 'answerView',
+  component: () => import(/* webpackChunkName: "about" */ '../views/answerView.vue')
+},
+
+  {
+    path: '/voting/:lang/',
+   name: 'VotingView',
+   component: () => import(/* webpackChunkName: "about" */ '../views/VotingView.vue')
+ },
+
+
+   {
+    path: '/result/:id',
+    name: 'ResultView',
    // route level code-splitting
    // this generates a separate chunk (about.[hash].js) for this route
    // which is lazy-loaded when the route is visited.
@@ -81,4 +91,3 @@ const router = createRouter({
 })
  
 export default router
-
