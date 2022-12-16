@@ -10,7 +10,7 @@
   <div >
     
     <router-link id="create" v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link> 
-    <router-link id="join" v-bind:to="'/join/'+lang" >{{uiLabels.participatePoll}}</router-link> 
+    <router-link id="join" v-bind:to="'/join/'+lang" >{{uiLabels.joinPoll}}</router-link> 
    
   </div>
 
@@ -26,10 +26,11 @@ export default {
   data: function () {
     return {
       uiLabels: {},
-      lang: "en",
+      lang:"en",
     }
   },
   created: function () {
+   
       socket.emit("pageLoaded", this.lang)
     socket.on("init", (labels) => {
       this.uiLabels = labels

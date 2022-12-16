@@ -8,8 +8,19 @@
 
   <div class="playersjoin">
       <h1> {{uiLabels.playersjoin}}</h1>
+   
+      
+   {{this.nicknameId}}
+
+
+      
+
+      
   </div>  
 
+  
+
+  
   <div>
      <router-link  v-bind:to="'/voting/'+lang">{{uiLabels.vote}}</router-link>
     </div>
@@ -22,49 +33,68 @@
  
 
   <script>
+
   //import QuestionComponent from '@/components/QuestionComponent.vue';
 import io from 'socket.io-client';
 const socket = io();
  export default {
   name: 'ConnectView',
+  
   data: function () {
     return {
-      lang: "",
+      lang: "en",
       pollId: "",
       question: ["",""],
       answers: ["", ""],
       questionNumber: 0,
       data: {},
       uiLabels: {},
+      nicknameId: ""
+      
 
     }
   },
   created: function () {
+    
     this.lang = this.$route.params.lang;
+    this.pollId = this.$route.params.pollId
+    console.log("i connectView i created function tas följande data emot: ", this.lang, this.pollId, this.data)
+    
     socket.emit("pageLoaded", this.lang);
+    socket.emit('joinPoll', this.pollId);
+    socket.emit("getNickname", this.pollId);
+    
+    
     socket.on("init", (labels) => {
       this.uiLabels = labels
+      console.log("i init i UI-labels tas följande data emot: ", this.uiLabels)
+    
+
     })
-    socket.on("dataUpdate", (data) =>
+
+    socket.on("dataUpdate", (data) =>{
       this.data = data
-    )
-    socket.on("nicknameCreated", (data) =>
-      this.data = data)
+      console.log("i connectView i socket-dataUpdate tas följande data emot: ", this.data)
+    })
+   
+   
+    socket.on("nicknamecreated", (nicknames) =>{
+    this.nicknameId = nicknames
+    console.log("i connectView i socket-nicknameCreated tas följande data emot: ", this.nicknameId)
+
+
+    })
+      
+     
+
   },
 
   methods: {
-    addQuestion: function () {
-      this.question.push("")
-      /*socket.emit("addQuestion", {pollId: this.pollId, q: this.question, a: this.answers } )*/
-      /*den ovan kanske behövs senare för att koppla till resultview!*/
-    },
-    addAnswer: function () {
-      this.answers.push("")
-    },
-    runQuestion: function () {
-      socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
-    },
+   
+ 
+   
   }
+  
 }
 
 

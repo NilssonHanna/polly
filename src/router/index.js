@@ -23,7 +23,7 @@ const routes = [
 },
 
  {
-   path: '/nickname/:lang',
+   path: '/nickname/:lang/:pollId',
    name: 'NicknameView',
    component: () => import(/* webpackChunkName: "about" */ '../views/NicknameView.vue')
  },
@@ -38,13 +38,13 @@ const routes = [
    component: () => import(/* webpackChunkName: "about" */ '../views/CreateView.vue')
  },
  {
-   path: '/connect/:lang/',
+   path: '/connect/:lang/:pollId',
    name: 'ConnectView',
    component: () => import(/* webpackChunkName: "about" */ '../views/ConnectView.vue')
  },
 
  {
-  path: '/voting/:lang/',
+  path: '/voting/:lang',
   name: 'VotingView',
   component: () => import(/* webpackChunkName: "about" */ '../views/VotingView.vue')
 },

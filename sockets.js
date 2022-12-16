@@ -11,6 +11,7 @@ function sockets(io, socket, data) {
 
   socket.on('createPoll', function(d) {
     socket.emit('pollCreated', data.createPoll(d.pollId, d.lang));
+    console.log(d)
   });
 
   socket.on('addQuestion', function(d) {
@@ -38,6 +39,20 @@ function sockets(io, socket, data) {
     data.submitAnswer(d.pollId, d.answer);
     io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
   });
+
+  socket.on('addNickname', function(d) {
+    data.addNickname (d.pn, d.pollId);
+    console.log("i addNickname i socket.js tas följande data emot d: ", d)
+    
+  });
+
+  socket.on('getNickname', function (pollId) {
+    console.log("i socket, kommer vi till getNickname?")
+    console.log("i socket, getNickname så hämtas följande data: ", data.getNickname(pollId))
+    const nicknames = data.getNickname(pollId);
+    io.to(pollId).emit('nicknamecreated', nicknames);
+
+});
 
   socket.on('resetAll', () => {
     data = new Data();

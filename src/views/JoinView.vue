@@ -14,14 +14,14 @@
     <div id="input">
       <label>
         <!--Write poll id: -->
-        <input type="text" v-model="pin" id="text">
+        <input type="text" v-model="pollId" id="text">
       </label>
     </div>
   </div>
    
     
     <div>
-      <router-link v-bind:to="('/nickname/'+lang)" id="next">{{uiLabels.next}}</router-link>
+      <router-link v-bind:to="('/nickname/'+lang+'/'+pollId)" id="next">{{uiLabels.next}}</router-link>
     </div>
   </body>
 </template>
@@ -36,13 +36,16 @@
     data: function () {
       return {
         uiLabels: {},
-        pin: "",
+        pollId: "",
         lang: "en",
       }
     },
     created: function () {
-      socket.emit("pageLoaded", this.lang)
-      this.lang = this.$route.params.lang
+
+    this.pollId = this.$route.params.pollId
+    socket.emit('joinPoll', this.pollId)
+    socket.emit("pageLoaded", this.lang)
+    this.lang = this.$route.params.lang
       socket.on("init", (labels) => {
         this.uiLabels = labels
       

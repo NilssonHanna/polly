@@ -9,6 +9,8 @@
     <div>
     <div id="writeNickname">
      <h1> {{uiLabels.createNickname}}</h1>
+
+     
     </div>
 
     
@@ -16,14 +18,18 @@
       <div id="input">
       <label>
         <!--Write poll id: -->
-        <input type="text" v-model="pin" id="text">
+        <input type="text" v-model="nicknameId" id="text">
       </label>
+
+     <!-- <button v-on:click="addNickname">
+          Add nickname
+        </button>-->
     </div>
 
   </div>
 
     <div>
-     <router-link id="connect" v-bind:to="'/connect/'+lang">{{uiLabels.createNickname}}</router-link>
+     <router-link  v-on:click="addNickname" id="connect" v-bind:to="('/connect/'+lang+'/'+pollId)">{{uiLabels.next}}</router-link>
     </div>
    
   </body>
@@ -34,12 +40,14 @@
    
   import io from 'socket.io-client';
   const socket = io();
-   
+
+
   export default {
    name: 'NicknameView',
    data: function () {
      return {
        lang: "",
+       pollId:"",
        data: {},
        uiLabels: {},
        nicknameId: ""
@@ -49,24 +57,29 @@
    
    created: function () {
      this.lang = this.$route.params.lang;
+     this.pollId = this.$route.params.pollId
+    
+    socket.emit('joinPoll', this.pollId)
+
      socket.emit("pageLoaded", this.lang);
      socket.on("init", (labels) => {
        this.uiLabels = labels
      })
-   
+
      socket.on("dataUpdate", (data) =>
-       this.data = data,
-     
-       "nicknameCreated", (data) =>
-       this.data = data)
+       this.data = data,)
+
+       
    },
     methods: {
     // createNickname: function () {
     //  socket.emit("createPoll", {nicknameId: this.pollId, lang: this.lang })
     // },
-    createNickname: function () {
-       socket.emit("createNickname", {nicknameId: this.nicknameId, lang: this.lang })
-     },
+   addNickname(){
+
+        socket.emit("addNickname",{pn:this.nicknameId, pollId:this.pollId}) 
+        
+    }
    }
    
    

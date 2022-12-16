@@ -38,15 +38,16 @@
     )
     socket.on("pollCreated", (data) =>
       this.data = data)
+      console.log(this.data)
   },
   methods: {
-   // createQuestions: function () {
-   //  socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
-   // },
+    
     createPoll: function () {
       socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
+      console.log(this.pollId)
     },
   }
  }
  </script>
+ 
  
