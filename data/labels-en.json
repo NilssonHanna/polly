@@ -1,37 +1,49 @@
 {
 	"sales-pitch": "Simply. Great. Polling.",
+	
 	"invite": "Invite participants with this link:",
+	
 	"createPoll": "Create",
-	"joinPoll": "Join",
-
-
+	
+	"participatePoll": "Join",
 
 	"words": "Word",
+	
 	"explanation": "Explanation",
+	
 	"createWordExplanation": "Create words and explanations",
+ 	
 	"changeLanguage": "Byt till svenska",
 
-	
-	"createNickname":"create nickname:",
+	"createNickname":"Create nickname:",
 
-	"gamecode":"Enter game code:",
-
+ 	"gamecode":"Enter game code:",
+ 	
 	"next":"Next",
 
-	"connect":"Waiting for players to join",
-	"playersjoin":"Waiting for players to join",
-	"vote:":"vote",
+ 	"nickname":"Choose a nickname",
 
+ 	"connect":"Waiting for players to join",
 
+	"playersjoin":"Waiting for players to join . . .",
+
+	"playersanswer":"Waiting for players to answer . . .",
+ 	
+	"vote:":"Vote:",
 
 	"createQuestions": "Create questions",
+	
 	"question": "Question",
 	
-	"connectPoll": "connect to poll",
-
-
+	"connectPoll": "Connect to poll",
+	
 	"quitGame": "Quit",
-	"winnerAnn": "The winner is..."
+	
+	"winnerAnn": "The winner is...",
 
+	"explanations": "Write your explanation . . .",
+
+	"chooseExplanation": "Choose the correct explanation for the word . . .",
+
+	"word": "Word"
  }
- 
