@@ -26,7 +26,7 @@
 
 	"playersanswer":"Väntar på att spelare ska svara . . .",
  	
-	"vote:":"Rösta",
+	"vote:": "Rösta:",
 
  	"createQuestions": "Skapa frågor",
  	
@@ -37,6 +37,8 @@
 	"winnerAnn": "Vinnaren är...",
 
 	"explanations": "Skriv din förklaring . . .",
+
+	"chooseExplanation": "Väl korrekt förklaring för ordet . . .",
 
 	"word": "Ord"
  }

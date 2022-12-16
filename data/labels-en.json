@@ -29,7 +29,7 @@
 
 	"playersanswer":"Waiting for players to answer . . .",
  	
-	"vote:":"Vote",
+	"vote:":"Vote:",
 
 	"createQuestions": "Create questions",
 	
@@ -42,6 +42,8 @@
 	"winnerAnn": "The winner is...",
 
 	"explanations": "Write your explanation . . .",
+
+	"chooseExplanation": "Choose the correct explanation for the word . . .",
 
 	"word": "Word"
  }

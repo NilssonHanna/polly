@@ -12,43 +12,46 @@
     <div class="input">
       <label>
         <!--Write poll id: -->
-
-<input type="text" v-model="id" class="text">
-</label>
-</div>
-</div>
-
-<div>
-<router-link class="next" v-bind:to="('/nickname/'+lang+'/'+id)" >{{uiLabels.next}}</router-link>
-</div>
-</body>
+        <input type="text" v-model="pollId" class="text">
+      </label>
+    </div>
+  </div>
+   
+    
+    <div>
+      <router-link v-bind:to="('/nickname/'+lang+'/'+pollId)" class="next">{{uiLabels.next}}</router-link>
+    </div>
+  </body>
 </template>
+  
+  <script>
+  import io from 'socket.io-client';
+  const socket = io();
+  export default{
+    data: function () {
+      return {
+        uiLabels: {},
+        pollId: "",
+        lang: "en",
+      }
+    },
+  
+    created: function () {
 
-<script>
-import io from 'socket.io-client';
-const socket = io();
-export default {
-name: 'JoinView',
-data: function () {
- return {
-   uiLabels: {},
-   lang: "en",
-   data: {},
-   id: "",
-       }
-     },
-
-     created: function () {
-      this.lang = this.$route.params.lang;
-      socket.emit("pageLoaded", this.lang);
+    this.pollId = this.$route.params.pollId
+    this.lang = this.$route.params.lang
+    socket.emit('joinPoll', this.pollId)
+    socket.emit("pageLoaded", this.lang)
       socket.on("init", (labels) => {
-      this.uiLabels = labels
-        })
-        
-     }
+        this.uiLabels = labels
+      
+      })
+    }
   
-  
-   }
+
+  }
+
+
   </script>
 <style scoped>
   body {

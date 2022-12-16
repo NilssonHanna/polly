@@ -6,64 +6,86 @@
      </div>
 
 
-     <div>
-     <div id="writeNickname">
-      <h1> {{uiLabels.createNickname}}</h1>
-     </div>
+    <div>
+    <div id="writeNickname">
+     <h1> {{uiLabels.createNickname}}</h1>
 
-     <div class="input">
-       <label>
-         <!--Write poll id: -->
-         <input type="text" class="text">
-       </label>
-     </div>
+     
+    </div>
+
+    
+     
+      <div class="input">
+      <label>
+        <!--Write poll id: -->
+        <input type="text" v-model="nicknameId" class="text">
+      </label>
+
+     <!-- <button v-on:click="addNickname">
+          Add nickname
+        </button>-->
+    </div>
 
    </div>
 
-     <div>
-      <router-link class="next" v-bind:to="'/connect/'+lang">{{uiLabels.next}}</router-link>
+    <div>
+     <router-link  v-on:click="addNickname" class="next" v-bind:to="('/connect/'+lang+'/'+pollId)">{{uiLabels.next}}</router-link>
     </div>
+   
+  </body>
+   
+  </template>
+   
+  <script>
+   
+  import io from 'socket.io-client';
+  const socket = io();
 
-</body>
 
-</template>
+  export default {
+   name: 'NicknameView',
+   data: function () {
+     return {
+       lang: "",
+       pollId:"",
+       data: {},
+       uiLabels: {},
+       nicknameId: ""
+     }
+   },
+   
+   
+   created: function () {
+     this.lang = this.$route.params.lang;
+     this.pollId = this.$route.params.pollId
+    
+    socket.emit('joinPoll', this.pollId)
 
-<script>
+     socket.emit("pageLoaded", this.lang);
+     socket.on("init", (labels) => {
+       this.uiLabels = labels
+     })
 
-import io from 'socket.io-client';
-const socket = io();
+     socket.on("dataUpdate", (data) =>
+       this.data = data,)
 
-export default {
-name: 'NicknameView',
-data: function () {
-  return {
-    lang: "",
-    data: {},
-    uiLabels: {},
-    nicknameId: ""
+       
+   },
+    methods: {
+    // createNickname: function () {
+    //  socket.emit("createPoll", {nicknameId: this.pollId, lang: this.lang })
+    // },
+   addNickname(){
+
+        socket.emit("addNickname",{pn:this.nicknameId, pollId:this.pollId}) 
+        
+    }
+   }
+   
   }
-},
 
-created: function () {
-  this.lang = this.$route.params.lang;
-  socket.emit("pageLoaded", this.lang);
-  socket.on("init", (labels) => {
-    this.uiLabels = labels
-  })
+ 
 
-  socket.on("dataUpdate", (data) =>
-    this.data = data,
-  
-)},
- methods: {
- // createNickname: function () {
- //  socket.emit("createPoll", {nicknameId: this.pollId, lang: this.lang })
- // },
- createNickname: function () {
-    socket.emit("createNickname", this.pn)
-  },
-}
-}
 </script>
 
 <style scoped>

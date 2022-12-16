@@ -71,7 +71,7 @@
  
  <style scoped>
  body {
-   background-color: rgb(162, 237, 252);
+   background-color: rgb(213, 252, 162);
       width: 100%;
       min-height: 100vh;
       display: grid;

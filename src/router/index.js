@@ -8,9 +8,18 @@ const routes = [
    component: StartView
  },
    {
-   path: '/poll/:id',
+   path: '/poll/:pollId',
     name: 'PollView',
     component: () => import(/* webpackChunkName: "about" */ '../views/PollView.vue')
+  },
+
+  {
+    path: '/create/:lang',
+    name: 'CreateView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/CreateView.vue')
   },
 
   {
@@ -23,28 +32,28 @@ const routes = [
  },
 
   {
-    path: '/nickname/:lang/:id',
+    path: '/nickname/:lang/:pollId',
     name: 'NicknameView',
    component: () => import(/* webpackChunkName: "about" */ '../views/NicknameView.vue')
  },
  
  {
-   path: '/connect/:lang/',
-    name: 'ConnectView',
-    component: () => import(/* webpackChunkName: "about" */ '../views/ConnectView.vue')
-  },
+  path: '/connect/:lang/:pollId',
+  name: 'ConnectView',
+  component: () => import(/* webpackChunkName: "about" */ '../views/ConnectView.vue')
+},
 
-  {
-    path: '/word/:lang/',
-     name: 'wordView',
-     component: () => import(/* webpackChunkName: "about" */ '../views/wordView.vue')
-   },
+{
+  path: '/word/:lang',
+  name: 'wordView',
+  component: () => import(/* webpackChunkName: "about" */ '../views/wordView.vue')
+},
 
-   {
-    path: '/answer/:lang/',
-     name: 'answerView',
-     component: () => import(/* webpackChunkName: "about" */ '../views/answerView.vue')
-   },
+{
+  path: '/answer/:lang',
+  name: 'answerView',
+  component: () => import(/* webpackChunkName: "about" */ '../views/answerView.vue')
+},
 
   {
     path: '/voting/:lang/',
