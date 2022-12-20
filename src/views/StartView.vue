@@ -44,6 +44,7 @@ methods: {
 }
 }
 </script>
+
 <style scoped>
 body {
  background-color: rgb(161, 255, 160);
@@ -128,3 +129,4 @@ text-decoration: none;
 
 }
 
+</style>

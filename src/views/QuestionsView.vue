@@ -79,7 +79,7 @@ import io from 'socket.io-client';
 
       addQuestion: function () {
         socket.emit("addQuestion", {pollId: this.pollId, q: this.word, a: this.explanations } )
-        this.$router.push('/word/'+this.lang+'/'+this.pollId)
+        this.$router.push('/words/'+this.lang+'/'+this.pollId)
       },
 
       addAnswer: function () {

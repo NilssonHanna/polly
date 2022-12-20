@@ -9,9 +9,9 @@ const routes = [
  },
    {
    
-   path: '/word/:lang/:id',
-   name: 'WordView',
-   component: () => import(/* webpackChunkName: "about" */ '../views/WordView.vue')
+   path: '/words/:lang/:id',
+   name: 'WordsView',
+   component: () => import(/* webpackChunkName: "about" */ '../views/WordsView.vue')
  },
 
  {
@@ -96,7 +96,7 @@ const routes = [
    path: '/waiting/:lang/',
    name: 'WaitingView',
    component: () => import(/* webpackChunkName: "about" */ '../views/WaitingView.vue')
- }
+ },
  
 
   {
