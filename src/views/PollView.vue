@@ -3,18 +3,17 @@
     {{pollId}}
     <QuestionComponent v-bind:question="question"
               v-on:answer="submitAnswer($event)"/>
-  
+
               <span>{{submittedAnswers}}</span>
   </div>
- </template>
-  
- <script>
- // @ is an alias to /src
- import QuestionComponent from '@/components/QuestionComponent.vue';
- import io from 'socket.io-client';
- const socket = io();
-  
- export default {
+</template>
+
+<script>
+// @ is an alias to /src
+import QuestionComponent from '@/components/QuestionComponent.vue';
+import io from 'socket.io-client';
+const socket = io();
+export default {
   name: 'PollView',
   components: {
     QuestionComponent
@@ -44,6 +43,5 @@
       socket.emit("submitAnswer", {pollId: this.pollId, answer: answer})
     }
   }
- }
- </script>
- 
+}
+</script>

@@ -8,6 +8,25 @@ const routes = [
    component: StartView
  },
    {
+   
+   path: '/words/:lang/:id',
+   name: 'WordsView',
+   component: () => import(/* webpackChunkName: "about" */ '../views/WordsView.vue')
+ },
+
+ {
+  path: '/wordstack/:lang/:id',
+  name: 'WordStackView',
+  component: () => import(/* webpackChunkName: "about" */ '../views/WordStackView.vue')
+},
+
+ //{
+  //path: '/poll/:id',
+ // name: 'PollView',
+ // component: () => import(/* webpackChunkName: "about" */ '../views/PollView.vue')
+//},
+ 
+ {
    path: '/poll/:pollId',
     name: 'PollView',
     component: () => import(/* webpackChunkName: "about" */ '../views/PollView.vue')
@@ -22,15 +41,16 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/CreateView.vue')
   },
 
-  {
-   path: '/join/:lang',
-   name: 'JoinView',
-   // route level code-splitting
-   // this generates a separate chunk (about.[hash].js) for this route
-   // which is lazy-loaded when the route is visited.
-   component: () => import(/* webpackChunkName: "about" */ '../views/JoinView.vue')
- },
+ {
+  path: '/join/:lang',
+  name: 'JoinView',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () => import(/* webpackChunkName: "about" */ '../views/JoinView.vue')
+},
 
+ 
   {
     path: '/nickname/:lang/:pollId',
     name: 'NicknameView',
@@ -71,18 +91,21 @@ const routes = [
    component: () => import(/* webpackChunkName: "about" */ '../views/ResultView.vue')
  },
  
- {
-   path: '/questions/:lang/',
-   name: 'QuestionsView',
-   component: () => import(/* webpackChunkName: "about" */ '../views/QuestionsView.vue')
- },
  
  {
    path: '/waiting/:lang/',
    name: 'WaitingView',
    component: () => import(/* webpackChunkName: "about" */ '../views/WaitingView.vue')
- }
+ },
  
+
+  {
+    path: '/questions/:lang/:id',
+    name: 'QuestionsView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/QuestionsView.vue')
+  }
+
+
 ]
  
 const router = createRouter({
