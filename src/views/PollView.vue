@@ -1,21 +1,16 @@
-
-
 <template>
-  <body>
   <div>
-    <h1>Hej och välkommen</h1>
     {{pollId}}
     <QuestionComponent v-bind:question="question"
               v-on:answer="submitAnswer($event)"/>
 
               <span>{{submittedAnswers}}</span>
   </div>
-</body>
 </template>
-  
- <script>
- // @ is an alias to /src
- import QuestionComponent from '@/components/QuestionComponent.vue';
+
+<script>
+// @ is an alias to /src
+import QuestionComponent from '@/components/QuestionComponent.vue';
 import io from 'socket.io-client';
 const socket = io();
 export default {
@@ -23,10 +18,9 @@ export default {
   components: {
     QuestionComponent
   },
-  
   data: function () {
     return {
-      word: {
+      question: {
         q: "",
         a: []
       },
@@ -34,33 +28,20 @@ export default {
       submittedAnswers: {}
     }
   },
-
-    // @ is an alias to /src
   created: function () {
     this.pollId = this.$route.params.id
     socket.emit('joinPoll', this.pollId)
     socket.on("newQuestion", q =>
-      this.word = q
+      this.question = q
     )
-    socket.on("dataUpdate", explanations =>
-      this.submittedAnswers = explanations
+    socket.on("dataUpdate", answers =>
+      this.submittedAnswers = answers
     )
   },
   methods: {
-    submitAnswer: function (explanation) {
-      socket.emit("submitAnswer", {pollId: this.pollId, explanation: explanation})
+    submitAnswer: function (answer) {
+      socket.emit("submitAnswer", {pollId: this.pollId, answer: answer})
     }
   }
-  }
- 
- </script>
-
- <style>
-
-body {
-    background-color: lightyellow;
-    font-family: "Fjord one";
-  }
-
-</style>
- 
+}
+</script>

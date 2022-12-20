@@ -2,32 +2,27 @@
 <template>  
   <body>
   <div>
-    <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}} QUIT</router-link>
+    <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
   </div>
       
-  <div>
-
     <div id="gamecode">
-      <h1> {{uiLabels.gamecode}} Enter gamecode </h1>
+      <h1> {{uiLabels.gamecode}} </h1>
     </div>
 
     <div id="input">
-      <label>
-
         <input type="text" v-model="pollId" id="text"/>
-        <button id="choice_create" @click="wordstack">Use finished words</button>
-        <button id="choice_finished" @click="questions">Create your own words</button>
-      </label>
+        <!--<button id="choice_create" v-on:click="createPollstack">Use finished words</button>-->
+        <!--<button id="createCode" v-on:click="createPoll">Create gamecode</button>-->
     </div>
-  </div>
+
 
   <div>
-    <router-link v-bind:to="'/questions/'+lang" id="choice_create">{{uiLabels.createWords}} Create your own words</router-link>
+    <button v-on:click="createPoll" id="choice_create">{{uiLabels.createWords}} Create your own words</button>
   </div>
 
-  <div>
-    <router-link v-bind:to="'/wordstack/'+lang" id="choice_finished">{{uiLabels.finishedWors}} Use already finished words</router-link>
-  </div>
+  <!--<div>
+    <button v-on:click="createPoll" id="choice_finished">{{uiLabels.finishedWors}} Use already finished words</button>
+  </div>-->
 
 
 </body>
@@ -42,7 +37,7 @@
   name: 'CreateView',
   data: function () {
     return {
-      lang: "",
+      lang: "en",
       pollId: "",
       data: {},
       uiLabels: {}
@@ -53,6 +48,7 @@
 
   created: function () {
     this.lang = this.$route.params.lang;
+    this.pollId = this.$route.params.id;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
@@ -68,22 +64,28 @@
    // createQuestions: function () {
    //  socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
    // },
+
+   
+    //createPoll: function () {
+      //socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
+    //},
+
     createPoll: function () {
       socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
+      this.$router.push('/questions/'+this.lang+'/'+this.pollId)
     },
 
-    wordstack (){
-      this.router.push({
-        path: '/questions/:lang',
-        query: {pollId: this.pollId}
-      })
-    },
-    questions(){
-      this.router.push({
-        path: '/questions/:lang',
-        query: {pollId: this.pollId}
-      })
-    }
+    //createPollstack: function(){
+      //socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
+      //this.router.push({
+        //path: '/wordstack/:lang/:id',
+        //query: {
+         // pollId: this.pollId,
+         // lang: this.lang
+        //}
+     // })
+    //},
+
   }
  }
  </script>
@@ -125,6 +127,11 @@ body {
   text-decoration: none;
 }
 
+#createCode{
+  margin-bottom: 1000px;
+  margin-left: 500px;
+}
+
   #choice_create {
   background-color: rgb(146, 144, 144);
   font-size: 1.3rem;
@@ -133,6 +140,7 @@ body {
   top: 50%;
   left: 37%;
   padding: 20px;
+  margin-top: 250px;
   letter-spacing: 0.1em;
   transform: translateX(-50%);
   font-family: "Fjord one";
@@ -149,6 +157,7 @@ body {
   top: 50%;
   right: 20%;
   padding: 20px;
+  margin-top: 250px;
   letter-spacing: 0.1em;
   transform: translateX(-50%);
   font-family: "Fjord one";
@@ -156,7 +165,6 @@ body {
   position: absolute;
 
 }
-
 #input {
   padding: 50px;
   }
@@ -165,7 +173,8 @@ body {
   font-size: 10pt;
   font-family: "Fjord one";
   transform: scale(2);
-  margin-bottom: 100px;
+  margin-bottom: 300px;
+  margin-left: 550px;
 }
 
 </style>

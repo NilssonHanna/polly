@@ -8,22 +8,28 @@ const routes = [
    component: StartView
  },
    {
-   path: '/word/:lang',
+   path: '/word/:lang/:id',
    name: 'WordView',
-   component: () => import(/* webpackChunkName: "about" */ '../views/PollView.vue')
+   component: () => import(/* webpackChunkName: "about" */ '../views/WordView.vue')
  },
 
  {
-  path: '/poll/:id',
-  name: 'PollView',
-  component: () => import(/* webpackChunkName: "about" */ '../views/PollView.vue')
+  path: '/wordstack/:lang/:id',
+  name: 'WordStackView',
+  component: () => import(/* webpackChunkName: "about" */ '../views/WordStackView.vue')
 },
 
- {
-   path: '/nickname/:id',
-   name: 'NicknameView',
-   component: () => import(/* webpackChunkName: "about" */ '../views/NicknameView.vue')
- },
+ //{
+  //path: '/poll/:id',
+ // name: 'PollView',
+ // component: () => import(/* webpackChunkName: "about" */ '../views/PollView.vue')
+//},
+
+ //{
+   //path: '/nickname/:id',
+   //name: 'NicknameView',
+   //component: () => import(/* webpackChunkName: "about" */ '../views/NicknameView.vue')
+ //},
  
  {
    path: '/create/:lang',
@@ -33,19 +39,22 @@ const routes = [
    // which is lazy-loaded when the route is visited.
    component: () => import(/* webpackChunkName: "about" */ '../views/CreateView.vue')
  },
+
  {
-   path: '/connect/:lang/',
+  path: '/join/:lang',
+  name: 'JoinView',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () => import(/* webpackChunkName: "about" */ '../views/JoinView.vue')
+},
+
+ {
+   path: '/connect/:lang',
    name: 'ConnectView',
    component: () => import(/* webpackChunkName: "about" */ '../views/ConnectView.vue')
  },
- //{
-   //path: '/join/:lang',
-   //name: 'JoinView',
-   // route level code-splitting
-   // this generates a separate chunk (about.[hash].js) for this route
-   // which is lazy-loaded when the route is visited.
-   //component: () => import(/* webpackChunkName: "about" */ '../views/JoinView.vue')
- //},
+ 
   {
     path: '/result/:id',
     name: 'ResultView',
@@ -56,7 +65,7 @@ const routes = [
   },
 
   {
-    path: '/questions/:lang/',
+    path: '/questions/:lang/:id',
     name: 'QuestionsView',
     component: () => import(/* webpackChunkName: "about" */ '../views/QuestionsView.vue')
   },

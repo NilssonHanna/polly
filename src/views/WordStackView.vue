@@ -39,7 +39,7 @@
   name: 'CreateView',
   data: function () {
     return {
-      lang: "",
+      lang: "en",
       pollId: "",
       data: {},
       uiLabels: {}

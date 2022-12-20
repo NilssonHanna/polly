@@ -1,69 +1,40 @@
-<!--<template>
-  <body>
-    <div>
-      <header class="header">
-        <h1>{{uiLabels.createWordExplanation}}</h1>
-  
-        <h3 id="word_header"> {{uiLabels.words}} </h3>
-        <h3 id="explanation_header">{{uiLabels.explanation}}</h3> 
-  
-      </header>
-        <div class="wrapper">
-          {{uiLabels.words}} {{}} {{uiLabels.explanation}}
 
-          <p>
-            <label for="word">Word</label><br>
-            <input class="word" type="text" v-model="word" v-for="n in word"
-              v-bind:key="('word'+n)" placeholder="Put word here">
-          </p>
-
-          <p>
-            <label for="explanation">Explanation</label><br>
-            <input class="explanation" type="text" v-model="explanation" v-for="n in explanation"
-              v-bind:key="('explanation'+n)" placeholder="Put explanation here">
-          </p>
-
-          <button class="addQstBtn" v-on:click="addQuestion">
-            Add word and explanation
-          </button>
-        </div>
-        </div>
-        <router-link id="startGame" v-bind:to="('/waiting/'+lang)">Start game</router-link>
-  </body>
-  </template>-->
 
 <template>
   <body>
   <div>
-    {{pollId}}
+
     <header class="header">
         <h1>{{uiLabels.createWordExplanation}}</h1>
+        <h3>{{pollId}}</h3>
   
     </header>
     <div class="wrapper">
+
+      <div class="wordDesign">
       <label for="word">Word</label><br>
       <input class="word" v-for="(_, i) in word" 
-      v-model="word[i]"
-      v-bind:key="'word'+i">
-      <div>
-        <label for="explanation">Explanation</label><br>
-        <input class="explanation" v-for="(_, i) in explanation" 
-               v-model="explanation[i]" 
-               v-bind:key="'explanation'+i">
-        <button v-on:click="addAnswer">
-          Add word
-        </button>
+              v-model="word[i]"
+              v-bind:key="'word'+i">
+
+     </div>
+     <div class="explanationDesign"> 
+
+      <label for="explanation">Explanation</label><br>
+      <input class="explanation"  v-for="(_, i) in explanations" 
+              v-model="explanations[i]" 
+              v-bind:key="'explanation'+i">
+
       </div>
+      <button class="addWord" @click="addAnswer"> 
+        Add word
+      </button>
     </div>
-    <button v-on:click="addQuestion">
-      Send information
-    </button>
-    <input type="number" v-model="questionNumber">
-    <button v-on:click="runQuestion">
-      Run question
-    </button>
-    {{data}}
-    <!--<router-link id="startGame" v-bind:to="'/poll/:id'+pollId">Check result</router-link>-->
+    <!--<button class="addQstBtn" @click="addQuestion()">
+      Emit questions
+    </button>-->
+  
+    <button v-on:click="addQuestion" id="startGame" >Begin to play</button>
   </div>
 </body>
 </template>
@@ -74,22 +45,24 @@ import io from 'socket.io-client';
   const socket = io();
   
   export default {
-    //props: ['pollId'],
    name: 'QuestionsView',
    data: function () {
      return {
        lang: "",
        word: ["",""],
-       explanation: ["", ""],
+       pollId: '',
+       explanations: ["",""],
        questionNumber: 0,
        data: {},
        uiLabels: {},
-       pollID:''
       }
     },
     created: function () {
       this.lang = this.$route.params.lang; //Hämtar info från förra viewen
+      this.pollId = this.$route.params.id;
+
       socket.emit("pageLoaded", this.lang);
+      socket.emit('joinPoll', this.pollId)
       //socket.emit("addQuestion", {pollID: this.pollID, wordExplanation: [this.word, this.explanation]})
       socket.on("init", (labels) => {
         this.uiLabels = labels
@@ -98,90 +71,27 @@ import io from 'socket.io-client';
       socket.on("dataUpdate", (data) =>
         this.data = data
       )
-      socket.on("pollCreated", (data) =>
-        this.data = data)
-
     },
     methods: {
-      createPoll: function () {
-        socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
-      },
-
-      printWord: function(){
-        console.log(this.word);
-      },
+     // createPoll: function () {
+       // socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
+      //},
 
       addQuestion: function () {
-        socket.emit("addQuestion", {pollId: this.pollId, q: this.word, a: this.explanation } )
-        this.$router.push({
-          path: '/word/:lang',
-          query: {
-            q: this.word, a: this.explanation
-          }
-        })
+        socket.emit("addQuestion", {pollId: this.pollId, q: this.word, a: this.explanations } )
+        this.$router.push('/word/'+this.lang+'/'+this.pollId)
       },
+
       addAnswer: function () {
         this.word.push("");
-        this.explanation.push("");
+        this.explanations.push("");
       },
-      runQuestion: function () {
-        socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
-      }
+      //runQuestion: function () {
+        //socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
+      //}
     }
   }
 
- /*import io from 'socket.io-client';
-  const socket = io();
-   export default {
-    name: 'QuestionsView',
-    data: function () {
-      return {
-        lang: "",
-        pollId: "",
-        word: ["",""],
-        explanation: ["", ""],
-        msg: "",
-        wordExplanation: ["word", "explanation"],
-        question: ["",""],
-        answers: ["", ""],
-        questionNumber: 0,
-        data: {},
-        uiLabels: {},
-      }
-    },
-    created: function () {
-      this.lang = this.$route.params.lang;
-      socket.emit("pageLoaded", this.lang);
-      socket.on("init", (labels) => {
-        this.uiLabels = labels
-      })
-      socket.on("dataUpdate", (data) =>
-        this.data = data
-      )
-      socket.on("pollCreated", (data) =>
-        this.data = data)
-    },
-  
-    methods: {*/
-  
-      /*addQuestion: function () {
-        this.word.push("")
-        this.explanation.push("")
-        let msg = {
-          words: this.word, 
-          explanations: this.explanation
-        }
-        socket.emit("msg", {pollId: this.pollId, msg } )
-      },*/
-        /*socket.emit("addQuestion", {pollId: this.pollId, q: this.question, a: this.answers } )*/
-        /*den ovan kanske behövs senare för att koppla till resultview!
-  
-      runQuestion: function () {
-        socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
-  
-      },
-    }
-  }*/
   
   </script>
   
@@ -200,7 +110,7 @@ import io from 'socket.io-client';
   }
   
   .header{
-    margin-top: 70px;
+    margin-top: 100px;
     margin-bottom: 30px;
     font-family: "Fjord one";
     grid-template-columns: 5px 5px;
@@ -222,11 +132,18 @@ import io from 'socket.io-client';
     font-family: "Fjord one";
   
   }
+
+  .addWord{
+    padding: 8px;
+    margin-left: 50px;
+    background-color: black;
+    color: white;
+  }
   
   #startGame{
-    background-color: rgb(207, 19, 53);
+    background-color: turquoise;
     font-size: 1.25rem;
-    color: white;
+    color: black;
     padding: 20px;
     margin-bottom: 100px;
     margin-top: 400px;
@@ -236,12 +153,41 @@ import io from 'socket.io-client';
     font-family: "Fjord one";
   }
   
+  
   .wrapper{
-    grid-template-columns: 5px 5px;
-    margin-left: 300px;
-    margin-right: 300px;
+    
+    width: 500px;
     font-family: "Fjord one";
+    display: grid;
+    margin-left: 400px;
+    position: center;
+    position: absolute;
+    grid-template-columns: repeat(2, 100px);
+    gap: 100px;
+    grid-auto-rows: repeat(2, 100px);
+    grid-template-areas: 
+    "a b"
+    "a b";
+    align-items: start;
    
+  }
+  
+
+  .explanationDesign{
+    grid-area: b;
+  }
+
+  .wordExplanation{
+    grid-area: a;
+    margin-left: auto;
+  }
+
+  .word{
+    padding: 10px;
+  }
+
+  .explanation{
+    padding: 10px;
   }
   
   #word_header{

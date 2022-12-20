@@ -9,7 +9,20 @@
 	"explanation": "Förklaring",
 	"createWordExplanation": "Skapa ord och förklaringar",
 	"changeLanguage": "Change to English",
-	"connectPoll": "connect to poll"
+	"connectPoll": "connect to poll",	
+	"Welcometext": "Välkommen till Xplanandum",	
+	"createNickname":"Skapa spelnamn:",	
+	"gamecode":"Ange game code:",	
+	"next":"Nästa",
+ 	"connect":"Väntar på att spelare ansluter . . .",	
+	"playersjoin":"Väntar på att spelare ansluter . . .",
+	"playersanswer":"Väntar på att spelare ska svara . . .",	
+	"vote:":"Rösta",	
+	"quitGame": "Avsluta",	
+	"winnerAnn": "Vinnaren är...",
+	"explanations": "Skriv din förklaring . . .",
+	"word": "Ord"
  }
+ 
  
  

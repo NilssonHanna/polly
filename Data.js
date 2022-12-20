@@ -35,7 +35,7 @@ Data.prototype.addQuestion = function(pollId, q) {
   const poll = this.polls[pollId];
   console.log("word added to", pollId, q);
   if (typeof poll !== 'undefined') {
-    poll.word.push(q);
+    poll.words.push(q);
   }
 }
 
@@ -46,17 +46,28 @@ Data.prototype.editQuestion = function(pollId, index, newQuestion) {
   }
 }
 
-Data.prototype.getQuestion = function(pollId, qId=null) {
+Data.prototype.getQuestion = function(pollId, q, a) {
   const poll = this.polls[pollId];
-  console.log("word requested for ", pollId, qId);
+  console.log("word requested for ", pollId, q, a);
   if (typeof poll !== 'undefined') {
-    if (qId !== null) {
-      poll.currentQuestion = qId;
-    }
-    return poll.words[poll.currentQuestion];
+    console.log("undefined word")
+    //poll.word.push(q)
+    //poll.explanations.push(a)
+  }
+  console.log(q,)
+}
+
+Data.prototype.getAllWords = function(pollId) {
+  const poll = this.polls[pollId];
+  console.log("all words requested for ", pollId);
+  if (typeof poll !== 'undefined') {
+    console.log(poll.words)
+    return poll.words
+
   }
   return []
 }
+
 
 Data.prototype.submitAnswer = function(pollId, explanation) {
   const poll = this.polls[pollId];

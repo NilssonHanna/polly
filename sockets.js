@@ -15,12 +15,22 @@ function sockets(io, socket, data) {
 
   socket.on('addQuestion', function(d) {
     data.addQuestion(d.pollId, {q: d.q, a: d.a});
-    socket.emit('dataUpdate', data.getAnswers(d.pollId));
+    socket.emit('questionAdded', data.getAllWords(d.pollId));
   });
+
+  socket.on('createQuestion', function(q, a) {
+    socket.emit('questionCreated', data.getQuestion(pollId, q, a));
+  });
+
+  socket.on('getWords', function(pollId) {
+    console.log("kommer till getQuestion")
+    //console.log("i socket, getQuestion tas följande emot:", data.getQuestion(pollId))
+    socket.emit('allWords', data.getAllWords(pollId));
+  }); 
 
   socket.on('editQuestion', function(d) {
     data.editQuestion(d.pollId, d.index, {q: d.q, a: d.a});
-    socket.emit('questionEdited', data.getAllQuestions(d.pollId));
+    socket.emit('questionEdited', data.getAllWords(d.pollId));
   });
 
   socket.on('joinPoll', function(pollId) {

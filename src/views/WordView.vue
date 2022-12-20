@@ -2,32 +2,27 @@
     <body>
     <div>
       <h1>Hej och välkommen</h1>
-      {{pollId}}
-      <QuestionComponent v-bind:question="question"
-                v-on:answer="submitAnswer($event)"/>
-  
-                <span>{{submittedAnswers}}</span>
+      {{this.pollId}}
+      {{this.words}}
     </div>
   </body>
   </template>
     
    <script>
    // @ is an alias to /src
-   import QuestionComponent from '@/components/QuestionComponent.vue';
   import io from 'socket.io-client';
   const socket = io();
   export default {
-    name: 'PollView',
-    components: {
-      QuestionComponent
-    },
-    
+    name: 'WordView',   
     data: function () {
       return {
-        word: {
-          q: "",
-          a: []
-        },
+        lang: "",
+        word: "",
+        explanations: "",
+        //{
+        //  q: "",
+        //  a: ""
+       //},
         pollId: "inactive poll",
         submittedAnswers: {}
       }
@@ -35,21 +30,30 @@
   
       // @ is an alias to /src
     created: function () {
-      this.pollId = this.$route.params.id
-      socket.emit('joinPoll', this.pollId)
-      socket.on("newQuestion", q =>
-        this.word = q
-      )
-      socket.on("dataUpdate", explanations =>
-        this.submittedAnswers = explanations
-      )
+      this.pollId = this.$route.params.id;
+      this.lang = this.$route.params.lang;
+
+      socket.emit('getWords', this.pollId)
+      socket.emit('pageLoaded', this.lang)
+ 
+   // socket.on("newQuestion", update => {
+     // this.word = update.q;
+     // this.explanations = update.a;
+      //this.data = {};
+  // })
+
+    socket.on("allWords", (words) => {
+      this.words = words;
+     console.log("kommer till questionCreated", this.words)
+    })
+
     },
     methods: {
-      submitAnswer: function (explanation) {
-        socket.emit("submitAnswer", {pollId: this.pollId, explanation: explanation})
-      }
-    }
-    }
+      //submitAnswer: function (explanation) {
+      //  socket.emit("submitAnswer", {pollId: this.pollId, explanation: explanation})
+      //}
+    //}
+    }}
    
    </script>
   
