@@ -1,13 +1,15 @@
 {
 	"sales-pitch": "Simply. Great. Polling.",
+	
 	"invite": "Invite participants with this link:",
+	
 	"createPoll": "Create",
 	"createQuestions": "Create questions",
 	"question": "Question",
 	"words": "Word",
-	"participatePoll": "Join",
-	"explanation": "Explanation",
-	"createWordExplanation": "Create words and explanations",
+	"participatePoll": "Join",	
+	"explanation": "Explanation",	
+	"createWordExplanation": "Create words and explanations", 	
 	"changeLanguage": "Byt till svenska",
 	"connectPoll": "Connect to poll",
 	"createNickname":"Create nickname:",
@@ -21,7 +23,8 @@
 	"quitGame": "Quit",	
 	"winnerAnn": "The winner is...",
 	"explanations": "Write your explanation . . .",
+	"createNickname":"Create nickname:",
+	"chooseExplanation": "Choose the correct explanation for the word . . .",
 	"word": "Word"
  }
 
- 

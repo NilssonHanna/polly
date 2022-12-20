@@ -1,10 +1,9 @@
-{
-	"sales-pitch": "Svar. Helt. Enkelt.",
-	"invite": "Bjud in deltagare med den här länken:",
-	"createPoll": "Skapa",
-	"createQuestions": "Skapa frågor",
+{	"changeLanguage": "Change to English",
+	
+	"Welcometext": "Välkommen till Xplanandum",	
+	"invite": "Bjud in deltagare med den här länken:",	
+	"createPoll": "Skapa",	
 	"participatePoll": "Delta",
-	"question": "Fråga",
 	"words": "Ord",
 	"explanation": "Förklaring",
 	"createWordExplanation": "Skapa ord och förklaringar",
@@ -21,8 +20,10 @@
 	"quitGame": "Avsluta",	
 	"winnerAnn": "Vinnaren är...",
 	"explanations": "Skriv din förklaring . . .",
+ 	"createQuestions": "Skapa frågor",
+	"question": "Fråga",
+	"chooseExplanation": "Väl korrekt förklaring för ordet . . .",
 	"word": "Ord"
  }
  
- 
- 
+

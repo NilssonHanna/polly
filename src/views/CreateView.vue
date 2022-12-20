@@ -59,6 +59,7 @@
     )
     socket.on("pollCreated", (data) =>
       this.data = data)
+      console.log(this.data)
   },
   methods: {
    // createQuestions: function () {
@@ -73,6 +74,7 @@
     createPoll: function () {
       socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
       this.$router.push('/questions/'+this.lang+'/'+this.pollId)
+    
     },
 
     //createPollstack: function(){
@@ -178,3 +180,4 @@ body {
 }
 
 </style>
+
