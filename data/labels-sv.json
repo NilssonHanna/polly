@@ -1,46 +1,29 @@
 {	"changeLanguage": "Change to English",
 	
-	"Welcometext": "Välkommen till Xplanandum",
-	
-	"invite": "Bjud in deltagare med den här länken:",
-	
-	"createPoll": "Skapa",
-	
+	"Welcometext": "Välkommen till Xplanandum",	
+	"invite": "Bjud in deltagare med den här länken:",	
+	"createPoll": "Skapa",	
 	"participatePoll": "Delta",
-	
 	"words": "Ord",
-	
 	"explanation": "Förklaring",
-	
 	"createWordExplanation": "Skapa ord och förklaringar",
-	
-	"createNickname":"Skapa spelnamn:",
-	
-	"gamecode":"Ange game code:",
- 	
+	"changeLanguage": "Change to English",
+	"connectPoll": "connect to poll",	
+	"Welcometext": "Välkommen till Xplanandum",	
+	"createNickname":"Skapa spelnamn:",	
+	"gamecode":"Ange game code:",	
 	"next":"Nästa",
-
- 	"connect":"Väntar på att spelare ansluter . . .",
- 	
+ 	"connect":"Väntar på att spelare ansluter . . .",	
 	"playersjoin":"Väntar på att spelare ansluter . . .",
-
-	"playersanswer":"Väntar på att spelare ska svara . . .",
- 	
-	"vote:": "Rösta:",
-
- 	"createQuestions": "Skapa frågor",
- 	
-	"question": "Fråga",
-	
-	"quitGame": "Avsluta",
-	
+	"playersanswer":"Väntar på att spelare ska svara . . .",	
+	"vote:":"Rösta",	
+	"quitGame": "Avsluta",	
 	"winnerAnn": "Vinnaren är...",
-
 	"explanations": "Skriv din förklaring . . .",
-
+ 	"createQuestions": "Skapa frågor",
+	"question": "Fråga",
 	"chooseExplanation": "Väl korrekt förklaring för ordet . . .",
-
 	"word": "Ord"
  }
  
- 
+

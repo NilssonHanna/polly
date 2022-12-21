@@ -27,6 +27,7 @@
   <script>
   import io from 'socket.io-client';
   const socket = io();
+
   export default{
     data: function () {
       return {
@@ -53,6 +54,7 @@
 
 
   </script>
+  
 <style scoped>
   body {
     background-color: rgb(244, 185, 237);
@@ -132,3 +134,4 @@
   }
 }
 </style>
+

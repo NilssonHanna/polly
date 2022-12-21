@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{question}}
+    {{word}}
   </div>
   <BarsComponent v-bind:data="submittedAnswers"/>
   
@@ -20,7 +20,7 @@
   },
   data: function () {
     return {
-      question: "",
+      word: "",
       submittedAnswers: {
       }
     }
@@ -30,13 +30,15 @@
     socket.emit('joinPoll', this.pollId)
     socket.on("dataUpdate", (update) => {
       this.submittedAnswers = update.a;
-      this.question = update.q;
+      this.word = update.q;
     });
     socket.on("newQuestion", update => {
-      this.question = update.q;
+      this.word = update.q;
       this.data = {};
     })
-  }
+  },
+  //writeOut(){
+    //console.log(word);
+  //}
  }
  </script>
- 
