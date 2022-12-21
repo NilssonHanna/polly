@@ -1,15 +1,13 @@
 {	"changeLanguage": "Change to English",
-	
 	"Welcometext": "Välkommen till Xplanandum",	
+	
 	"invite": "Bjud in deltagare med den här länken:",	
 	"createPoll": "Skapa",	
 	"participatePoll": "Delta",
 	"words": "Ord",
 	"explanation": "Förklaring",
 	"createWordExplanation": "Skapa ord och förklaringar",
-	"changeLanguage": "Change to English",
-	"connectPoll": "connect to poll",	
-	"Welcometext": "Välkommen till Xplanandum",	
+	"connectPoll": "connect to poll",		
 	"createNickname":"Skapa spelnamn:",	
 	"gamecode":"Ange game code:",	
 	"next":"Nästa",

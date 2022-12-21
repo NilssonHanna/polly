@@ -10,8 +10,9 @@
       <h1> {{uiLabels.playersjoin}}</h1>
    
       
-   {{this.nicknameId}}
-
+      <div v-for="player in nicknameId" :key="player" id="players">
+        {{ player }}
+      </div>
 
       
 
@@ -120,7 +121,14 @@ const socket = io();
   white-space: nowrap;
   margin-left: 0%;}
 
-
+  #players{
+    padding: 5px;
+    background-color: rgb(197, 139, 251);
+    width: 300px;
+    margin-left: 37%;
+    margin-top: 5px;
+    border-radius: 5px;
+  }
 
 
     #quit{

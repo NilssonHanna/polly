@@ -15,16 +15,17 @@ const routes = [
  },
 
  {
+  path: '/Word/:lang',
+  name: 'WordView',
+  component: () => import(/* webpackChunkName: "about" */ '../views/WordView.vue')
+},
+
+ {
   path: '/wordstack/:lang/:id',
   name: 'WordStackView',
   component: () => import(/* webpackChunkName: "about" */ '../views/WordStackView.vue')
 },
 
- //{
-  //path: '/poll/:id',
- // name: 'PollView',
- // component: () => import(/* webpackChunkName: "about" */ '../views/PollView.vue')
-//},
  
  {
    path: '/poll/:pollId',
@@ -63,11 +64,7 @@ const routes = [
   component: () => import(/* webpackChunkName: "about" */ '../views/ConnectView.vue')
 },
 
-{
-  path: '/word/:lang',
-  name: 'wordView',
-  component: () => import(/* webpackChunkName: "about" */ '../views/wordView.vue')
-},
+
 
 {
   path: '/answer/:lang',

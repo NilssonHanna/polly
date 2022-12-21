@@ -64,14 +64,27 @@ Data.prototype.addQuestion = function(pollId, q) {
   }
 }
 
-Data.prototype.addNickname=function(pn, pollId){
-
-const poll = this.polls[pollId];
-console.log("i Data.js, funktionen getNickname, pollId, pn, this.polls är följande: ", pollId, pn, this.polls)
-if (typeof poll !== 'undefined') {
-  poll.nicknameId.push(pn)  
-  console.log("i data.j i addNickname har nu följande namn lagts till: ", poll.nicknameId)
-}
+Data.prototype.addNickname=function(pn, pollId){      
+  const poll = this.polls[pollId];
+  let playerId=0;
+  if (typeof poll !== 'undefined' && pollId !=='') {
+    if (pn==='') {
+      console.log("tomt användarnamn")
+      poll.nicknameId.push(pn);
+      playerId=poll.nicknameId.indexOf(pn)+1;
+      console.log("ligger på index",playerId)
+      pn="User "+playerId;
+      console.log(pn)
+      poll.nicknameId.pop(pn);
+      poll.nicknameId.push(pn);
+      console.log("nu ser poll.nicknameId ut", poll.nicknameId)
+    }else{
+      poll.nicknameId.push(pn)  
+      console.log("i data.j i addNickname har nu följande namn lagts till: ", poll.nicknameId)
+    }
+  }else{
+    console.log("man får icke skapa en poll utan namn")
+  }  
 
 }
 
