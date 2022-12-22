@@ -1,5 +1,3 @@
-
-
 <template>
   <body>
   <div>
@@ -35,6 +33,7 @@
     </button>-->
   
     <button v-on:click="addQuestion" id="startGame" >Begin to play</button>
+    <!--<button v-on:click="navigateToSecondView"> Begin to play</button>-->
   </div>
 </body>
 </template>
@@ -89,6 +88,12 @@ import io from 'socket.io-client';
       //runQuestion: function () {
         //socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
       //}
+
+
+      navigateToSecondView:function() {
+        socket.emit("q", {pollId: this.pollId, q: this.word, a: this.explanations } )
+        this.$router.push('/word/'+this.lang+'/'+this.pollId)
+      }
     }
   }
 
@@ -201,4 +206,3 @@ import io from 'socket.io-client';
   
   
  </style>
- 

@@ -21,12 +21,11 @@ const routes = [
 },
 
  {
-  path: '/wordstack/:lang/:id',
-  name: 'WordStackView',
-  component: () => import(/* webpackChunkName: "about" */ '../views/WordStackView.vue')
+  path: '/selectrounds/:lang/:id',
+  name: 'SelectRoundsView',
+  component: () => import(/* webpackChunkName: "about" */ '../views/SelectRoundsView.vue')
 },
 
- 
  {
    path: '/poll/:pollId',
     name: 'PollView',

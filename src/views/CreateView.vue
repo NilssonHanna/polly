@@ -20,9 +20,9 @@
     <button v-on:click="createPoll" id="choice_create">{{uiLabels.createWords}} Create your own words</button>
   </div>
 
-  <!--<div>
-    <button v-on:click="createPoll" id="choice_finished">{{uiLabels.finishedWors}} Use already finished words</button>
-  </div>-->
+  <div>
+    <button v-on:click="createQuestions" id="choice_finished">{{uiLabels.finishedWors}} Use already finished words</button>
+  </div>
 
 
 </body>
@@ -49,6 +49,7 @@
   created: function () {
     this.lang = this.$route.params.lang;
     this.pollId = this.$route.params.id;
+    
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
@@ -72,8 +73,14 @@
     //},
 
     createPoll: function () {
-      socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
+     // socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
       this.$router.push('/questions/'+this.lang+'/'+this.pollId)
+    
+    },
+
+    createQuestions: function () {
+      //socket.emit("createQuestions", {pollId: this.pollId, lang: this.lang })
+      this.$router.push('/selectrounds/'+this.lang+'/'+this.pollId)
     
     },
 

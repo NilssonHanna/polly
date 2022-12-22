@@ -1,9 +1,10 @@
 <template>
     <body>
     <div>
-      <h1>Hej och välkommen</h1>
+      <h1>Hej och välkommen WORDVIEW</h1>
       {{this.pollId}}
       {{this.words}}
+      
     </div>
   </body>
   </template>
@@ -17,7 +18,7 @@
     data: function () {
       return {
         lang: "",
-        word: "",
+        words: "",
         explanations: "",
         //{
         //  q: "",
