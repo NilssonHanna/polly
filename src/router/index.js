@@ -68,7 +68,7 @@ const routes = [
 {
   path: '/answer/:lang',
   name: 'answerView',
-  component: () => import(/* webpackChunkName: "about" */ '../views/answerView.vue')
+  component: () => import(/* webpackChunkName: "about" */ '../views/AnswerView.vue')
 },
 
   {
