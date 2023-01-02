@@ -17,7 +17,7 @@
     data: function () {
       return {
         lang: "",
-        word: "",
+        words: "",
         explanations: "",
         //{
         //  q: "",
@@ -54,7 +54,7 @@
     }}
   
    </script>
-    <style>
+    <style >
    body {
       background-color: lightyellow;
       font-family: "Fjord one";

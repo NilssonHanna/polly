@@ -103,6 +103,12 @@ const routes = [
     path: '/questions/:lang/:id',
     name: 'QuestionsView',
     component: () => import(/* webpackChunkName: "about" */ '../views/QuestionsView.vue')
+  },
+
+  {
+    path: '/waitingvote/:lang/',
+    name: 'WaitingVoteView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/WaitingVoteView.vue')
   }
 
 

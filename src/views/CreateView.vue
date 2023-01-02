@@ -20,9 +20,9 @@
     <button v-on:click="createPoll" id="choice_create">{{uiLabels.createWords}} Create your own words</button>
   </div>
 
-  <!--<div>
+  <div>
     <button v-on:click="createPoll" id="choice_finished">{{uiLabels.finishedWors}} Use already finished words</button>
-  </div>-->
+  </div>
 
 
 </body>
@@ -135,14 +135,14 @@ body {
 }
 
   #choice_create {
-  background-color: rgb(146, 144, 144);
+  background-color: rgb(100,149,237);
   font-size: 1.3rem;
   color: rgb(255, 255, 255);
   width:200px;
   top: 50%;
-  left: 37%;
+  left: 40%;
   padding: 20px;
-  margin-top: 250px;
+  margin-top: 100px;
   letter-spacing: 0.1em;
   transform: translateX(-50%);
   font-family: "Fjord one";
@@ -152,14 +152,14 @@ body {
 } 
 
 #choice_finished {
-  background-color: rgb(145, 145, 145);
+  background-color: rgb(100,149,237);
   font-size: 1.3rem;
   color: rgb(255, 255, 255);
   width:200px;
   top: 50%;
-  right: 20%;
+  right: 25%;
   padding: 20px;
-  margin-top: 250px;
+  margin-top: 100px;
   letter-spacing: 0.1em;
   transform: translateX(-50%);
   font-family: "Fjord one";
@@ -174,9 +174,12 @@ body {
 #text{
   font-size: 10pt;
   font-family: "Fjord one";
+  text-align: center;
   transform: scale(2);
   margin-bottom: 300px;
-  margin-left: 550px;
+  margin-left: 600px;
+  padding: 5px;
+  border: double;
 }
 
 </style>

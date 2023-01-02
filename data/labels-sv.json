@@ -1,5 +1,5 @@
 {	"changeLanguage": "Change to English",
-	
+	"sales-pitch": "Vem är den bästa bluffaren?",
 	"Welcometext": "Välkommen till Xplanandum",	
 	"invite": "Bjud in deltagare med den här länken:",	
 	"createPoll": "Skapa",	
@@ -7,11 +7,9 @@
 	"words": "Ord",
 	"explanation": "Förklaring",
 	"createWordExplanation": "Skapa ord och förklaringar",
-	"changeLanguage": "Change to English",
 	"connectPoll": "connect to poll",	
-	"Welcometext": "Välkommen till Xplanandum",	
 	"createNickname":"Skapa spelnamn:",	
-	"gamecode":"Ange game code:",	
+	"gamecode":"Skapa spelkod:",	
 	"next":"Nästa",
  	"connect":"Väntar på att spelare ansluter . . .",	
 	"playersjoin":"Väntar på att spelare ansluter . . .",
@@ -23,7 +21,19 @@
  	"createQuestions": "Skapa frågor",
 	"question": "Fråga",
 	"chooseExplanation": "Väl korrekt förklaring för ordet . . .",
-	"word": "Ord"
+	"word": "Ord",
+	"winningexplanation":"Den vinnande förklaringen är..",
+	"startword": "Gränsnitt",
+	"startexplanation": "Hur mycket över grannens tomt man får bygga",
+	"gameRules":"Spelregler",
+	"how2play":"Regler",
+	"gamerules": "Spelregler",
+	"howtoplay1": "FÖRBEREDELSER",
+	"howtoplay2": "Välj en XPLANDER (spelledare) som ska skriva ner ett antal ord med förklaringar, ett ord per spelomgång ni vill spela. Använd gärna en ordbok!",
+	"howtoplay3": "SPELA",
+	"howtoplay4": "Alla spelare skriver ner en förklaring som låter så trovärdig som möjligt till det ord som dyker upp på skärmen. XPLANDERN läser upp alla förklaringar som skrivits ner, varpå spelarna får rösta på den de tror stämmer.",
+	"howtoplay5": "När rundan avslutats visas vem som vunnit omgången. Man får 1 poäng om man röstat på den rätta förklaringen och 1 poäng om en spelare röstat på sin egna påhittade förklaring.",
+	"howtoplay6": "Obs! Om man (mot förmodan) vet vad ordet betyder - skriv ner den riktiga förklaringen och få den att låta ÄNNU mer trovärdig!"
  }
  
 
