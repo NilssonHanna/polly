@@ -32,8 +32,7 @@
       Emit questions
     </button>-->
   
-    <button v-on:click="addQuestion" id="startGame" >Begin to play</button>
-    <!--<button v-on:click="navigateToSecondView"> Begin to play</button>-->
+    <button v-on:click="addQuestion" id="startGame">Begin to play</button>
   </div>
 </body>
 </template>
@@ -48,9 +47,9 @@ import io from 'socket.io-client';
    data: function () {
      return {
        lang: "",
-       word: ["",""],
+       word: [""],
        pollId: '',
-       explanations: ["",""],
+       explanations: [""],
        questionNumber: 0,
        data: {},
        uiLabels: {},
@@ -65,11 +64,13 @@ import io from 'socket.io-client';
       //socket.emit("addQuestion", {pollID: this.pollID, wordExplanation: [this.word, this.explanation]})
       socket.on("init", (labels) => {
         this.uiLabels = labels
-      }
-      )
+      })
+
       socket.on("dataUpdate", (data) =>
         this.data = data
       )
+
+
     },
     methods: {
      // createPoll: function () {
@@ -84,16 +85,17 @@ import io from 'socket.io-client';
       addAnswer: function () {
         this.word.push("");
         this.explanations.push("");
+
       },
       //runQuestion: function () {
         //socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
       //}
 
-
       navigateToSecondView:function() {
         socket.emit("q", {pollId: this.pollId, q: this.word, a: this.explanations } )
         this.$router.push('/word/'+this.lang+'/'+this.pollId)
       }
+      
     }
   }
 
@@ -206,3 +208,4 @@ import io from 'socket.io-client';
   
   
  </style>
+ 

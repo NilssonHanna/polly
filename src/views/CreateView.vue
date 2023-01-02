@@ -58,9 +58,9 @@
     socket.on("dataUpdate", (data) =>
       this.data = data
     )
-    socket.on("pollCreated", (data) =>
-      this.data = data)
-      console.log(this.data)
+    socket.on("pollCreated", (data) => {
+      this.data = data;
+    })
   },
   methods: {
    // createQuestions: function () {
@@ -73,7 +73,7 @@
     //},
 
     createPoll: function () {
-     // socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
+      socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
       this.$router.push('/questions/'+this.lang+'/'+this.pollId)
     
     },
