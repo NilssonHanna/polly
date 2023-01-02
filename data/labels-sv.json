@@ -1,13 +1,12 @@
 {	"changeLanguage": "Change to English",
 	"sales-pitch": "Vem är den bästa bluffaren?",
-	"Welcometext": "Välkommen till Xplanandum",	
 	"invite": "Bjud in deltagare med den här länken:",	
 	"createPoll": "Skapa",	
 	"participatePoll": "Delta",
 	"words": "Ord",
 	"explanation": "Förklaring",
 	"createWordExplanation": "Skapa ord och förklaringar",
-	"connectPoll": "connect to poll",	
+	"connectPoll": "connect to poll",			
 	"createNickname":"Skapa spelnamn:",	
 	"gamecode":"Skapa spelkod:",	
 	"next":"Nästa",
@@ -36,4 +35,3 @@
 	"howtoplay6": "Obs! Om man (mot förmodan) vet vad ordet betyder - skriv ner den riktiga förklaringen och få den att låta ÄNNU mer trovärdig!"
  }
  
-

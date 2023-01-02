@@ -21,7 +21,7 @@
   </div>
 
   <div>
-    <button v-on:click="createPoll" id="choice_finished">{{uiLabels.finishedWors}} Use already finished words</button>
+    <button v-on:click="createQuestions" id="choice_finished">{{uiLabels.finishedWors}} Use already finished words</button>
   </div>
 
 
@@ -49,6 +49,7 @@
   created: function () {
     this.lang = this.$route.params.lang;
     this.pollId = this.$route.params.id;
+    
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
@@ -57,9 +58,9 @@
     socket.on("dataUpdate", (data) =>
       this.data = data
     )
-    socket.on("pollCreated", (data) =>
-      this.data = data)
-      console.log(this.data)
+    socket.on("pollCreated", (data) => {
+      this.data = data;
+    })
   },
   methods: {
    // createQuestions: function () {
@@ -74,6 +75,12 @@
     createPoll: function () {
       socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
       this.$router.push('/questions/'+this.lang+'/'+this.pollId)
+    
+    },
+
+    createQuestions: function () {
+      //socket.emit("createQuestions", {pollId: this.pollId, lang: this.lang })
+      this.$router.push('/selectrounds/'+this.lang+'/'+this.pollId)
     
     },
 
@@ -95,7 +102,7 @@
  <style scoped>
 
 body {
-    background-color: rgb(244, 185, 237);
+    background-color: rgb(182, 249, 239);
     width: 100%;
     min-height: 100vh;
     display: grid;

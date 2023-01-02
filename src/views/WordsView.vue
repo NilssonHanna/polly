@@ -1,15 +1,20 @@
 <template>
-    <body>
-    <div>
-      <h1>Hej och välkommen</h1>
-      {{this.pollId}}
-      {{this.words}}
-    </div>
-  </body>
+      <body>
+        <div>
+          <h1> Gamecode: {{this.pollId}} </h1>
+          <h2> {{this.words[0].q[this.currentQuestion]}}</h2>
+          <h3> Waiting for players to formulate... </h3>
+
+          <h5> this.words: {{this.words}} </h5>
+
+          <div>
+            <button v-on:click="getNextQuestion" id="getnextquestionbutton">nextword</button>
+          </div>
+        </div>
+    </body>
   </template>
    
-   <script>
-   // @ is an alias to /src
+  <script>
   import io from 'socket.io-client';
   const socket = io();
   export default {
@@ -24,10 +29,11 @@
         //  a: ""
        //},
         pollId: "inactive poll",
-        submittedAnswers: {}
+        submittedAnswers: {},
+        currentQuestion: null
       }
     },
-       // @ is an alias to /src
+
     created: function () {
       this.pollId = this.$route.params.id;
       this.lang = this.$route.params.lang;
@@ -42,7 +48,11 @@
   
     socket.on("allWords", (words) => {
       this.words = words;
-     console.log("kommer till questionCreated", this.words)
+    })
+
+    socket.on("setCurrentQuestion", (currentQuestion) => {
+      console.log("setCurrentQuestion", currentQuestion);
+      this.currentQuestion = currentQuestion;
     })
   
     },
@@ -51,6 +61,9 @@
       //  socket.emit("submitAnswer", {pollId: this.pollId, explanation: explanation})
       //}
     //}
+      getNextQuestion: function () {
+        socket.emit("getNextQuestion", this.pollId);
+      }
     }}
   
    </script>

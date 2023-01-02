@@ -26,13 +26,10 @@ Data.prototype.getUILabels = function (lang = "en") {
 // Lagt in denna kod nu för att testa skicka vidare nickname
 
 Data.prototype.getNickname = function(pollId, pn) {
-  console.log("nickname")
   const poll = this.polls[pollId];
-  console.log(this.polls[pollId]);
   if (typeof poll !== 'undefined') {
     poll.nicknameId.push(pn)
   }
-  console.log(pn)
 }
 
 Data.prototype.createPoll = function(pollId, lang="en") {
@@ -47,31 +44,43 @@ Data.prototype.createPoll = function(pollId, lang="en") {
     poll.questions = [];
     poll.answers = [];
     poll.nicknameId=[];
-    poll.currentQuestion = 0;
     poll.currentName=0;              
 
     this.polls[pollId] = poll;
-    console.log("poll created", pollId, poll);
+    console.log("createPoll", poll.currentQuestion);
   }
   return this.polls[pollId];
 }
 
 Data.prototype.addQuestion = function(pollId, q) {
   const poll = this.polls[pollId];
-  console.log("word added to", pollId, q);
   if (typeof poll !== 'undefined') {
     poll.words.push(q);
   }
 }
 
-Data.prototype.addNickname=function(pn, pollId){
-
-const poll = this.polls[pollId];
-console.log("i Data.js, funktionen getNickname, pollId, pn, this.polls är följande: ", pollId, pn, this.polls)
-if (typeof poll !== 'undefined') {
-  poll.nicknameId.push(pn)  
-  console.log("i data.j i addNickname har nu följande namn lagts till: ", poll.nicknameId)
+Data.prototype.getCurrentQuestion = function(pollId) {
+  return this.polls[pollId].currentQuestion;
 }
+
+Data.prototype.setNextWord = function(pollId) {
+  return this.polls[pollId].currentQuestion += 1;
+}
+
+Data.prototype.addNickname=function(pn, pollId){      
+  const poll = this.polls[pollId];
+  let playerId=0;
+  if (typeof poll !== 'undefined' && pollId !=='') {
+    if (pn==='') {
+      poll.nicknameId.push(pn);
+      playerId=poll.nicknameId.indexOf(pn)+1;
+      pn="User "+playerId;
+      poll.nicknameId.pop(pn);
+      poll.nicknameId.push(pn);
+    }else{
+      poll.nicknameId.push(pn)  
+    }
+  }
 
 }
 
@@ -79,12 +88,10 @@ Data.prototype.getNickname=function (pollId){
   const poll = this.polls[pollId];
   
 if (typeof poll !== 'undefined') {
-  console.log("i data i getNickname får vi ut följande nickname: ", poll.nicknameId)
+
   return poll.nicknameId
   
 }
-
-
 }
 
 Data.prototype.editQuestion = function(pollId, index, newQuestion) {
@@ -96,20 +103,15 @@ Data.prototype.editQuestion = function(pollId, index, newQuestion) {
 
 Data.prototype.getQuestion = function(pollId, q, a) {
   const poll = this.polls[pollId];
-  console.log("word requested for ", pollId, q, a);
   if (typeof poll !== 'undefined') {
-    console.log("undefined word")
     //poll.word.push(q)
     //poll.explanations.push(a)
   }
-  console.log(q,)
 }
 
 Data.prototype.getAllWords = function(pollId) {
   const poll = this.polls[pollId];
-  console.log("all words requested for ", pollId);
   if (typeof poll !== 'undefined') {
-    console.log(poll.words)
     return poll.words
 
   }
@@ -119,7 +121,6 @@ Data.prototype.getAllWords = function(pollId) {
 
 Data.prototype.submitAnswer = function(pollId, explanation) {
   const poll = this.polls[pollId];
-  console.log("explanation submitted for ", pollId, explanation);
   if (typeof poll !== 'undefined') {
     let explanations = poll.explanations[poll.currentQuestion];
     if (typeof explanations !== 'object') {
@@ -131,7 +132,6 @@ Data.prototype.submitAnswer = function(pollId, explanation) {
     explanations[explanation] = 1;
     else
     explanations[explanation] += 1
-    console.log("explanations looks like ", explanations, typeof explanations);
   }
 }
 
