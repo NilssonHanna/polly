@@ -21,7 +21,15 @@
  	"createQuestions": "Skapa frågor",
 	"question": "Fråga",
 	"chooseExplanation": "Väl korrekt förklaring för ordet . . .",
-	"word": "Ord"
+	"word": "Ord",
+	"startword": "Gränsnitt",
+	"startexplanation": "Mittersta delen av ansiktet",
+	"gamerules": "Spelregler",
+	"howtoplay1": "FÖRBEREDELSER",
+	"howtoplay2": "Välj en XPLANDER (spelledare) som ska skriva ner ett antal ord med förklaringar, ett ord per spelomgång ni vill spela. Använd gärna en ordbok!",
+	"howtoplay3": "SPELA",
+	"howtoplay4": "Alla spelare skriver ner en förklaring som låter så trovärdig som möjligt till det ord som dyker upp på skärmen. XPLANDERN läser upp alla förklaringar som skrivits ner, varpå spelarna får rösta på den de tror stämmer.",
+	"howtoplay5": "När rundan avslutats visas vem som vunnit omgången. Man får 1 poäng om man röstat på den rätta förklaringen och 1 poäng om en spelare röstat på sin egna påhittade förklaring.",
+	"howtoplay6": "Obs! Om man (mot förmodan) vet vad ordet betyder - skriv ner den riktiga förklaringen och få den att låta ÄNNU mer trovärdig!"
  }
  
-

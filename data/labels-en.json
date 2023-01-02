@@ -24,6 +24,14 @@
 	"winnerAnn": "The winner is...",
 	"explanations": "Write your explanation . . .",
 	"chooseExplanation": "Choose the correct explanation for the word . . .",
-	"word": "Word"
+	"word": "Word",
+	"startword": "Interface",
+	"startexplanation": "The parts in the middle of your face",
+	"gamerules": "Game rules",
+	"howtoplay1": "PREPARATION",
+	"howtoplay2": "Choose an XPLANDER (game leader) who will write down a number of words with explanations, one word per game round you want to play. Feel free to use a dictionary!",
+	"howtoplay3": "PLAY",
+	"howtoplay4": "Let all players write down an explanation that sounds as believable as possible to the word appearing on the screen.",
+	"howtoplay5": "The XPLANDER reads out the explanations written down, after which the players can vote on the one they believe is correct. When the round is finished, the winner of the round will be announced. You get 1 point if you voted for the correct explanation and 1 point if a player voted for their own explanation.",
+	"howtoplay6": "Note! If you already know what the word means - write down the real explanation and make it sound EVEN more believable!"
  }
-
