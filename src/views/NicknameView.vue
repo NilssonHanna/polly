@@ -57,7 +57,7 @@
    
    created: function () {
      this.lang = this.$route.params.lang;
-     this.pollId = this.$route.params.pollId
+     this.pollId = this.$route.params.id
     
     socket.emit('joinPoll', this.pollId)
 

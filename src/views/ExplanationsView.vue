@@ -1,7 +1,7 @@
 <template>
     <body>
       <div>
-        <h1> Time to present explanations! </h1>
+        <h1> {{uiLabels.presentExplanation}} </h1>
       </div>
   </body>
 </template>
@@ -10,20 +10,25 @@
 import io from 'socket.io-client';
 const socket = io();
 export default {
-  name: 'WordsView',  
+  name: 'ExplanationsView',  
   data: function () {
     return {
       lang: "",
       words: "",
       explanations: "",
       pollId: "",
-      currentQuestion: null
+      currentQuestion: null,
+      uiLabels: {},
     }
   },
 
   created: function () {
     this.pollId = this.$route.params.id;
     this.lang = this.$route.params.lang;
+    socket.emit("pageLoaded", this.lang)
+    socket.on("init", (labels) => {
+    this.uiLabels = labels
+  })
 
   },
   methods: {

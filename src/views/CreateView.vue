@@ -17,11 +17,11 @@
 
 
   <div>
-    <button v-on:click="createPoll" id="choice_create">{{uiLabels.createWords}} Create your own words</button>
+    <button v-on:click="createPoll" id="choice_create">{{uiLabels.createWords}}</button>
   </div>
 
   <div>
-    <button v-on:click="createQuestions" id="choice_finished">{{uiLabels.finishedWors}} Use already finished words</button>
+    <button v-on:click="createQuestions" id="choice_finished">{{uiLabels.finishedWords}}</button>
   </div>
 
 
@@ -108,7 +108,6 @@ body {
     display: grid;
     grid-template-columns: 2em auto;
   }
-
  #gamecode{
   margin-top: 120px;
   font-size: 15pt;
@@ -118,7 +117,6 @@ body {
   white-space: nowrap;
   margin-left: 0%;
 }
-
 #quit{
   background-color: rgb(255, 6, 52);
   font-size: 1.5rem;
@@ -135,56 +133,51 @@ body {
   cursor: pointer;
   text-decoration: none;
 }
-
 #createCode{
   margin-bottom: 1000px;
   margin-left: 500px;
 }
-
   #choice_create {
-  background-color: rgb(146, 144, 144);
+  background-color: rgb(100,149,237);
   font-size: 1.3rem;
   color: rgb(255, 255, 255);
   width:200px;
   top: 50%;
-  left: 37%;
+  left: 40%;
   padding: 20px;
-  margin-top: 250px;
+  margin-top: 100px;
   letter-spacing: 0.1em;
   transform: translateX(-50%);
   font-family: "Fjord one";
   cursor: pointer;
   position: absolute; 
-
 } 
-
 #choice_finished {
-  background-color: rgb(145, 145, 145);
+  background-color: rgb(100,149,237);
   font-size: 1.3rem;
   color: rgb(255, 255, 255);
   width:200px;
   top: 50%;
-  right: 20%;
+  right: 25%;
   padding: 20px;
-  margin-top: 250px;
+  margin-top: 100px;
   letter-spacing: 0.1em;
   transform: translateX(-50%);
   font-family: "Fjord one";
   cursor: pointer;
   position: absolute;
-
 }
 #input {
   padding: 50px;
   }
-
 #text{
   font-size: 10pt;
   font-family: "Fjord one";
+  text-align: center;
   transform: scale(2);
   margin-bottom: 300px;
-  margin-left: 550px;
+  margin-left: 600px;
+  padding: 5px;
+  border: double;
 }
-
 </style>
-

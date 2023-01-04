@@ -21,7 +21,7 @@
   import io from 'socket.io-client';
   const socket = io();
   export default {
-  name: 'answerView',
+  name: 'WaitingForAnswersView',
   data: function () {
     return {
       lang: "",
@@ -36,6 +36,8 @@
     },
     created: function () {
       this.lang = this.$route.params.lang;
+      this.pollId = this.$route.params.id;
+
       socket.emit("pageLoaded", this.lang);
       socket.on("init", (labels) => {
         this.uiLabels = labels
@@ -65,7 +67,7 @@
      
      <style scoped>
       body {
-        background-color: rgb(247, 198, 219);
+      background-color: rgb(247, 198, 219);
        width: 100%;
        min-height: 100vh;
        display: grid;
@@ -73,7 +75,7 @@
       }
     
       .playersjoin {
-    margin-top: 150px;
+     margin-top: 150px;
      font-size: 15pt;
      font-family: "Fjord one";
      text-transform: uppercase;
