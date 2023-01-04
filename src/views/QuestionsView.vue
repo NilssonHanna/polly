@@ -14,30 +14,31 @@
     <div class="wrapper">
 
       <div class="wordDesign">
-      <label for="word">Word</label><br>
+      <label for="word">{{uiLabels.word}}</label><br>
       <input class="word" v-for="(_, i) in word" 
               v-model="word[i]"
               v-bind:key="'word'+i">
      </div>
      
      <div class="explanationDesign"> 
-      <label for="explanation">Explanation</label><br>
+      <label for="explanation">{{uiLabels.explanation}}</label><br>
       <input class="explanation"  v-for="(_, i) in explanations" 
               v-model="explanations[i]" 
               v-bind:key="'explanation'+i">
       </div>
 
-      <button class="addWord" @click="addAnswer"> 
-        Add word
-      </button>
 
     </div>
+
+    <button class="addWords" @click="addAnswer"> 
+        <h7>{{uiLabels.addWord}}</h7>
+      </button>
+
     <!--<button class="addQstBtn" @click="addQuestion()">
       Emit questions
     </button>-->
   
-    <button v-on:click="addQuestion" class="startGame" >Begin to play</button>
-   <!--<button v-on:click="redirectOtherClients" class="start" >redirect</button>--> 
+    <button v-on:click="addQuestion" class="startGame" >{{uiLabels.beginToPlay}}</button>
   </div>
 </body>
 </template>
@@ -50,7 +51,7 @@ import io from 'socket.io-client';
    name: 'QuestionsView',
    data: function () {
      return {
-       lang: "",
+       lang: "en",
        word: [""],
        pollId: '',
        explanations: [""],
@@ -71,6 +72,7 @@ import io from 'socket.io-client';
       socket.on("dataUpdate", (data) =>
         this.data = data
       )
+      
     },
     methods: {
      // createPoll: function () {
@@ -117,23 +119,38 @@ import io from 'socket.io-client';
   min-height: 120vh;
   }
   #quit{ 
-    background-color: rgb(255, 6, 52);
-    font-size: 1.5rem;
-    color: rgb(255, 255, 255);
-    width:120px;
-    padding: 20px;
-    border-radius: 5px;
-    left:60px;
-    top: 5px;
-    text-align: center;
-    letter-spacing: 0.1em;
-    position: absolute;
-    transform: translateX(-50%);
-    font-family: "Fjord one";
-    text-transform: uppercase;
-    cursor: pointer;
-    text-decoration: none;
+  background-color: rgb(255, 6, 52);
+  font-size: 1.5rem;
+  color: rgb(255, 255, 255);
+  width:160px;
+  padding: 30px;
+  top: 0px;
+  left:60px;
+  letter-spacing: 0.1em;
+  position: absolute;
+  transform: translateX(-50%);
+  font-family: "Fjord one";
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
   }
+
+  .start {
+    grid-area: footer;
+    background-color: rgb(238, 85, 203);
+    font-size: 1.25rem;
+    letter-spacing: 0.1em;
+    color: black;
+    text-transform: uppercase;
+    padding: 20px;
+    bottom: 350px;
+    position: absolute;
+    right: 50%;
+    font-family: "Fjord one";
+    box-shadow: 5px 5px 5px;
+
+  }
+
   
   * {
   box-sizing: border-box;
@@ -167,10 +184,15 @@ import io from 'socket.io-client';
   }
   .explanationDesign{
     grid-area: right;
+    font-family: "Fjord one";
+    font-weight: bold;
+    
   }
   .wordDesign{
     grid-area: left;
     margin-left: auto;
+    font-family: "Fjord one";
+    font-weight: bold;
   }
   .word{
     padding: 10px;
@@ -178,12 +200,16 @@ import io from 'socket.io-client';
   .explanation{
     padding: 10px;
   }
-  .addWord{
+  .addWords{
     grid-area: footer;
-    padding: 8px;
+    padding: 10px;
     background-color: black;
     color: white;
     margin-bottom: 300px;
+    font-family: "Fjord one";
+    font-size: 1.2rem;
+    width: 200px;
+    
   }
   
   .startGame{

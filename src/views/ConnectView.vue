@@ -23,7 +23,7 @@
 
   
   <div>
-     <router-link  v-bind:to="'/voting/'+lang">{{uiLabels.vote}}</router-link>
+     <router-link  v-bind:to="'/voting/'+lang+'/'+pollId">{{uiLabels.vote}}</router-link>
     </div>
 
    
@@ -62,7 +62,7 @@ const socket = io();
     })
     
     this.lang = this.$route.params.lang;
-    this.pollId = this.$route.params.pollId
+    this.pollId = this.$route.params.id
     console.log("i connectView i created function tas följande data emot: ", this.lang, this.pollId, this.data)
     
     socket.emit("pageLoaded", this.lang);

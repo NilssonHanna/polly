@@ -1,19 +1,24 @@
 <template>
   <body>
 
+
     <div >
       <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
     </div>
 
 
-    <div>
+   
 
-      
+      <div>
+        <div class="timer">{{timer}} s </div> 
 
     <div id="explanation"> 
-          {{uiLabels.explanations}}
+          
           <h2> {{this.word[0].q[this.currentQuestion]}}</h2>
-      </div>
+    </div>
+
+
+    
 
     <div class="input">
       <label>
@@ -24,7 +29,7 @@
   </div>
 
     <div>
-     <router-link class="next" v-bind:to="'/word/'+lang">{{uiLabels.next}}</router-link>
+     <router-link class="next" v-bind:to="('/waitinganswer/'+lang+'/'+pollId)">{{uiLabels.next}}</router-link>
    </div>
 
 </body>
@@ -40,6 +45,7 @@ export default {
 name: 'WordView',
 data: function () {
  return {
+   timer: 60,
    lang: "",
    data: {},
    pollId:"",
@@ -48,12 +54,24 @@ data: function () {
    word: {},
    explanations: "",
    currentQuestion: null
+   
+   
  }
 },
 
 created: function () {
- this.lang = this.$route.params.lang;
- this.pollId = this.$route.params.id;
+
+this.lang = this.$route.params.lang;
+this.pollId = this.$route.params.id;
+
+  setInterval(() => {
+      this.$router.push('/voting/'+this.lang+'/'+ this.pollId)
+    }, 60000)
+
+    setInterval(() => {
+      this.timer--
+    }, 1000)
+
 
  socket.emit("pageLoaded", this.lang);
  socket.emit('getWords', this.pollId)
@@ -67,8 +85,13 @@ created: function () {
 
  socket.on("currentWord", (words) => {
    this.word=words
-   console.log("i wordview, currentwords", this.word)
- })
+   console.log("i wordview, currentwords", this.word)})
+
+
+
+ 
+
+
 
  socket.on("dataUpdate", (data) =>
    this.data = data,
@@ -92,6 +115,8 @@ methods: {
 // createNickname: function () {
 //  socket.emit("createPoll", {nicknameId: this.pollId, lang: this.lang })
 // },
+
+
 
 getNextQuestion: function () {
       socket.emit("getNextQuestion", this.pollId);
@@ -180,5 +205,24 @@ cursor: pointer;
   cursor: pointer;
   text-decoration: none;
 }
+
+.timer {
+  font-family: "Fjord one";
+  font-size: 3rem;
+  text-align: center;
+	margin: auto;
+	display: block;
+  position: relative;
+  left: 0px;
+  top: 60px;
+  border-radius: 100%;
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  background: rgb(0, 0, 0);
+  border: 10px solid #000;
+  color: rgb(255, 255, 255);
+
+    }
      
   </style>
