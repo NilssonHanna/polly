@@ -56,6 +56,10 @@ const socket = io();
     }
   },
   created: function () {
+
+    socket.on('redirect', route => {
+      this.$router.push(route)
+    })
     
     this.lang = this.$route.params.lang;
     this.pollId = this.$route.params.pollId
@@ -64,6 +68,7 @@ const socket = io();
     socket.emit("pageLoaded", this.lang);
     socket.emit('joinPoll', this.pollId);
     socket.emit("getNickname", this.pollId);
+    
     
     
     socket.on("init", (labels) => {
@@ -85,6 +90,13 @@ const socket = io();
 
 
     })
+
+  
+    socket.on('newUrl', newGameURL => {
+    // redirect to new URL
+    console.log("i connect",  newGameURL)
+    window.location = newGameURL;
+});
       
      
 

@@ -43,8 +43,7 @@ Data.prototype.createPoll = function(pollId, lang="en") {
 
     poll.questions = [];
     poll.answers = [];
-    poll.nicknameId=[];
-    poll.currentName=0;              
+    poll.nicknameId=[];              
 
     this.polls[pollId] = poll;
     console.log("createPoll", poll.currentQuestion);
@@ -61,6 +60,12 @@ Data.prototype.addQuestion = function(pollId, q) {
 
 Data.prototype.getCurrentQuestion = function(pollId) {
   return this.polls[pollId].currentQuestion;
+}
+
+Data.prototype.getCurrentWord = function(pollId) {
+  console.log("det jag vill undersöka just nu, ", this.polls[pollId].words[this.polls[pollId].currentQuestion])
+  return this.polls[pollId].words[this.polls[pollId].currentQuestion]
+
 }
 
 Data.prototype.setNextWord = function(pollId) {

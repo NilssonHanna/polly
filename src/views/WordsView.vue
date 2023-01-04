@@ -1,14 +1,17 @@
 <template>
       <body>
+
         <div>
+
+
           <h1> Gamecode: {{this.pollId}} </h1>
           <h2> {{this.words[0].q[this.currentQuestion]}}</h2>
           <h3> Waiting for players to formulate... </h3>
 
-          <h5> this.words: {{this.words}} </h5>
+          
 
           <div>
-            <button v-on:click="getNextQuestion" id="getnextquestionbutton">nextword</button>
+            <button v-on:click="getNextQuestion" id="getnextquestionbutton">uilabels.nextword</button>
           </div>
         </div>
     </body>
@@ -31,6 +34,7 @@
         pollId: "inactive poll",
         submittedAnswers: {},
         currentQuestion: null
+        
       }
     },
 
@@ -48,6 +52,7 @@
   
     socket.on("allWords", (words) => {
       this.words = words;
+      console.log("i wordsview,allwords", this.words)
     })
 
     socket.on("setCurrentQuestion", (currentQuestion) => {
@@ -63,7 +68,11 @@
     //}
       getNextQuestion: function () {
         socket.emit("getNextQuestion", this.pollId);
-      }
+        
+
+      },
+
+      
     }}
   
    </script>
@@ -72,6 +81,10 @@
       background-color: lightyellow;
       font-family: "Fjord one";
     }
+
+
+  
+
    </style>
   
  

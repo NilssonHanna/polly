@@ -1,5 +1,9 @@
 <template>
   <body>
+
+    <div>
+    <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
+  </div>
   <div>
 
     <header class="header">
@@ -14,31 +18,31 @@
       <input class="word" v-for="(_, i) in word" 
               v-model="word[i]"
               v-bind:key="'word'+i">
-
      </div>
+     
      <div class="explanationDesign"> 
-
       <label for="explanation">Explanation</label><br>
       <input class="explanation"  v-for="(_, i) in explanations" 
               v-model="explanations[i]" 
               v-bind:key="'explanation'+i">
-
       </div>
+
       <button class="addWord" @click="addAnswer"> 
         Add word
       </button>
+
     </div>
     <!--<button class="addQstBtn" @click="addQuestion()">
       Emit questions
     </button>-->
   
-    <button v-on:click="addQuestion" id="startGame">Begin to play</button>
+    <button v-on:click="addQuestion" class="startGame" >Begin to play</button>
+   <!--<button v-on:click="redirectOtherClients" class="start" >redirect</button>--> 
   </div>
 </body>
 </template>
 
    <script>
-
 import io from 'socket.io-client';
   const socket = io();
   
@@ -58,149 +62,150 @@ import io from 'socket.io-client';
     created: function () {
       this.lang = this.$route.params.lang; //Hämtar info från förra viewen
       this.pollId = this.$route.params.id;
-
       socket.emit("pageLoaded", this.lang);
       socket.emit('joinPoll', this.pollId)
       //socket.emit("addQuestion", {pollID: this.pollID, wordExplanation: [this.word, this.explanation]})
       socket.on("init", (labels) => {
         this.uiLabels = labels
       })
-
       socket.on("dataUpdate", (data) =>
         this.data = data
       )
-
-
     },
     methods: {
      // createPoll: function () {
        // socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
       //},
-
       addQuestion: function () {
         socket.emit("addQuestion", {pollId: this.pollId, q: this.word, a: this.explanations } )
         this.$router.push('/words/'+this.lang+'/'+this.pollId)
+        socket.emit('redirect', '/Word/'+this.lang+'/'+this.pollId)
+        
       },
+
 
       addAnswer: function () {
         this.word.push("");
         this.explanations.push("");
-
+        
       },
       //runQuestion: function () {
         //socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
       //}
+     // navigateToSecondView:function() {
+       // socket.emit("q", {pollId: this.pollId, q: this.word, a: this.explanations } )
+       // this.$router.push('/word/'+this.lang+'/'+this.pollId)
+     // },
 
-      navigateToSecondView:function() {
-        socket.emit("q", {pollId: this.pollId, q: this.word, a: this.explanations } )
-        this.$router.push('/word/'+this.lang+'/'+this.pollId)
-      }
+     // redirectOtherClients() {
+     //   const socket = io()
+     //   socket.emit('redirect', '/Word/'+this.lang+'/'+this.pollId)
+     // },
       
     }
   }
-
   
   </script>
   
   <style scoped>
-  .v-text-field{
-    width:50px;
-  }
   
  body {
-    background-color: pink;
-    width: 100%;
-    display: grid;
-    /*grid-template-columns: 50em;*/
-    min-height: 100vh;
-    font-family: "Fjord one";
+  background-color: rgb(248, 166, 229);
+  width: 100%;
+  font-family: "Fjord one";   
+  display: grid;
+  min-height: 120vh;
   }
-  
-  .header{
-    margin-top: 100px;
-    margin-bottom: 30px;
-    font-family: "Fjord one";
-    grid-template-columns: 5px 5px;
-  }
-  
-  .wordExplanation{
-    height:20px;
-    width:250px;
-    margin-right: 40px;
-    margin-bottom: 10px;
-    font-family: "Fjord one";
-  }
-  
-  .addQstBtn {
-    margin-right: 40px;
-    padding: 10px;
-    background-color: rgb(255, 254, 254);
-    font-size: 1rem;
-    font-family: "Fjord one";
-  
-  }
-
-  .addWord{
-    padding: 8px;
-    margin-left: 50px;
-    background-color: black;
-    color: white;
-  }
-  
-  #startGame{
-    background-color: turquoise;
-    font-size: 1.25rem;
-    color: black;
+  #quit{ 
+    background-color: rgb(255, 6, 52);
+    font-size: 1.5rem;
+    color: rgb(255, 255, 255);
+    width:120px;
     padding: 20px;
-    margin-bottom: 100px;
-    margin-top: 400px;
+    border-radius: 5px;
+    left:60px;
+    top: 5px;
+    text-align: center;
+    letter-spacing: 0.1em;
     position: absolute;
-    right: 3%;
     transform: translateX(-50%);
     font-family: "Fjord one";
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
   }
   
+  * {
+  box-sizing: border-box;
+  }
   
-  .wrapper{
-    
+  .wrapper{  
     width: 500px;
-    font-family: "Fjord one";
     display: grid;
-    margin-left: 400px;
-    position: center;
-    position: absolute;
-    grid-template-columns: repeat(2, 100px);
-    gap: 100px;
-    grid-auto-rows: repeat(2, 100px);
+    margin-left: 470px;
     grid-template-areas: 
-    "a b"
-    "a b";
-    align-items: start;
-   
+    'header header'
+    'left right'
+    'footer footer';
+    grid-column-gap: 10px;  
   }
-  
-
+  .head{
+    padding: 10px;
+    height: 200px;
+  }
+  .header{
+    grid-area: header;
+    text-align: center;
+    /*margin-bottom: 400px;*/
+    font-family: "Fjord one";
+    /*grid-template-columns: 5px 5px;*/
+  }
+  .left,
+  .right{
+    padding: 10px;
+    height: 300px;
+  }
   .explanationDesign{
-    grid-area: b;
+    grid-area: right;
   }
-
-  .wordExplanation{
-    grid-area: a;
+  .wordDesign{
+    grid-area: left;
     margin-left: auto;
   }
-
   .word{
     padding: 10px;
   }
-
   .explanation{
     padding: 10px;
   }
-  
-  #word_header{
-    margin-right: 320px;
-    margin-top: 50px; 
+  .addWord{
+    grid-area: footer;
+    padding: 8px;
+    background-color: black;
+    color: white;
+    margin-bottom: 300px;
   }
+  
+  .startGame{
+    grid-area: footer;
+    background-color: rgb(238, 85, 203);
+    font-size: 1.25rem;
+    letter-spacing: 0.1em;
+    color: black;
+    text-transform: uppercase;
+    padding: 20px;
+    bottom: 350px;
+    position: absolute;
+    right: 3%;
+    font-family: "Fjord one";
+    box-shadow: 5px 5px 5px;
+  }
+  .startGame:not([disabled]):focus {
+  box-shadow: 0 0 2rem rgba(255, 255, 255, 0.812), -.125rem -.125rem 2rem rgba(233, 226, 229, 0.929), .125rem .125rem 2rem rgba(255, 77, 148, 0.437);
+}
+.startGame:not([disabled]):hover {
+  box-shadow: 0 0 2rem rgba(255, 255, 255, 0.812), -.125rem -.125rem 2rem rgba(224, 215, 219, 0.929), .125rem .125rem 2rem rgba(255, 77, 148, 0.437);
+}
   
   
   
@@ -208,4 +213,3 @@ import io from 'socket.io-client';
   
   
  </style>
- 

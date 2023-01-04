@@ -1,3 +1,5 @@
+const { Socket } = require("socket.io");
+
 function sockets(io, socket, data) {
   socket.emit('init', data.getUILabels());
   
@@ -26,6 +28,11 @@ function sockets(io, socket, data) {
     socket.emit('setCurrentQuestion', data.getCurrentQuestion(pollId));
 
   }); 
+
+  socket.on("getGameset", function (pollId) {
+    socket.emit("currentWord", data.getCurrentWord(pollId))
+    console.log("i sockets, skcikas till currentword", data.getCurrentWord(pollId))
+  });
 
   socket.on('getCurrentQuestionClient', function() {
     socket.emit('getCurrentQuestionClientServer', data.getCurrentQuestion());
@@ -93,7 +100,10 @@ socket.on('createNickname', function(pn) {
    data.submitAnswer(d.pollId, d.answer);
    io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
  });
+
+
  
+
  socket.on('resetAll', () => {
    data = new Data();
    data.initializeData();

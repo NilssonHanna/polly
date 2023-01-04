@@ -15,7 +15,7 @@ const routes = [
  },
 
  {
-  path: '/Word/:lang',
+  path: '/Word/:lang/:id',
   name: 'WordView',
   component: () => import(/* webpackChunkName: "about" */ '../views/WordView.vue')
 },
