@@ -5,13 +5,11 @@
           <div class="timer">{{ timer }} s </div>
 
           <h1> Gamecode: {{this.pollId}} </h1>
-          <h2> {{this.words[0].q[this.currentQuestion]}}</h2>
+          <h2> {{this.questions[this.currentQuestionIndex].word}}</h2>
           <h3> {{uiLabels.formulate}} </h3>
 
-          
-
           <div>
-            <button v-on:click="getNextQuestion" id="getnextword">{{uiLabels.nextWord}}</button>
+            <button v-on:click="nextQuestion" id="getnextword">{{uiLabels.nextWord}}</button>
           </div>
         </div>
 
@@ -28,18 +26,14 @@
       return {
         timer: 60,
         lang: "en",
-        words: "",
+        questions: [],
         explanations: "",
-        //{
-        //  q: "",
-        //  a: ""
-       //},
+  
         pollId: "inactive poll",
         submittedAnswers: {},
-        currentQuestion: null,
+        currentQuestionIndex: 0,
         uiLabels: {},
 
-        
       }
     },
 
@@ -55,41 +49,28 @@
       this.pollId = this.$route.params.id;
       this.lang = this.$route.params.lang;
   
-      socket.emit('getWords', this.pollId)
+      socket.emit('getQuestions', this.pollId)
       socket.emit('pageLoaded', this.lang)
-   // socket.on("newQuestion", update => {
-     // this.word = update.q;
-     // this.explanations = update.a;
-      //this.data = {};
-  // })
   
-    socket.on("allWords", (words) => {
-      this.words = words;
+    socket.on("allQuestions", (questions) => {
+      this.questions = questions;
       console.log("i wordsview,allwords", this.words)
     })
 
-    socket.on("setCurrentQuestion", (currentQuestion) => {
-      console.log("setCurrentQuestion", currentQuestion);
-      this.currentQuestion = currentQuestion;
+    socket.on("getCurrentQuestionIndex", (currentQuestionIndex) => {
+      console.log("getCurrentQuestionIndex", currentQuestionIndex);
+      this.currentQuestionIndex = currentQuestionIndex;
     })
   
     },
     methods: {
-      //submitAnswer: function (explanation) {
-      //  socket.emit("submitAnswer", {pollId: this.pollId, explanation: explanation})
-      //}
-    //}
-
-      getNextQuestion: function () {
-        socket.emit("getNextQuestion", this.pollId);
-        
-
+      nextQuestion: function () {
+        socket.emit("getNextQuestionIndex", this.pollId);
       },
-
-      
     }}
 
    </script>
+
     <style>
    body {
     background-color: lightyellow;

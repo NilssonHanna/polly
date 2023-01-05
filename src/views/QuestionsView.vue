@@ -1,23 +1,20 @@
 <template>
   <body>
-
     <div>
     <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
   </div>
   <div>
-
     <header class="header">
         <h1>{{uiLabels.createWordExplanation}}</h1>
         <h3>{{pollId}}</h3>
-  
     </header>
     <div class="wrapper">
 
       <div class="wordDesign">
       <label for="word">{{uiLabels.word}}</label><br>
-      <input class="word" v-for="(_, i) in word" 
-              v-model="word[i]"
-              v-bind:key="'word'+i">
+      <input class="word" v-for="(_, i) in words" 
+              v-model="words[i]"
+              v-bind:key="'words'+i">
      </div>
      
      <div class="explanationDesign"> 
@@ -34,11 +31,8 @@
         <h7>{{uiLabels.addWord}}</h7>
       </button>
 
-    <!--<button class="addQstBtn" @click="addQuestion()">
-      Emit questions
-    </button>-->
   
-    <button v-on:click="addQuestion" class="startGame" >{{uiLabels.beginToPlay}}</button>
+    <button v-on:click="startPoll" class="startGame" >{{uiLabels.beginToPlay}}</button>
   </div>
 </body>
 </template>
@@ -52,9 +46,12 @@ import io from 'socket.io-client';
    data: function () {
      return {
        lang: "en",
-       word: [""],
-       pollId: '',
+
+       words: [""],
        explanations: [""],
+
+       questions: [],
+       pollId: '',
        questionNumber: 0,
        data: {},
        uiLabels: {},
@@ -75,35 +72,23 @@ import io from 'socket.io-client';
       
     },
     methods: {
-     // createPoll: function () {
-       // socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
-      //},
-      addQuestion: function () {
-        socket.emit("addQuestion", {pollId: this.pollId, q: this.word, a: this.explanations } )
+      startPoll: function () {
+        for (let i = 0; i < this.words.length; i++) {
+          console.log("i", i);
+          this.questions.push({ word: this.words[i], answer: this.explanations[i], playerExplanations: []})
+        }
+        
+        socket.emit("startPoll", {pollId: this.pollId, questions: this.questions} );
         this.$router.push('/words/'+this.lang+'/'+this.pollId)
         socket.emit('redirect', '/Word/'+this.lang+'/'+this.pollId)
         
       },
 
-
       addAnswer: function () {
-        this.word.push("");
+        this.words.push("");
         this.explanations.push("");
         
       },
-      //runQuestion: function () {
-        //socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
-      //}
-     // navigateToSecondView:function() {
-       // socket.emit("q", {pollId: this.pollId, q: this.word, a: this.explanations } )
-       // this.$router.push('/word/'+this.lang+'/'+this.pollId)
-     // },
-
-     // redirectOtherClients() {
-     //   const socket = io()
-     //   socket.emit('redirect', '/Word/'+this.lang+'/'+this.pollId)
-     // },
-      
     }
   }
   

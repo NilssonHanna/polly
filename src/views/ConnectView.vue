@@ -1,41 +1,22 @@
 <template>
   <body>
-
-
     <div>
       <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
     </div>
-
-  <div class="playersjoin">
-      <h1> {{uiLabels.playersjoin}}</h1>
-   
-      
-      <div v-for="player in nicknameId" :key="player" id="players">
-        {{ player }}
-      </div>
-
-      
-
-      
-  </div>  
-
-  
-
-  
-  <div>
+    <div class="playersjoin">
+        <h1> {{uiLabels.playersjoin}}</h1>
+        <div v-for="player in nicknameId" :key="player" id="players">
+          {{ player }}
+        </div>
+    </div>  
+    <div>
      <router-link  v-bind:to="'/voting/'+lang+'/'+pollId">{{uiLabels.vote}}</router-link>
     </div>
-
-   
- 
   </body>
-  
   </template>
  
-
   <script>
 
-  //import QuestionComponent from '@/components/QuestionComponent.vue';
 import io from 'socket.io-client';
 const socket = io();
  export default {
@@ -51,12 +32,9 @@ const socket = io();
       data: {},
       uiLabels: {},
       nicknameId: ""
-      
-
     }
   },
   created: function () {
-
     socket.on('redirect', route => {
       this.$router.push(route)
     })
@@ -97,23 +75,10 @@ const socket = io();
     console.log("i connect",  newGameURL)
     window.location = newGameURL;
 });
-      
-     
-
   },
-
-  methods: {
-   
- 
-   
-  }
-  
+  methods: {}
 }
-
-
-
 </script>
- 
  
   <style scoped>
    body {

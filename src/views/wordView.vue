@@ -1,39 +1,30 @@
 <template>
   <body>
-
-
     <div >
       <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
     </div>
 
-
-   
-
       <div>
         <div class="timer">{{timer}} s </div> 
 
-    <div id="explanation"> 
-          
-          <h2> {{this.word[0].q[this.currentQuestion]}}</h2>
-    </div>
+      <div id="explanation"> 
+        <h2> {{this.word}}</h2>
+      </div>
 
-
-    
-
-    <div class="input">
-      <label>
-        <input type="text">       
-      </label>
-    </div>
-
+      <div class="input">
+        <label>
+          <input
+          type="text"
+          v-model="playerExplanation"
+          placeholder="explanation"
+        />     
+        </label>
+      </div>
   </div>
-
-    <div>
-     <router-link class="next" v-bind:to="('/waitinganswer/'+lang+'/'+pollId)">{{uiLabels.next}}</router-link>
-   </div>
-
+  <div>
+    <button v-on:click="submit" class="next">{{uiLabels.next}}</button>
+  </div>
 </body>
-
 </template>
 
 <script>
@@ -51,11 +42,8 @@ data: function () {
    pollId:"",
    uiLabels: {},
    nicknameId: "",
-   word: {},
-   explanations: "",
-   currentQuestion: null
-   
-   
+   word: "",
+   playerExplanation: "",
  }
 },
 
@@ -74,62 +62,37 @@ this.pollId = this.$route.params.id;
 
 
  socket.emit("pageLoaded", this.lang);
- socket.emit('getWords', this.pollId)
-
- socket.emit("getGameset", this.pollId);
+ socket.emit("getCurrentWord", this.pollId);
 
  socket.on("init", (labels) => {
    this.uiLabels = labels
    console.log("i wordview", labels)
  })
 
- socket.on("currentWord", (words) => {
-   this.word=words
-   console.log("i wordview, currentwords", this.word)})
-
-
-
- 
-
-
+ socket.on("getCurrentWord", (word) => {
+   this.word = word;
+   console.log("i wordview, currentwords", this.word);
+  })
 
  socket.on("dataUpdate", (data) =>
    this.data = data,
 
-   socket.on("allWords", (words) => {
-      this.word = words;
-     console.log("kommer till wordView, allwords", words)
-    }),
-    
-    socket.on("setCurrentQuestion", (currentQuestion) => {
-      this.currentQuestion = currentQuestion;
-      console.log("CurrentQuestion", currentQuestion);
-    })
-
-
-
-  
  
 )},
-methods: {
-// createNickname: function () {
-//  socket.emit("createPoll", {nicknameId: this.pollId, lang: this.lang })
-// },
-
-
-
-getNextQuestion: function () {
-      socket.emit("getNextQuestion", this.pollId);
-        
-
+  methods: {
+    getNextQuestion: function () {
+          socket.emit("getNextQuestion", this.pollId);
+        },
+    createNickname: function () {
+      socket.emit("createNickname", this.pn)
     },
-createNickname: function () {
-   socket.emit("createNickname", this.pn)
- },
 
-
-
-}
+    submit: function () {
+      console.log("wordview submit playerExplanation", this.playerExplanation);
+      socket.emit('submitExplanation', { pollId: this.pollId, explanation: this.playerExplanation });
+      this.$router.push('/waitinganswer/'+this.lang+'/'+this.pollId);
+    }
+  }
 }
 </script>
 
@@ -171,23 +134,23 @@ margin-top: 100px;
  font-family: "Fjord one";
 }
 
-.next {
-background-color: rgb(90, 58, 64);
-font-size: 1.5rem;
-color: rgb(255, 255, 255);
-width:80px;
-padding: 30px;
-margin-top: -150px;
-position: absolute;
-left: 85%;
-top:100%;
-transform: translateX(-50%);
-font-family: "Fjord one";
-letter-spacing: 0.1em;
-text-transform: uppercase;
-text-decoration: none;
-cursor: pointer;
- }
+  .next {
+    background-color: rgb(90, 58, 64);
+    font-size: 1.5rem;
+    color: rgb(255, 255, 255);
+    width:80px;
+    padding: 30px;
+    margin-top: -150px;
+    position: absolute;
+    left: 85%;
+    top:100%;
+    transform: translateX(-50%);
+    font-family: "Fjord one";
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+  }
    
   #quit{
   background-color: rgb(255, 6, 52);
@@ -214,7 +177,6 @@ cursor: pointer;
 	display: block;
   position: relative;
   left: 0px;
-  top: 60px;
   border-radius: 100%;
   width: 100px;
   height: 100px;

@@ -2,74 +2,70 @@
 
 const languages = ["en", "se"];
 
-// Store data in an object to keep the global namespace clean
 function Data() {
   this.polls = {};
 }
 
-/***********************************************
-For performance reasons, methods are added to the
-prototype of the Data object/class
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
-***********************************************/
-
 Data.prototype.getUILabels = function (lang = "en") {
- // if (!languages.includes(lang)){
-
-   // lang="en"
- // }
-
   const ui = require("./data/labels-" + lang + ".json");
   return ui;
 }
 
-// Lagt in denna kod nu för att testa skicka vidare nickname
+// POLLS-----------------
+
+Data.prototype.createPoll = function(pollId, lang="en") {
+  if (typeof this.polls[pollId] === "undefined") {
+    let poll = {};
+    
+    poll.lang = lang;  
+    poll.questions = [];
+    poll.currentQuestionIndex = 0;              
+    poll.nicknameId=[];              
+
+    this.polls[pollId] = poll;
+    console.log("createPoll", poll);
+  }
+  return this.polls[pollId];
+}
+
+Data.prototype.startPoll = function(pollId, questions) {
+  const poll = this.polls[pollId];
+  if (typeof poll !== 'undefined') {
+    poll.questions = questions;
+  }
+}
+
+// QUESTIONS-----------------
+
+Data.prototype.getAllQuestions = function(pollId) {
+  const poll = this.polls[pollId];
+  if (typeof poll !== 'undefined') {
+    console.log("data getallquestions", poll.questions);
+    return poll.questions;
+
+  }
+  return []
+}
+
+Data.prototype.getCurrentQuestionIndex = function(pollId) {
+  return this.polls[pollId].currentQuestionIndex;
+}
+
+Data.prototype.getCurrentWord = function(pollId) {
+  return this.polls[pollId].questions[this.polls[pollId].currentQuestionIndex].word;
+}
+
+Data.prototype.setNextQuestionIndex = function(pollId) {
+  return this.polls[pollId].currentQuestionIndex += 1;
+}
+
+// NICKNAMES-----------------
 
 Data.prototype.getNickname = function(pollId, pn) {
   const poll = this.polls[pollId];
   if (typeof poll !== 'undefined') {
     poll.nicknameId.push(pn)
   }
-}
-
-Data.prototype.createPoll = function(pollId, lang="en") {
-  if (typeof this.polls[pollId] === "undefined") {
-    let poll = {};
-    poll.lang = lang;  
-
-    poll.words = [];
-    poll.explanations = [];
-    poll.currentQuestion = 0;              
-
-    poll.questions = [];
-    poll.answers = [];
-    poll.nicknameId=[];              
-
-    this.polls[pollId] = poll;
-    console.log("createPoll", poll.currentQuestion);
-  }
-  return this.polls[pollId];
-}
-
-Data.prototype.addQuestion = function(pollId, q) {
-  const poll = this.polls[pollId];
-  if (typeof poll !== 'undefined') {
-    poll.words.push(q);
-  }
-}
-
-Data.prototype.getCurrentQuestion = function(pollId) {
-  return this.polls[pollId].currentQuestion;
-}
-
-Data.prototype.getCurrentWord = function(pollId) {
-  console.log("det jag vill undersöka just nu, ", this.polls[pollId].words[this.polls[pollId].currentQuestion])
-  return this.polls[pollId].words[this.polls[pollId].currentQuestion]
-
-}
-
-Data.prototype.setNextWord = function(pollId) {
-  return this.polls[pollId].currentQuestion += 1;
 }
 
 Data.prototype.addNickname=function(pn, pollId){      
@@ -86,48 +82,36 @@ Data.prototype.addNickname=function(pn, pollId){
       poll.nicknameId.push(pn)  
     }
   }
-
 }
 
 Data.prototype.getNickname=function (pollId){
   const poll = this.polls[pollId];
   
-if (typeof poll !== 'undefined') {
-
-  return poll.nicknameId
-  
-}
-}
-
-Data.prototype.editQuestion = function(pollId, index, newQuestion) {
-  const poll = this.polls[pollId];
   if (typeof poll !== 'undefined') {
-    poll.words[index] = newQuestion;
+    return poll.nicknameId
   }
 }
 
-Data.prototype.getQuestion = function(pollId, q, a) {
+// ANSWERS-----------------maybe not working
+
+Data.prototype.submitExplanation = function(pollId, explanation) {
+  console.log("data submitexplanation");
+
   const poll = this.polls[pollId];
-  if (typeof poll !== 'undefined') {
-    //poll.word.push(q)
-    //poll.explanations.push(a)
-  }
+  const currentQuestion = poll.questions[poll.currentQuestionIndex];
+  const playerExplanations = currentQuestion.playerExplanations;
+  playerExplanations.push(explanation);
+
+  console.log("data submitExplanation poll", poll);
+  console.log("data submitExplanation poll playerExplanations", poll.questions[poll.currentQuestionIndex].playerExplanations);
+
 }
 
-Data.prototype.getAllWords = function(pollId) {
-  const poll = this.polls[pollId];
-  if (typeof poll !== 'undefined') {
-    return poll.words
-
-  }
-  return []
-}
-
-
+//?
 Data.prototype.submitAnswer = function(pollId, explanation) {
   const poll = this.polls[pollId];
   if (typeof poll !== 'undefined') {
-    let explanations = poll.explanations[poll.currentQuestion];
+    let explanations = poll.questions[poll.currentQuestionIndex];
     if (typeof explanations !== 'object') {
       explanations = {};
       explanations[explanation] = 1;
@@ -140,12 +124,13 @@ Data.prototype.submitAnswer = function(pollId, explanation) {
   }
 }
 
+//?
 Data.prototype.getAnswers = function(pollId) {
   const poll = this.polls[pollId];
   if (typeof poll !== 'undefined') {
-    const explanations = poll.explanations[poll.currentQuestion];
-    if (typeof poll.words[poll.currentQuestion] !== 'undefined') {
-      return {q: poll.words[poll.currentQuestion].q, a: explanations};
+    const explanations = poll.questions[poll.currentQuestionIndex];
+    if (typeof poll.questions[poll.currentQuestionIndex] !== 'undefined') {
+      return {q: poll.questions[poll.currentQuestionIndex].q, a: explanations};
     }
   }
   return {}
