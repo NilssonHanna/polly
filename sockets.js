@@ -64,7 +64,14 @@ function sockets(io, socket, data) {
     data.submitAnswer(d.pollId, d.explanation);
     io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
   });
-  
+
+  socket.on("getAllExplanations", function (pollId) {
+    console.log("i socket, kommer vi till getAllexplanations")
+    console.log("vårt pollid", pollId)
+    console.log("i socket, vad skcikar vi till explanationsview?", data.getExplanations(pollId) )
+ // io.to(pollId).emit("receiveExplanations", data.getExplanations(pollId));
+    socket.emit("receiveExplanations", data.getExplanations(pollId));
+});
   // NICKNAMES----------
 
   //?

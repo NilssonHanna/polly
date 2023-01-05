@@ -24,7 +24,7 @@
     name: 'WordsView',  
     data: function () {
       return {
-        timer: 60,
+        counter: 20,
         lang: "en",
         questions: [],
         explanations: "",
@@ -38,12 +38,15 @@
     },
 
     created: function () {
-      setInterval(() => {
-      this.$router.push('/explanations/'+this.lang+'/'+this.pollId)
-    }, 60000)
 
-    setInterval(() => {
-      this.timer--
+     
+
+    const timer = setInterval(() => {
+      this.counter--
+      if (this.counter === 0) {
+        clearInterval(timer)
+        this.$router.push('/explanations/'+this.lang+'/'+ this.pollId)
+      }
     }, 1000)
 
       this.pollId = this.$route.params.id;

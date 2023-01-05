@@ -22,7 +22,7 @@
       </div>
   </div>
   <div>
-    <button v-on:click="submit" class="next">{{uiLabels.next}}</button>
+    <button @click.once="submit" :disabled="isDisabled" class="next">press to save your answer</button>
   </div>
 </body>
 </template>
@@ -36,7 +36,7 @@ export default {
 name: 'WordView',
 data: function () {
  return {
-   timer: 60,
+   counter: 20,
    lang: "",
    data: {},
    pollId:"",
@@ -52,13 +52,14 @@ created: function () {
 this.lang = this.$route.params.lang;
 this.pollId = this.$route.params.id;
 
-  setInterval(() => {
-      this.$router.push('/voting/'+this.lang+'/'+ this.pollId)
-    }, 60000)
-
-    setInterval(() => {
-      this.timer--
+const timer = setInterval(() => {
+      this.counter--
+      if (this.counter === 0) {
+        clearInterval(timer)
+        this.$router.push('/voting/'+this.lang+'/'+ this.pollId)
+      }
     }, 1000)
+  
 
 
  socket.emit("pageLoaded", this.lang);
@@ -80,6 +81,7 @@ this.pollId = this.$route.params.id;
  
 )},
   methods: {
+
     getNextQuestion: function () {
           socket.emit("getNextQuestion", this.pollId);
         },
@@ -87,10 +89,11 @@ this.pollId = this.$route.params.id;
       socket.emit("createNickname", this.pn)
     },
 
+    
     submit: function () {
       console.log("wordview submit playerExplanation", this.playerExplanation);
       socket.emit('submitExplanation', { pollId: this.pollId, explanation: this.playerExplanation });
-      this.$router.push('/waitinganswer/'+this.lang+'/'+this.pollId);
+      //this.$router.push('/waitinganswer/'+this.lang+'/'+this.pollId);
     }
   }
 }

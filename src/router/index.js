@@ -14,6 +14,12 @@ const routes = [
   component: () => import(/* webpackChunkName: "about" */ '../views/WordsView.vue')
 },
 
+
+{
+  path: '/waitingvote/:lang/:id',
+  name: 'WaitingVoteView',
+  component: () => import(/* webpackChunkName: "about" */ '../views/WaitingVoteView.vue')
+},
 {
  path: '/word/:lang/:id',
  name: 'WordView',
@@ -87,7 +93,7 @@ const routes = [
 },
 
   {
-   path: '/result/:id/',
+   path: '/result/:lang/:id/',
    name: 'ResultView',
   // route level code-splitting
   // this generates a separate chunk (about.[hash].js) for this route

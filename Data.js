@@ -40,7 +40,6 @@ Data.prototype.startPoll = function(pollId, questions) {
 Data.prototype.getAllQuestions = function(pollId) {
   const poll = this.polls[pollId];
   if (typeof poll !== 'undefined') {
-    console.log("data getallquestions", poll.questions);
     return poll.questions;
 
   }
@@ -106,6 +105,19 @@ Data.prototype.submitExplanation = function(pollId, explanation) {
   console.log("data submitExplanation poll playerExplanations", poll.questions[poll.currentQuestionIndex].playerExplanations);
 
 }
+
+Data.prototype.getExplanations=function (pollId){
+  const poll = this.polls[pollId];
+  console.log("i data i getexplanations vad har vi för poll?, ", this.polls[pollId])
+  console.log("i data kommer vi till getExplanations?")
+
+  if (typeof poll !== 'undefined') {
+    return poll.questions
+  }
+}
+
+
+
 
 //?
 Data.prototype.submitAnswer = function(pollId, explanation) {
