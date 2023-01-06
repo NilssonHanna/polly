@@ -2,7 +2,7 @@
   <body>
   <div>
     <h1> The correct answer is... </h1>
-    {{ allexplanations[allexplanations.length - 1]}}
+    <h2>{{ allexplanations[allexplanations.length - 1]}}</h2>
   </div>
   <BarsComponent v-bind:data="submittedAnswers"/>
   

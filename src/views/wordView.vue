@@ -5,7 +5,7 @@
     </div>
 
       <div>
-        <div class="timer">{{timer}} s </div> 
+        <div class="timer">{{counter}} s </div> 
 
       <div id="explanation"> 
         <h2> {{this.word}}</h2>
@@ -22,7 +22,18 @@
       </div>
   </div>
   <div>
-    <button @click.once="submit" :disabled="isDisabled" class="next">press to save your answer</button>
+   <!-- <button @click.once="submit" :disabled="isDisabled" class="next">press to save your answer</button>-->
+   <button 
+  @click.once="submit" 
+  :disabled="isDisabled" 
+  :class="{ 'next-pressed': isPressed }"
+  @click="isPressed = !isPressed"
+  class="next"
+>
+<span v-if="!isPressed">press to save your answer</span>
+    <span v-if="isPressed">saved</span>
+ 
+</button>
   </div>
 </body>
 </template>
@@ -56,7 +67,7 @@ const timer = setInterval(() => {
       this.counter--
       if (this.counter === 0) {
         clearInterval(timer)
-        this.$router.push('/voting/'+this.lang+'/'+ this.pollId)
+        this.$router.push('/PresentExplanations/'+this.lang+'/'+ this.pollId)
       }
     }, 1000)
   
@@ -141,7 +152,7 @@ margin-top: 100px;
     background-color: rgb(90, 58, 64);
     font-size: 1.5rem;
     color: rgb(255, 255, 255);
-    width:80px;
+    width:300px;
     padding: 30px;
     margin-top: -150px;
     position: absolute;
@@ -154,6 +165,11 @@ margin-top: 100px;
     text-decoration: none;
     cursor: pointer;
   }
+  .next-pressed {
+  background-color: rgb(74, 32, 32);
+
+ 
+}
    
   #quit{
   background-color: rgb(255, 6, 52);

@@ -88,7 +88,7 @@ export default {
     votingtime: function (){
       
       this.$router.push('/waitingvote/'+this.lang+'/'+this.pollId)
-      //socket.emit('redirect','/voting/'+this.lang+'/'+this.pollId)
+      socket.emit('redirect','/voting/'+this.lang+'/'+this.pollId)
         
     }
   }

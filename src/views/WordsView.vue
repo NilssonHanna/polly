@@ -2,7 +2,7 @@
       <body>
 
         <div>
-          <div class="timer">{{ timer }} s </div>
+          <div class="timer">{{ counter }} s </div>
 
           <h1> Gamecode: {{this.pollId}} </h1>
           <h2> {{this.questions[this.currentQuestionIndex].word}}</h2>

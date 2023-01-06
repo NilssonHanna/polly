@@ -86,6 +86,12 @@ const routes = [
  component: () => import(/* webpackChunkName: "about" */ '../views/WaitingForAnswersView.vue')
 },
 
+{
+  path: '/presentexplanations/:lang/:id',
+  name: 'PresentExplanationsView',
+  component: () => import(/* webpackChunkName: "about" */ '../views/PresentExplanationsView.vue')
+ },
+
  {
    path: '/voting/:lang/:id',
   name: 'VotingView',

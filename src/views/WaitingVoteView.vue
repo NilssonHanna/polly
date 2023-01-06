@@ -1,10 +1,10 @@
 <template>
     <body>
         <header class="header">
-            <h1>The winning explanation</h1> 
+            <h1>Waiting for players to vote...</h1> 
         </header>
       <div>
-        <h2 class="wait">Waiting for players to vote..</h2>
+        <!--<h2 class="wait">Waiting for players to vote..</h2>-->
           <!--<div v-for="(wordExplanation, key) in explanations" v-bind:key="'wordExplanation'+key">
           #{{key}}: <dd>{{wordExplanation.wordExplanation}}</dd>
           </div>-->
