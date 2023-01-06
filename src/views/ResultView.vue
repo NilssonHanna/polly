@@ -1,7 +1,7 @@
 <template>
   <body>
 
-   <!-- <div v-if="numPeople=== playerExplanations.length-2">-->
+   <!--<div v-if="numPeople=== playerindex">-->
    <div> 
       <h1> The correct answer is... </h1>
     <h2>{{ allexplanations[allexplanations.length - 1]}}</h2>
@@ -47,7 +47,8 @@
       allexplanations: [],
       playerExplanations: "",
       answer: "",
-      numPeople: 0
+      numPeople: 0,
+      playerindex:0
     }
   },
   created: function () {
@@ -56,7 +57,8 @@
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang)
     socket.emit("getAllExplanations", this.pollId)
-    
+    socket.emit("getNextPlayerIndex", this.pollId)
+
 
     this.numPeople += 1
     console.log(this.numPeople)
@@ -71,6 +73,11 @@
 
     socket.on("receiveExplanations", (questions) => {
     this.questions=questions;
+
+    socket.on("getCurrentPlayerIndex", (playerindex) => {
+    this.playerindex=playerindex;})
+
+    console.log("i resultview, vårt playerindex,", this.playerindex)
 
   
     this.playerExplanations = this.questions[this.currentQuestionIndex].playerExplanations

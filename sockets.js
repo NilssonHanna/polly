@@ -46,6 +46,10 @@ function sockets(io, socket, data) {
     socket.emit('getCurrentQuestionIndex', data.setNextQuestionIndex(pollId));
   }); 
 
+  socket.on('getNextPlayerIndex', function(pollId) {
+    socket.emit('getCurrentPlayerIndex', data.setNextPlayerIndex(pollId));
+  }); 
+
   //?
   socket.on('runQuestion', function(d) {
     io.to(d.pollId).emit('newQuestion', data.getQuestion(d.pollId, d.questionNumber));

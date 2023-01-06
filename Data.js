@@ -19,7 +19,8 @@ Data.prototype.createPoll = function(pollId, lang="en") {
     
     poll.lang = lang;  
     poll.questions = [];
-    poll.currentQuestionIndex = 0;              
+    poll.currentQuestionIndex = 0;
+    poll.playerindex=0;              
     poll.nicknameId=[];              
 
     this.polls[pollId] = poll;
@@ -56,6 +57,10 @@ Data.prototype.getCurrentWord = function(pollId) {
 
 Data.prototype.setNextQuestionIndex = function(pollId) {
   return this.polls[pollId].currentQuestionIndex += 1;
+}
+
+Data.prototype.setNextPlayerIndex = function(pollId) {
+  return this.polls[pollId].playerindex += 1;
 }
 
 // NICKNAMES-----------------
