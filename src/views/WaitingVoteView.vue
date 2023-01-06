@@ -8,6 +8,8 @@
           <!--<div v-for="(wordExplanation, key) in explanations" v-bind:key="'wordExplanation'+key">
           #{{key}}: <dd>{{wordExplanation.wordExplanation}}</dd>
           </div>-->
+
+          <button>show leaderboard</button>
       </div>
     </body>
   

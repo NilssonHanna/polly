@@ -55,6 +55,7 @@ export default{
       selectedOption:"",
       playerExplanations: "",
       answer: "",
+      
     }
   },
 
@@ -106,7 +107,10 @@ export default{
   methods: {
 
     checkResult: function() {
-      this.$router.push('/result/'+this.lang+'/'+this.pollId)
+      
+      this.$router.push({path:'/result/'+this.lang+'/'+this.pollId})
+      //this.$router.push('/result/'+this.lang+'/'+this.pollId)
+      
     }
 
   }
