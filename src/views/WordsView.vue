@@ -119,24 +119,27 @@
   .gamecode {
     font-family: "Fjord one";
     font-size: 10px;
-    margin-top: 100px;
+    margin-top: 20px;
     text-transform: uppercase;
+    margin-left: 670px;
   }
 
   .word {
     font-family: "Fjord one";
     font-size: 30px;
     text-transform: uppercase;
+    margin-top: 100px;
   }
     
   #formulate {
-    margin-top: 0px;
     font-size: 15pt;
     font-family: "Fjord one";
     text-transform: uppercase;
     text-align: center;
     white-space: nowrap;
-    margin-left: 0%;
+    margin-left: 400px;
+    bottom: 100px;
+    
   }
 
 .quit {
@@ -164,7 +167,7 @@
     color: black;
     text-transform: uppercase;
     padding: 20px;
-    bottom: 400px;
+    bottom: 150px;
     position: absolute;
     right: 3%;
     font-family: "Fjord one";
