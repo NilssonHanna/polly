@@ -23,12 +23,11 @@
       </div>
   </div>
   <div>
-   <!-- <button @click.once="submit" :disabled="isDisabled" class="next">press to save your answer</button>-->
    <button 
-  @click.once="submit" 
+  @click="submit" 
   :disabled="isDisabled" 
   :class="{ 'next-pressed': isPressed }"
-  @click="isPressed = !isPressed"
+  @click.once="isPressed = !isPressed"
   id="saveAnswer"
 >
 <span v-if="!isPressed">press to save your answer</span>
@@ -48,7 +47,7 @@ export default {
 name: 'WordView',
 data: function () {
  return {
-   counter: 20,
+   counter: 120,
    lang: "",
    data: {},
    pollId:"",

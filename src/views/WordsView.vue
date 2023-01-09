@@ -9,7 +9,7 @@
     </div>
 
     <div class="gamecode">
-      <h1> Gamecode: {{this.pollId}} </h1>
+      <h2> Gamecode: {{pollId}} </h2>
     </div>
           
     <div class="word">
@@ -34,12 +34,13 @@
     name: 'WordsView',  
     data: function () {
       return {
-        counter: 20,
+        counter: 120,
         lang: "en",
         questions: [],
         explanations: "",
+
   
-        pollId: "inactive poll",
+        pollId: "",
         submittedAnswers: {},
         currentQuestionIndex: 0,
         uiLabels: {},
@@ -120,8 +121,10 @@
     font-family: "Fjord one";
     font-size: 10px;
     margin-top: 20px;
+    margin-left: 685px;
     text-transform: uppercase;
-    margin-left: 670px;
+    text-align: center;
+    width: 100px;
   }
 
   .word {

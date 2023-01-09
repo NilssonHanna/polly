@@ -7,7 +7,7 @@
     <div>
       <header class="header">
         <h1>{{uiLabels.createWordExplanation}}</h1>
-        <h3>{{pollId}}</h3>
+        <h3>Gamecode: {{pollId}}</h3>
       </header>
     
       <div class="wrapper">
