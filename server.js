@@ -50,9 +50,6 @@ let data = new Data();
 
 io.on('connection', function (socket) {
   sockets(this, socket, data);
-  socket.on('redirect', route => {
-    socket.broadcast.emit('redirect', route)
-  })
 });
 
 const PORT = process.env.PORT || 8080;

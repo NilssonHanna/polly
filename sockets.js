@@ -34,7 +34,7 @@ function sockets(io, socket, data) {
 
   socket.on('getQuestions', function(pollId) {
     socket.emit('allQuestions', data.getAllQuestions(pollId));
-    socket.emit('getCurrentQuestionIndex', data.getCurrentQuestionIndex(pollId));
+   socket.emit('getCurrentQuestionIndex', data.getCurrentQuestionIndex(pollId));
   }); 
 
   socket.on("getCurrentWord", function (pollId) {
@@ -43,11 +43,19 @@ function sockets(io, socket, data) {
   });
 
   socket.on('getNextQuestionIndex', function(pollId) {
-    socket.emit('getCurrentQuestionIndex', data.setNextQuestionIndex(pollId));
+     data.setNextQuestionIndex(pollId);
   }); 
 
+  socket.on('setNextPlayerIndex', function(pollId) {
+     data.setNextPlayerIndex(pollId);
+  }); 
+
+  socket.on("zeroPlayerIndex", function(pollId){
+  data.zeroPlayerIndex(pollId)
+ });
+
   socket.on('getNextPlayerIndex', function(pollId) {
-    socket.emit('getCurrentPlayerIndex', data.setNextPlayerIndex(pollId));
+    io.to(pollId).emit('returnPlayerIndex', data.returnPlayerIndex(pollId));
   }); 
 
   //?
@@ -73,7 +81,6 @@ function sockets(io, socket, data) {
     console.log("i socket, kommer vi till getAllexplanations")
     console.log("vårt pollid", pollId)
     console.log("i socket, vad skcikar vi till explanationsview?", data.getExplanations(pollId) )
- // io.to(pollId).emit("receiveExplanations", data.getExplanations(pollId));
     socket.emit("receiveExplanations", data.getExplanations(pollId));
 });
   // NICKNAMES----------
@@ -92,6 +99,26 @@ function sockets(io, socket, data) {
     const nicknames = data.getNickname(pollId);
     io.to(pollId).emit('nicknamecreated', nicknames);
   });
+
+    // NICKNAMESVOTES----------
+
+  socket.on('submitNicknameVotes', function(response) {
+    console.log("server submitNicknameVotes response", response);
+    data.submitNicknameVotes(response.pollId, response.nicknameVotes);
+  });
+
+  socket.on('getNicknameVotes', function(pollId) {
+    console.log("getNicknameVotes", data.getNicknameVotes(pollId));
+    io.to(pollId).emit('receiveNicknameVotes', data.getNicknameVotes(pollId))
+  });
+
+
+  // --- redirect ---
+
+  socket.on('redirect', d => {
+    io.to(d.pollId).emit('redirect', d.route+'/'+d.pollId)
+  });
+
 }
 
 module.exports = sockets;

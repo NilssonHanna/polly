@@ -41,60 +41,56 @@ export default {
   },
 
   created: function () {
+
+  
     this.pollId = this.$route.params.id;
     this.lang = this.$route.params.lang;
+    
+    socket.emit('joinPoll', this.pollId)
     socket.emit("pageLoaded", this.lang)
     socket.emit("getAllExplanations", this.pollId)
+    socket.emit('getQuestions', this.pollId)
   
     socket.on("init", (labels) => {
     this.uiLabels = labels })
 
-
-    socket.on("receiveExplanations", (questions) => {
-    console.log("i explanationview, ", questions)
-    this.questions=questions;
-
-
-    this.playerExplanations = this.questions[this.currentQuestionIndex].playerExplanations
-    this.answer = this.questions[this.currentQuestionIndex].answer
-
-    this.playerExplanations.push(this.answer)
-    this.allexplanations=this.playerExplanations
-
-    console.log("vår allexplanations: ", this.allexplanations)
-
+    socket.on("receiveExplanations", (allexplanations) => {
+      this.allexplanations=allexplanations;
+      socket.emit('getQuestions', this.pollId)
+    })
 
     socket.on("getCurrentQuestionIndex", (currentQuestionIndex) => {
-      console.log("getCurrentQuestionIndex", currentQuestionIndex);
+     
       this.currentQuestionIndex = currentQuestionIndex;
-    })
-
-    this.currentExplanation = this.allexplanations[this.currentExplanationIndex]
-
- 
-    })
-
+    
+      //this.playerExplanations = this.questions[this.currentQuestionIndex].playerExplanations
+      //this.answer = this.questions[this.currentQuestionIndex].answer
+      
+      //this.playerExplanations.push(this.answer)
+      console.log("i votingview playerexplanatin", this.playerExplanations)
+      //this.allexplanations=this.playerExplanations
+      
+      this.currentExplanation = this.allexplanations[this.currentExplanationIndex]
+      
+      })
   },
+
   methods: {
 
-    showNextExplanation: function () {
-      this.currentExplanationIndex++
-      if (this.currentExplanationIndex >= this.allexplanations.length) {
-        this.currentExplanationIndex = 0
-      }
-      this.currentExplanation = this.allexplanations[this.currentExplanationIndex]
-    },
+      showNextExplanation: function () {
+        this.currentExplanationIndex++
+        if (this.currentExplanationIndex >= this.allexplanations.length) {
+          this.currentExplanationIndex = 0
+        }
+        this.currentExplanation = this.allexplanations[this.currentExplanationIndex]
+      },
 
-    votingtime: function (){
-      
-      this.$router.push('/waitingvote/'+this.lang+'/'+this.pollId)
-      socket.emit('redirect','/voting/'+this.lang+'/'+this.pollId)
+      votingtime: function (){
         
+        this.$router.push('/resultcreate/'+this.lang+'/'+this.pollId)
+        socket.emit('redirect', {route: '/voting/'+this.lang, pollId: this.pollId})
+      }
     }
-  }
-
-
-
   }
 
  </script>

@@ -21,8 +21,9 @@ Data.prototype.createPoll = function(pollId, lang="en") {
     poll.questions = [];
     poll.currentQuestionIndex = 0;
     poll.playerindex=0;              
-    poll.nicknameId=[];              
-
+    poll.nicknameId=[];  
+    poll.nicknameVotes = [];            
+   
     this.polls[pollId] = poll;
     console.log("createPoll", poll);
   }
@@ -36,7 +37,7 @@ Data.prototype.startPoll = function(pollId, questions) {
   }
 }
 
-// QUESTIONS-----------------
+// QUESTIONS----------------- kolla getAllQuestions
 
 Data.prototype.getAllQuestions = function(pollId) {
   const poll = this.polls[pollId];
@@ -59,8 +60,20 @@ Data.prototype.setNextQuestionIndex = function(pollId) {
   return this.polls[pollId].currentQuestionIndex += 1;
 }
 
+
 Data.prototype.setNextPlayerIndex = function(pollId) {
-  return this.polls[pollId].playerindex += 1;
+   this.polls[pollId].playerindex += 1;
+  console.log("i data.js i setnextplayerindex", this.polls[pollId].playerindex)
+}
+
+Data.prototype.zeroPlayerIndex = function(pollId) {
+ this.polls[pollId].playerindex=0;
+ console.log("i data.js i setnextplayerindex")
+}
+
+
+Data.prototype.returnPlayerIndex = function(pollId) {
+  return this.polls[pollId].playerindex;
 }
 
 // NICKNAMES-----------------
@@ -96,6 +109,27 @@ Data.prototype.getNickname=function (pollId){
   }
 }
 
+Data.prototype.submitNicknameVotes=function (pollId, nicknameVotes){
+  const poll = this.polls[pollId];
+  
+  if (typeof poll !== 'undefined') {
+    poll.nicknameVotes.push(nicknameVotes);
+    console.log('i data är nicknameVotes', poll.nicknameVotes) 
+  }
+}
+
+Data.prototype.getNicknameVotes = function(pollId) {
+  const poll = this.polls[pollId];
+  if (typeof poll !== 'undefined') {
+    console.log("i data, getNicknameVotes", poll.nicknameVotes)
+    return poll.nicknameVotes;
+  }
+  return []
+}
+
+
+
+
 // ANSWERS-----------------maybe not working
 
 Data.prototype.submitExplanation = function(pollId, explanation) {
@@ -117,7 +151,10 @@ Data.prototype.getExplanations=function (pollId){
   console.log("i data kommer vi till getExplanations?")
 
   if (typeof poll !== 'undefined') {
-    return poll.questions
+    const playerExplanations = poll.questions[poll.currentQuestionIndex].playerExplanations
+    
+    return [...playerExplanations, poll.questions[poll.currentQuestionIndex].answer]
+
   }
 }
 

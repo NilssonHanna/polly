@@ -9,7 +9,7 @@
      </div>  
   
      <div>
-        <router-link  v-bind:to="'/answer/'+lang">{{uiLabels.vote}}</router-link>
+        <router-link  v-bind:to="'/answer/'+lang+'/'+pollId+'/'+nicknameId">{{uiLabels.vote}}</router-link>
        </div>
       
       </body>
@@ -31,12 +31,18 @@
       questionNumber: 0,
       data: {},
       uiLabels: {},
+      nicknameId:""
   
     }
     },
     created: function () {
+      socket.on('redirect', route => {
+      this.$router.push(route+'/'+this.nicknameId)
+      })
+
       this.lang = this.$route.params.lang;
       this.pollId = this.$route.params.id;
+      this.nicknameId = this.$route.params.nickname;
   
       socket.emit("pageLoaded", this.lang);
       socket.on("init", (labels) => {

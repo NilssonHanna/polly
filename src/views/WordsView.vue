@@ -1,11 +1,12 @@
 <template>
-      <body>
+      
 
         <div>
+          
           <div class="timer">{{ counter }} s </div>
 
           <h1> Gamecode: {{this.pollId}} </h1>
-          <h2> {{this.questions[this.currentQuestionIndex].word}}</h2>
+          <h2> {{this.questions[this.currentQuestionIndex]?.word}}</h2>
           <h3> {{uiLabels.formulate}} </h3>
 
           <div>
@@ -14,7 +15,7 @@
         </div>
 
       
-    </body>
+   
   </template>
    
   <script>
@@ -39,7 +40,7 @@
 
     created: function () {
 
-     
+      socket.emit('joinPoll', this.pollId)
 
     const timer = setInterval(() => {
       this.counter--
@@ -61,8 +62,8 @@
     })
 
     socket.on("getCurrentQuestionIndex", (currentQuestionIndex) => {
-      console.log("getCurrentQuestionIndex", currentQuestionIndex);
       this.currentQuestionIndex = currentQuestionIndex;
+      console.log("getCurrentQuestionIndex", currentQuestionIndex);
     })
   
     },

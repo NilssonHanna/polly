@@ -2,29 +2,25 @@
   <body>
     <div >
       <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
-      </div>
+    </div>
     
     <div>
     <div id="playervote">
       <h1> {{uiLabels.voting}}</h1>
-    
+      
     </div>
 
     <div>
-    <h2>Please vote by selecting one of the following options:</h2>
+    <h2>Vote by selecting one of the following options:</h2>
 
-    <form>
-      <div v-for="(option, index) in allexplanations" :key="index"> 
-      <input type="radio" v-bind:value="option" v-model="selectedOption"/>
-      {{ option }}
-      </div>
-    </form>
-
-    
+      <form>
+        <div v-for="(explanation, index) in allexplanations" :key="index+explanation"> 
+        <input type="radio" v-bind:value="explanation" v-model="selectedOption"/>
+        {{ explanation }} 
+        </div>
+      </form>
+    </div>
   </div>
-
-  </div>
-   
 
     <div>
       <button v-on:click="checkResult" class="checkResult" >{{uiLabels.send}}</button>
@@ -47,80 +43,67 @@ export default{
       uiLabels: {},
       pollId: "",
       lang: "en",
-      
+      currentExplanationIndex: 0,
+      currentExplanation: '',
       currentQuestionIndex: 0,
       questions: "",
       currentQuestion: null,
       allexplanations: [],
       selectedOption:"",
       playerExplanations: "",
-      answer: "",
+      answer: "",   
+      nicknameId: "" ,
+      nicknameVotes: [],
       
     }
   },
 
   created: function () {
 
-    this.allexplanations.sort(() => random(2) - 1)
-
-    //socket.on('redirect', route => {
-    //  this.$router.push(route)
-    //})
-
-  
-  this.pollId = this.$route.params.id
-  console.log("pollid i votingview,", this.pollId)
-  this.lang = this.$route.params.lang
-  
-  socket.emit('joinPoll', this.pollId)
-  socket.emit("pageLoaded", this.lang)
-  socket.emit("getAllExplanations", this.pollId)
-    socket.on("init", (labels) => {
-      this.uiLabels = labels
     
+    this.pollId = this.$route.params.id;
+    this.lang = this.$route.params.lang;
+    this.nicknameId = this.$route.params.nickname;
+    
+    socket.emit('joinPoll', this.pollId)
+    socket.emit("pageLoaded", this.lang)
+    socket.emit("getAllExplanations", this.pollId)
+    socket.emit("getNicknameVotes", this.pollId)
+      socket.on("init", (labels) => {
+        this.uiLabels = labels
+      })
+
+    
+      socket.on("returnPlayerIndex", (playerindex) => {
+      this.playerindex=playerindex;})
+
+    socket.on("receiveExplanations", (allexplanations) => {
+      this.allexplanations=allexplanations;
+      socket.emit('getQuestions', this.pollId)
     })
 
-
-    socket.on("receiveExplanations", (questions) => {
-    console.log("i votingview, questions som kommer in, ", questions)
-    this.questions=questions;
-
-
-    this.playerExplanations = this.questions[this.currentQuestionIndex].playerExplanations
-    this.answer = this.questions[this.currentQuestionIndex].answer
-
-    console.log("playerExplanations", this.playerExplanations)
-
-    this.playerExplanations.push(this.answer)
-    this.allexplanations=this.playerExplanations
-
-    console.log("vår allexplanations i votingview: ", this.allexplanations)
-    
     socket.on("getCurrentQuestionIndex", (currentQuestionIndex) => {
-      console.log("getCurrentQuestionIndex", currentQuestionIndex);
       this.currentQuestionIndex = currentQuestionIndex;
-    })
+      this.allexplanations.sort(() => random(2) - 1)
+      this.currentExplanation = this.allexplanations[this.currentExplanationIndex]
+      }) 
 
-  })
+      socket.on("receiveNicknameVotes", (nicknameVotes) => {
+      this.nicknameVotes = nicknameVotes;
+      console.log("i receiveNicknameVotes socketon:", this.nicknameVotes)})
   },
 
+
   methods: {
-
+    
     checkResult: function() {
-      
-      this.$router.push({path:'/result/'+this.lang+'/'+this.pollId})
-      //this.$router.push('/result/'+this.lang+'/'+this.pollId)
-      
+      socket.emit("setNextPlayerIndex", this.pollId)
+      this.$router.push({path:'/resultjoin/'+this.lang+'/'+this.pollId+'/'+this.nicknameId})
     }
-
   }
-
-
 }
 
-
 </script>
-  
 <style scoped>
   body {
     background-color: rgb(244, 185, 237);

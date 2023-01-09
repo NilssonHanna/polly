@@ -3,6 +3,7 @@
 	"beginToPlay": "Starta spelet",
 	"changeLanguage": "Change to English",	
 	"chooseExplanation": "Väl korrekt förklaring för ordet . . .",
+	"correctExplanationHeadline": "Rätt förklaring är...",
 	"connect":"Väntar på att spelare ansluter . . .",	
 	"connectPoll": "connect to poll",
 	"createPoll": "Skapa",	
@@ -23,6 +24,7 @@
 	"howtoplay5": "När rundan avslutats visas vem som vunnit omgången. Man får 1 poäng om man röstat på den rätta förklaringen och 1 poäng om en spelare röstat på sin egna påhittade förklaring.",
 	"howtoplay6": "Obs! Om man (mot förmodan) vet vad ordet betyder - skriv ner den riktiga förklaringen och få den att låta ÄNNU mer trovärdig!",
 	"next":"Nästa",
+	"nextRound": "Nästa runda",
 	"nextWord": "Spela nästa ord",
 	"participatePoll": "Delta",
 	"playersjoin":"Väntar på att spelare ansluter . . .",
@@ -30,16 +32,18 @@
 	"presentExplanation": "Dags att presentera förklaringar!",
 	"question": "Fråga",
 	"quitGame": "Avsluta",	
+	"results": "Såhär röstade ni i",
+	"round": "Runda",
 	"send": "Skicka",
 	"startword": "Gränsnitt",
 	"startexplanation": "Mittersta delen av ansiktet",
 	"voting": "Rösta:",
+	"votes": "Röster",
 	"votingtime": "Dags att rösta alla kalasråttor!",
 	"winnerAnn": "Vinnaren är...",
 	"word": "Ord",
 	"xplanderPresents": "Dags för Xplander att Xplanans Xplanandum!"
  }
- 
 
 
  

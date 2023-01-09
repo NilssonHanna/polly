@@ -55,6 +55,7 @@ data: function () {
    nicknameId: "",
    word: "",
    playerExplanation: "",
+   nicknameVotes: [],
  }
 },
 
@@ -62,12 +63,13 @@ created: function () {
 
 this.lang = this.$route.params.lang;
 this.pollId = this.$route.params.id;
+this.nicknameId = this.$route.params.nickname;
 
 const timer = setInterval(() => {
       this.counter--
       if (this.counter === 0) {
         clearInterval(timer)
-        this.$router.push('/PresentExplanations/'+this.lang+'/'+ this.pollId)
+        this.$router.push('/presentexplanations/'+this.lang+'/'+ this.pollId+'/'+this.nicknameId)
       }
     }, 1000)
   
@@ -105,6 +107,9 @@ const timer = setInterval(() => {
       console.log("wordview submit playerExplanation", this.playerExplanation);
       socket.emit('submitExplanation', { pollId: this.pollId, explanation: this.playerExplanation });
       //this.$router.push('/waitinganswer/'+this.lang+'/'+this.pollId);
+      this.nicknameVotes.push({nickname: this.nicknameId, nExplanations: this.playerExplanation, nVote: 0});
+      console.log("i wordview, nicknamevotes",this.nicknameVotes)
+      socket.emit('submitNicknameVotes', {pollId: this.pollId, nicknameVotes: this.nicknameVotes});
     }
   }
 }

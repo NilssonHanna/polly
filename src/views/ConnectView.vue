@@ -5,13 +5,13 @@
     </div>
     <div class="playersjoin">
         <h1> {{uiLabels.playersjoin}}</h1>
-        <div v-for="player in nicknameId" :key="player" id="players">
+        <div v-for="player in nicknames" :key="player" id="players">
           {{ player }}
         </div>
     </div>  
-    <div>
-     <router-link  v-bind:to="'/voting/'+lang+'/'+pollId">{{uiLabels.vote}}</router-link>
-    </div>
+    <!--<div>
+     <router-link  v-bind:to="'/voting/'+lang+'/'+pollId+'/'+nicknameId">{{uiLabels.vote}}</router-link>
+    </div>-->
   </body>
   </template>
  
@@ -31,16 +31,19 @@ const socket = io();
       questionNumber: 0,
       data: {},
       uiLabels: {},
-      nicknameId: ""
+      nicknameId: "",
+      nicknames:""
     }
   },
   created: function () {
     socket.on('redirect', route => {
-      this.$router.push(route)
+      this.$router.push(route+'/'+this.nicknameId)
     })
     
     this.lang = this.$route.params.lang;
-    this.pollId = this.$route.params.id
+    this.pollId = this.$route.params.id;
+    this.nicknameId = this.$route.params.nickname;
+
     console.log("i connectView i created function tas följande data emot: ", this.lang, this.pollId, this.data)
     
     socket.emit("pageLoaded", this.lang);
@@ -63,7 +66,7 @@ const socket = io();
    
    
     socket.on("nicknamecreated", (nicknames) =>{
-    this.nicknameId = nicknames
+    this.nicknames = nicknames
     console.log("i connectView i socket-nicknameCreated tas följande data emot: ", this.nicknameId)
 
 

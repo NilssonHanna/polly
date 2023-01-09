@@ -29,7 +29,7 @@
    </div>
 
     <div>
-     <router-link  v-on:click="addNickname" class="next" v-bind:to="('/connect/'+lang+'/'+pollId)">{{uiLabels.next}}</router-link>
+     <router-link  v-on:click="addNickname" class="next" v-bind:to="('/connect/'+lang+'/'+pollId+'/'+nicknameId)">{{uiLabels.next}}</router-link>
     </div>
    
   </body>
@@ -57,7 +57,7 @@
    
    created: function () {
      this.lang = this.$route.params.lang;
-     this.pollId = this.$route.params.id
+     this.pollId = this.$route.params.id;
     
     socket.emit('joinPoll', this.pollId)
 

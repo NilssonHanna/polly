@@ -80,14 +80,14 @@ import io from 'socket.io-client';
         
         socket.emit("startPoll", {pollId: this.pollId, questions: this.questions} );
         this.$router.push('/words/'+this.lang+'/'+this.pollId)
-        socket.emit('redirect', '/Word/'+this.lang+'/'+this.pollId)
+        socket.emit('redirect', {route: '/Word/'+this.lang, pollId: this.pollId})
         
       },
 
       addAnswer: function () {
         this.words.push("");
         this.explanations.push("");
-        
+  
       },
     }
   }
