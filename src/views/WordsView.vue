@@ -34,7 +34,7 @@
     name: 'WordsView',  
     data: function () {
       return {
-        counter: 120,
+        counter: 20,
         lang: "en",
         questions: [],
         explanations: "",
@@ -243,7 +243,7 @@
     white-space: nowrap;
     align-items: center;
     margin-top: 100px;
-    margin-left: 60px;
+    margin-left: 30px;
   }
 
 .quit {

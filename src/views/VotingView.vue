@@ -1,5 +1,5 @@
 <template>
-  <body>
+  <div id="background">
     <div >
       <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
       </div>
@@ -10,10 +10,10 @@
     
     </div>
 
-    <div>
-    <h2>Please vote by selecting one of the following options:</h2>
+    <div id="votes">
+    <h2>{{uiLabels.pleaseVote}}</h2>
 
-    <form>
+    <form id="options">
       <div v-for="(option, index) in allexplanations" :key="index"> 
       <input type="radio" v-bind:value="option" v-model="selectedOption"/>
       {{ option }}
@@ -31,7 +31,7 @@
     </div>
 
 
-  </body>
+  </div>
 </template>
   
 <script>
@@ -122,7 +122,7 @@ export default{
 </script>
   
 <style scoped>
-  body {
+  #background {
     background-color: rgb(244, 185, 237);
     width: 100%;
     min-height: 100vh;
@@ -157,7 +157,199 @@ export default{
   text-decoration: none;
 }
 
-.checkResult{
+#votes {
+  margin-top: 80px;
+  font-size: 15pt;
+  font-family: "Fjord one";
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+  margin-left: 0%;
+  font-weight: bold;
+}
+
+#options {
+  margin-top: 10px;
+  font-size: 15pt;
+  font-family: "Fjord one";
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+  margin-left: 44%;
+  text-align: left;
+}
+
+#options div {
+  padding: 10px; 
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  appearance: none; 
+  width: 20px;
+  height: 20px;
+  border: 3px solid #000000;
+  background-color:red;
+  border-radius: 50%;
+  outline: none;
+  box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.1);
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+input[type="radio"]:hover {
+  box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+input[type="radio"]:before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  transition: 0.2s;
+}
+
+input[type="radio"]:checked {
+  border: 3px solid #000000;
+  background-color: #4CAF50;
+}
+
+input[type="radio"]:checked:before {
+  opacity: 1;
+}
+
+.checkResult {
+    grid-area: footer;
+    background-color: rgb(238, 85, 203);
+    font-size: 1.25rem;
+    letter-spacing: 0.1em;
+    color: black;
+    text-transform: uppercase;
+    padding: 20px;
+    bottom: 80px;
+    position: absolute;
+    right: 45%;
+    font-family: "Fjord one";
+    box-shadow: 5px 5px 5px;
+    text-decoration: none;
+  }
+  .checkResult:not([disabled]):focus {
+  box-shadow: 0 0 2rem rgba(255, 255, 255, 0.812), -.125rem -.125rem 2rem rgba(233, 226, 229, 0.929), .125rem .125rem 2rem rgba(255, 77, 148, 0.437);
+}
+.checkResult:not([disabled]):hover {
+  box-shadow: 0 0 2rem rgba(255, 255, 255, 0.812), -.125rem -.125rem 2rem rgba(224, 215, 219, 0.929), .125rem .125rem 2rem rgba(255, 77, 148, 0.437);
+}
+
+@media screen and (max-width:50em){
+
+  #background {
+    background-color: rgb(244, 185, 237);
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 2em auto;
+    position: fixed;
+  }
+
+  #playervote{
+    margin-top: 120px;
+    font-size: 10px;
+    font-family: "Fjord one";
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+    margin-right: 800px;
+  
+}
+#quit{
+  background-color: rgb(255, 6, 52);
+  font-size: 1.5rem;
+  color: rgb(255, 255, 255);
+  width:110px;
+  padding: 30px;
+  top: 0px;
+  left:60px;
+  letter-spacing: 0.1em;
+  position: absolute;
+  transform: translateX(-50%);
+  font-family: "Fjord one";
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#votes {
+  margin-top: 80px;
+  font-size: 5px;
+  font-family: "Fjord one";
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+  margin-right: 800px;
+  font-weight: bold;
+}
+
+#options {
+  margin-top: 10px;
+  font-size: 8px;
+  font-family: "Fjord one";
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+  margin-left: 0%;
+  text-align: left;
+}
+
+#options div {
+  padding: 5px; 
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  appearance: none; 
+  width: 15px;
+  height: 15px;
+  border: 3px solid #000000;
+  background-color:red;
+  border-radius: 50%;
+  outline: none;
+  box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.1);
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+input[type="radio"]:hover {
+  box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+input[type="radio"]:before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  transition: 0.2s;
+}
+
+input[type="radio"]:checked {
+  border: 3px solid #000000;
+  background-color: #4CAF50;
+}
+
+input[type="radio"]:checked:before {
+  opacity: 1;
+}
+
+.checkResult {
     grid-area: footer;
     background-color: rgb(238, 85, 203);
     font-size: 1.25rem;
@@ -167,15 +359,17 @@ export default{
     padding: 20px;
     bottom: 150px;
     position: absolute;
-    right: 45%;
+    right: 43%;
     font-family: "Fjord one";
     box-shadow: 5px 5px 5px;
     text-decoration: none;
   }
-  .send:not([disabled]):focus {
+  .checkResult:not([disabled]):focus {
   box-shadow: 0 0 2rem rgba(255, 255, 255, 0.812), -.125rem -.125rem 2rem rgba(233, 226, 229, 0.929), .125rem .125rem 2rem rgba(255, 77, 148, 0.437);
 }
-.send:not([disabled]):hover {
+.checkResult:not([disabled]):hover {
   box-shadow: 0 0 2rem rgba(255, 255, 255, 0.812), -.125rem -.125rem 2rem rgba(224, 215, 219, 0.929), .125rem .125rem 2rem rgba(255, 77, 148, 0.437);
+}
+
 }
 </style>
