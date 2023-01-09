@@ -1,26 +1,31 @@
 <template>
   <body>
-    <div >
+    <div>
       <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
       </div>
     
     
     <div>
     <div id="gamecode">
-      <h1> {{uiLabels.gamecode}}</h1>
+      <h1> {{uiLabels.enterGamecode}}</h1>
     </div>
+
     <div class="input">
       <label>
-        <!--Write poll id: -->
-        <input type="text" v-model="pollId" class="text">
+        <input
+          type="text"
+          v-model="pollId"
+          :placeholder="lang === 'en' ? 'Enter gamecode...' : 'Ange gamecode...'"
+        />
       </label>
     </div>
   </div>
    
     
-    <div>
+  <div>
       <router-link v-bind:to="('/nickname/'+lang+'/'+pollId)" class="next">{{uiLabels.next}}</router-link>
-    </div>
+  </div>
+
   </body>
 </template>
   
@@ -43,19 +48,18 @@
     this.lang = this.$route.params.lang
     socket.emit('joinPoll', this.pollId)
     socket.emit("pageLoaded", this.lang)
-      socket.on("init", (labels) => {
+    
+    socket.on("init", (labels) => {
         this.uiLabels = labels
       
       })
     }
-  
-
   }
-
 
   </script>
   
 <style scoped>
+
   body {
     background-color: rgb(244, 185, 237);
     width: 100%;
@@ -63,6 +67,7 @@
     display: grid;
     grid-template-columns: 2em auto;
   }
+
 #gamecode{
   margin-top: 120px;
   font-size: 15pt;
@@ -71,35 +76,44 @@
   text-align: center;
   white-space: nowrap;
   margin-left: 0%;
-  
 }
-.text{
-  font-size: 10pt;
-  font-family: "Fjord one";
-  transform: scale(2);
-  margin-bottom: 100px;
-}
+
 .input{
-  padding:90px; 
+ padding:100px; 
+ transform:scale(3);
+ font-size: 0.4rem;
+ font-family: "Fjord one";
 }
   
 .next{
-  background-color: rgb(90, 58, 64);
-  font-size: 1.5rem;
-  color: rgb(255, 255, 255);
   width:80px;
   padding: 30px;
   margin-top: -150px;
   position: absolute;
   left: 85%;
   top:100%;
-  transform: translateX(-50%);
-  font-family: "Fjord one";
+  cursor: pointer;
+  background-color: rgba(255, 22, 197, 0.825);
+  font-size: 1.5rem;
+  color: rgb(0, 0, 0);
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  position: absolute;
+  transform: translateX(-50%);
+  font-family: "Fjord one";
   text-decoration: none;
-  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 5px 5px 5px;
 }
+
+.next:not([disabled]):focus {
+  box-shadow: 0 0 2rem rgba(255, 255, 255, 0.812), -.125rem -.125rem 2rem rgba(255, 97, 171, 0.929), .125rem .125rem 2rem rgba(255, 77, 148, 0.437);
+}
+
+.next:not([disabled]):hover {
+  box-shadow: 0 0 2rem rgba(255, 255, 255, 0.812), -.125rem -.125rem 2rem rgba(255, 97, 171, 0.929), .125rem .125rem 2rem rgba(255, 77, 148, 0.437);
+}
+
 #quit{
   background-color: rgb(255, 6, 52);
   font-size: 1.5rem;
@@ -116,22 +130,6 @@
   cursor: pointer;
   text-decoration: none;
 }
-@media screen and (max-width:50em) {
-  .logo {
-    font-size: 5vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .hamburger::before {
-    content: "☰";
-  }
-  .close::before {
-    content: "✕";
-  }
-  .hide {
-    left:-12em;
-  }
-}
+
 </style>
 

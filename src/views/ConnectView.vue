@@ -1,7 +1,7 @@
 <template>
   <body>
     <div>
-      <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
+      <router-link v-bind:to="'/'" class="quit">{{uiLabels.quitGame}}</router-link>
     </div>
     <div class="playersjoin">
         <h1> {{uiLabels.playersjoin}}</h1>
@@ -108,7 +108,7 @@ const socket = io();
   }
 
 
-    #quit{
+.quit{
   background-color: rgb(255, 6, 52);
   font-size: 1.5rem;
   color: rgb(255, 255, 255);

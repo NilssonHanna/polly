@@ -1,46 +1,38 @@
 <template>
    <body>
 
-     <div >
+     <div>
        <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
      </div>
 
 
     <div>
-    <div id="writeNickname">
-     <h1> {{uiLabels.createNickname}}</h1>
-
+      <div id="writeNickname">
+        <h1> {{uiLabels.createNickname}}</h1>
      
     </div>
-
-    
-     
       <div class="input">
       <label>
-        <!--Write poll id: -->
-        <input type="text" v-model="nicknameId" class="text">
+        <input
+          type="text"
+          v-model="nicknameId"
+          :placeholder="lang === 'en' ? 'Enter nickname...' : 'Ange spelnamn...'"
+        />
       </label>
-
-     <!-- <button v-on:click="addNickname">
-          Add nickname
-        </button>-->
+      </div>
     </div>
-
-   </div>
 
     <div>
      <router-link  v-on:click="addNickname" class="next" v-bind:to="('/connect/'+lang+'/'+pollId)">{{uiLabels.next}}</router-link>
     </div>
    
-  </body>
-   
+    </body> 
   </template>
    
   <script>
    
   import io from 'socket.io-client';
   const socket = io();
-
 
   export default {
    name: 'NicknameView',
@@ -53,8 +45,7 @@
        nicknameId: ""
      }
    },
-   
-   
+    
    created: function () {
      this.lang = this.$route.params.lang;
      this.pollId = this.$route.params.id
@@ -67,93 +58,92 @@
      })
 
      socket.on("dataUpdate", (data) =>
-       this.data = data,)
-
-       
+       this.data = data,)   
    },
     methods: {
-    // createNickname: function () {
-    //  socket.emit("createPoll", {nicknameId: this.pollId, lang: this.lang })
-    // },
    addNickname(){
-
-        socket.emit("addNickname",{pn:this.nicknameId, pollId:this.pollId}) 
-        
+        socket.emit("addNickname",{pn:this.nicknameId, pollId:this.pollId})   
     }
    }
    
   }
-
- 
-
 </script>
 
 <style scoped>
+
 body {
   background-color: rgb(255, 249, 172);
-     width: 100%;
-     min-height: 100vh;
-     display: grid;
-     grid-template-columns: 2em auto;
-    }
-
-#writeNickname {
-    margin-top: 120px;
-    font-size: 15pt;
-    font-family: "Fjord one";
-    text-transform: uppercase;
-    text-align: center;
-    white-space: nowrap;
-    margin-left: 0%;
-    }
-   
-.text{
-   font-size: 10pt;
-   font-family: "Fjord one";
-   transform: scale(2);
-   margin-bottom: 100px;
- }
-
- .input{
-  padding:90px; 
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 2em auto;
 }
 
+#writeNickname {
+  margin-top: 120px;
+  font-size: 15pt;
+  font-family: "Fjord one";
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+  margin-left: 0%;
+}
+
+
+.input{
+  padding:90px; 
+}
 .next{
-  background-color: rgb(90, 58, 64);
-  font-size: 1.5rem;
-  color: rgb(255, 255, 255);
   width:80px;
   padding: 30px;
   margin-top: -150px;
   position: absolute;
   left: 85%;
   top:100%;
-  transform: translateX(-50%);
-  font-family: "Fjord one";
+  cursor: pointer;
+  background-color: rgba(255, 22, 197, 0.825);
+  font-size: 1.5rem;
+  color: rgb(0, 0, 0);
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  position: absolute;
+  transform: translateX(-50%);
+  font-family: "Fjord one";
   text-decoration: none;
-  cursor: pointer;
-  }
+  border-radius: 12px;
+  box-shadow: 5px 5px 5px;
+}
+
+.next:not([disabled]):focus {
+  box-shadow: 0 0 2rem rgba(255, 255, 255, 0.812), -.125rem -.125rem 2rem rgba(255, 97, 171, 0.929), .125rem .125rem 2rem rgba(255, 77, 148, 0.437);
+}
+
+.next:not([disabled]):hover {
+  box-shadow: 0 0 2rem rgba(255, 255, 255, 0.812), -.125rem -.125rem 2rem rgba(255, 97, 171, 0.929), .125rem .125rem 2rem rgba(255, 77, 148, 0.437);
+}
+
+.input{
+ padding:100px; 
+ transform:scale(3);
+ font-size: 0.4rem;
+ font-family: "Fjord one";
+}
     
-
-  
-
-   #quit{
-   background-color: rgb(255, 6, 52);
-   font-size: 1.5rem;
-   color: rgb(255, 255, 255);
-   width:110px;
-   padding: 30px;
-   top: 0px;
-   left:60px;
-   letter-spacing: 0.1em;
-   position: absolute;
-   transform: translateX(-50%);
-   font-family: "Fjord one";
-   text-transform: uppercase;
-   cursor: pointer;
-   text-decoration: none;
+#quit{
+  background-color: rgb(255, 6, 52);
+  font-size: 1.5rem;
+  color: rgb(255, 255, 255);
+  width:110px;
+  padding: 30px;
+  top: 0px;
+  left:60px;
+  letter-spacing: 0.1em;
+  position: absolute;
+  transform: translateX(-50%);
+  font-family: "Fjord one";
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
  }
       
-   </style>
+</style>

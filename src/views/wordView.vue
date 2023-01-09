@@ -1,13 +1,14 @@
 <template>
   <body>
     <div >
-      <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
+      <router-link v-bind:to="'/'" class="quit">{{uiLabels.quitGame}}</router-link>
     </div>
 
       <div>
+        
         <div class="timer">{{counter}} s </div> 
 
-      <div id="explanation"> 
+      <div id="word"> 
         <h2> {{this.word}}</h2>
       </div>
 
@@ -16,7 +17,7 @@
           <input
           type="text"
           v-model="playerExplanation"
-          placeholder="explanation"
+          :placeholder="lang === 'en' ? 'Write your explanation...' : 'Skriv din förklaring...'"
         />     
         </label>
       </div>
@@ -28,7 +29,7 @@
   :disabled="isDisabled" 
   :class="{ 'next-pressed': isPressed }"
   @click="isPressed = !isPressed"
-  class="next"
+  id="saveAnswer"
 >
 <span v-if="!isPressed">press to save your answer</span>
     <span v-if="isPressed">saved</span>
@@ -71,8 +72,6 @@ const timer = setInterval(() => {
       }
     }, 1000)
   
-
-
  socket.emit("pageLoaded", this.lang);
  socket.emit("getCurrentWord", this.pollId);
 
@@ -111,67 +110,88 @@ const timer = setInterval(() => {
 </script>
 
 <style scoped>
+
 body {
  background-color: rgb(213, 252, 162);
-    width: 100%;
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 2em auto;
-   }
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 2em auto;
+}
+
+.quit {
+  background-color: rgb(255, 6, 52);
+  font-size: 1.5rem;
+  color: rgb(255, 255, 255);
+  width:110px;
+  padding: 30px;
+  top: 0px;
+  left:60px;
+  letter-spacing: 0.1em;
+  position: absolute;
+  transform: translateX(-50%);
+  font-family: "Fjord one";
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+}
 
 #word {
 font-family: "Fjord one";
-font-size: 20px;
-margin-top: 200px;
-}
-
-#explanation {
-font-family: "Fjord one";
 font-size: 30px;
 margin-top: 100px;
+text-transform: uppercase;
 }
+
 #writeNickname {
-   margin-top: 120px;
-   font-size: 15pt;
-   font-family: "Fjord one";
-   text-transform: uppercase;
-   text-align: center;
-   white-space: nowrap;
-   margin-left: 0%;
-   }
-  
+  margin-top: 120px;
+  font-size: 15pt;
+  font-family: "Fjord one";
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+  margin-left: 0%;
+}
 
 .input{
- padding:60px; 
- transform:scale(4);
- font-size: 10pt;
+ padding:100px; 
+ transform:scale(5);
+ font-size: 0.4rem;
  font-family: "Fjord one";
 }
 
-  .next {
-    background-color: rgb(90, 58, 64);
-    font-size: 1.5rem;
-    color: rgb(255, 255, 255);
-    width:300px;
-    padding: 30px;
-    margin-top: -150px;
-    position: absolute;
-    left: 85%;
-    top:100%;
-    transform: translateX(-50%);
-    font-family: "Fjord one";
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  .next-pressed {
-  background-color: rgb(74, 32, 32);
+#saveAnswer {
+  background-color: rgb(253, 37, 235);
+  font-size: 1.5rem;
+  color: rgb(0, 0, 0);
+  width:300px;
+  padding: 30px;
+  margin-top: -150px;
+  position: absolute;
+  left: 85%;
+  top:100%;
+  transform: translateX(-50%);
+  font-family: "Fjord one";
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+  
+#saveAnswer-pressed {
+  background-color: rgb(255, 28, 28);
+}
+  
+#saveAnswer:not([disabled]):focus {
+  box-shadow: 0 0 2rem rgba(255, 255, 255, 0.812), -.125rem -.125rem 2rem rgba(255, 97, 171, 0.929), .125rem .125rem 2rem rgba(255, 77, 148, 0.437);
+}
 
- 
+#saveAnswer:not([disabled]):hover {
+  box-shadow: 0 0 2rem rgba(255, 255, 255, 0.812), -.125rem -.125rem 2rem rgba(255, 97, 171, 0.929), .125rem .125rem 2rem rgba(255, 77, 148, 0.437);
 }
    
-  #quit{
+#quit{
   background-color: rgb(255, 6, 52);
   font-size: 1.5rem;
   color: rgb(255, 255, 255);
@@ -189,21 +209,23 @@ margin-top: 100px;
 }
 
 .timer {
-  font-family: "Fjord one";
-  font-size: 3rem;
+  font-family: "Fjord one"; 
   text-align: center;
-	margin: auto;
-	display: block;
+  margin: auto;
+  display: block;
   position: relative;
   left: 0px;
+  top: 60px;
   border-radius: 100%;
-  width: 100px;
-  height: 100px;
   padding: 10px;
   background: rgb(0, 0, 0);
   border: 10px solid #000;
   color: rgb(255, 255, 255);
-
-    }
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  font-size: 50px;
+  color: #fff;
+  }
      
   </style>

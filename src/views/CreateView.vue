@@ -1,33 +1,34 @@
 
 <template>  
   <body>
+
   <div>
     <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
   </div>
+
+  <div>
       
-    <div id="gamecode">
-      <h1> {{uiLabels.gamecode}} </h1>
-    </div>
-
-    <div id="input">
-        <input type="text" v-model="pollId" id="text"/>
-        <!--<button id="choice_create" v-on:click="createPollstack">Use finished words</button>-->
-        <!--<button id="createCode" v-on:click="createPoll">Create gamecode</button>-->
-    </div>
-
-
-  <div>
-    <button v-on:click="createPoll" id="choice_create">{{uiLabels.createWords}}</button>
+  <div class="gamecode">
+    <h1> {{uiLabels.createGamecode}} </h1>
   </div>
 
+  <div class="input">
+        <label>
+          <input
+          type="text"
+          v-model="pollId"
+          :placeholder="lang === 'en' ? 'Create gamecode...' : 'Skapa gamecode...'"
+        />     
+        </label>
+      </div>
   <div>
-    <button v-on:click="createQuestions" id="choice_finished">{{uiLabels.finishedWords}}</button>
+    <button v-on:click="createPoll" id="createwords">{{uiLabels.createWords}}</button>
   </div>
 
+</div>
 
-</body>
-
- </template>
+ </body>
+</template>
 
  <script>
   
@@ -77,39 +78,22 @@
       socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
       this.$router.push('/questions/'+this.lang+'/'+this.pollId)
     
-    },
-
-    createQuestions: function () {
-      //socket.emit("createQuestions", {pollId: this.pollId, lang: this.lang })
-      this.$router.push('/selectrounds/'+this.lang+'/'+this.pollId)
-    
-    },
-
-    //createPollstack: function(){
-      //socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
-      //this.router.push({
-        //path: '/wordstack/:lang/:id',
-        //query: {
-         // pollId: this.pollId,
-         // lang: this.lang
-        //}
-     // })
-    //},
-
+    }
   }
- }
+}
+
  </script>
- 
- <style scoped>
+
+<style scoped>
 
 body {
-    background-color: rgb(182, 249, 239);
-    width: 100%;
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 2em auto;
-  }
- #gamecode{
+  background-color: rgb(182, 249, 239);
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 2em auto;
+}
+.gamecode {
   margin-top: 120px;
   font-size: 15pt;
   font-family: "Fjord one";
@@ -118,7 +102,8 @@ body {
   white-space: nowrap;
   margin-left: 0%;
 }
-#quit{
+
+#quit {
   background-color: rgb(255, 6, 52);
   font-size: 1.5rem;
   color: rgb(255, 255, 255);
@@ -134,51 +119,39 @@ body {
   cursor: pointer;
   text-decoration: none;
 }
-#createCode{
-  margin-bottom: 1000px;
-  margin-left: 500px;
-}
-  #choice_create {
-  background-color: rgb(100,149,237);
-  font-size: 1.3rem;
-  color: rgb(255, 255, 255);
+
+#createwords {
+  background-color: rgba(255, 22, 197, 0.825);
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+  color: rgb(0, 0, 0);
   width:200px;
   top: 50%;
-  left: 40%;
+  left: 50%;
   padding: 20px;
   margin-top: 100px;
-  letter-spacing: 0.1em;
+  border-radius: 12px;
+  box-shadow: 5px 5px 5px;
   transform: translateX(-50%);
   font-family: "Fjord one";
   cursor: pointer;
   position: absolute; 
+  text-transform: uppercase; 
 } 
-#choice_finished {
-  background-color: rgb(100,149,237);
-  font-size: 1.3rem;
-  color: rgb(255, 255, 255);
-  width:200px;
-  top: 50%;
-  right: 25%;
-  padding: 20px;
-  margin-top: 100px;
-  letter-spacing: 0.1em;
-  transform: translateX(-50%);
-  font-family: "Fjord one";
-  cursor: pointer;
-  position: absolute;
+
+#createwords:not([disabled]):focus {
+  box-shadow: 0 0 2rem rgba(255, 255, 255, 0.812), -.125rem -.125rem 2rem rgba(255, 97, 171, 0.929), .125rem .125rem 2rem rgba(255, 77, 148, 0.437);
 }
-#input {
-  padding: 50px;
-  }
-#text{
-  font-size: 10pt;
-  font-family: "Fjord one";
-  text-align: center;
-  transform: scale(2);
-  margin-bottom: 300px;
-  margin-left: 600px;
-  padding: 5px;
-  border: double;
+
+#createwords:not([disabled]):hover {
+  box-shadow: 0 0 2rem rgba(255, 255, 255, 0.812), -.125rem -.125rem 2rem rgba(255, 97, 171, 0.929), .125rem .125rem 2rem rgba(255, 77, 148, 0.437);
 }
+
+.input{
+ padding:100px; 
+ transform:scale(3);
+ font-size: 0.4rem;
+ font-family: "Fjord one";
+}
+
 </style>
