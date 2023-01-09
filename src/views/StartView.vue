@@ -88,6 +88,7 @@ methods: {
   display: grid;
   grid-template-columns: 2em auto;
   min-height: 100vh;
+  position: fixed;
 }
 
 #logoname {
@@ -305,7 +306,7 @@ methods: {
   padding: 30px;
   margin-top: 420px;
   position: absolute;
-  left: 43%;
+  left: 50%;
   width:100px;
   transform: translateX(-50%);
   font-family: "Fjord one";
@@ -331,9 +332,9 @@ methods: {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 30px;
-  margin-top:420px;
+  margin-top:520px;
   position: absolute;
-  left: 58%;
+  left: 50%;
   width:100px;
   transform: translateX(-50%);
   font-family: "Fjord one";
@@ -366,76 +367,12 @@ methods: {
   justify-content: center;
 }
 
-#dialog-1 {
-  background-color: #ffffff;
-  height: 20%;
-  width: 40%;
-  position: absolute;
-  border-radius: 10%;
-  margin-top: 10px;
-  color: #000000;
-  font-family: "Fjord one";
-  font-weight: bold;
-  padding: 10px;
-  vertical-align:middle;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 50px;  
-  align-items: center;
-  justify-content: center; 
-}
-
-#left-point {
-	width: 0;
-	height: 0;
-	border-left: 2vh solid transparent;
-	border-right: 2vh solid transparent;
-	border-top: 10vh solid #ffffff;
-	position: absolute;
-	top: 45%;
-	left: -10%;
-	transform: rotate(60deg);
-}
-
-#dialog-2 {
-  background-color: #000000;
-  height: 20%;
-  width: 40%;
-  position: absolute;
-  border-radius: 10%;
-  right: 0;
-  color: #ffffff;
-  font-family: "Fjord one";
-  font-weight: bold;
-  padding: 10px;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 30px;   
-  align-items: center;
-  justify-content: center;
-}
-
-#right-point {
-	width: 0;
-	height: 0;
-	border-left: 2vh solid transparent;
-	border-right: 2vh solid transparent;
-	border-top: 10vh solid #000000 ;
-	position: absolute;
-	top: 45%;
-	right: -10%;
-	transform: rotate(-60deg);
-  align-items: center;
-  justify-content: center;
-}
-
-#gamerules {
-  font-size: 2rem; 
+#gamerules { 
   font-family: "Fjord one";
   font-weight: bold;
   color:rgb(0, 0, 0);
-  width: 160px;
-  height:30px;
+  width: 120px;
+  height:25px;
   cursor:pointer;
   background-color: rgb(0, 0, 0);
   font-size: 1.5rem;
@@ -460,7 +397,8 @@ methods: {
   letter-spacing: 0.1em;
   align-items: center;
   justify-content: center;
-  
+  z-index: 10;
+
 }
 }
 

@@ -1,9 +1,9 @@
 
 <template>  
-  <body>
+  <div id="background">
 
   <div>
-    <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
+    <router-link v-bind:to="'/'" class="quit">{{uiLabels.quitGame}}</router-link>
   </div>
 
   <div>
@@ -27,7 +27,7 @@
 
 </div>
 
- </body>
+</div>
 </template>
 
  <script>
@@ -86,12 +86,13 @@
 
 <style scoped>
 
-body {
+#background {
   background-color: rgb(182, 249, 239);
   width: 100%;
   min-height: 100vh;
   display: grid;
   grid-template-columns: 2em auto;
+  position: fixed;
 }
 .gamecode {
   margin-top: 120px;
@@ -103,7 +104,7 @@ body {
   margin-left: 0%;
 }
 
-#quit {
+.quit {
   background-color: rgb(255, 6, 52);
   font-size: 1.5rem;
   color: rgb(255, 255, 255);
@@ -154,4 +155,73 @@ body {
  font-family: "Fjord one";
 }
 
+@media screen and (max-width:50em){
+
+.gamecode {
+  font-family: "Fjord one";
+  text-transform: uppercase;
+  text-align: center;
+  align-items: center;
+  justify-content:center;
+  font-size: 2.5vw;
+  display: flex;
+  margin-top: 250px;
+}
+
+.quit {
+  background-color: rgb(255, 6, 52);
+  font-size: 1.5rem;
+  color: rgb(255, 255, 255);
+  width:110px;
+  padding: 30px;
+  top: 0px;
+  left:60px;
+  letter-spacing: 0.1em;
+  position: absolute;
+  transform: translateX(-50%);
+  font-family: "Fjord one";
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#createwords {
+  background-color: rgba(255, 22, 197, 0.825);
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+  color: rgb(0, 0, 0);
+  width:200px;
+  top: 50%;
+  left: 50%;
+  padding: 20px;
+  margin-top: 100px;
+  border-radius: 12px;
+  box-shadow: 5px 5px 5px;
+  transform: translateX(-50%);
+  font-family: "Fjord one";
+  cursor: pointer;
+  position: absolute; 
+  text-transform: uppercase; 
+} 
+
+#createwords:not([disabled]):focus {
+  box-shadow: 0 0 2rem rgba(255, 255, 255, 0.812), -.125rem -.125rem 2rem rgba(255, 97, 171, 0.929), .125rem .125rem 2rem rgba(255, 77, 148, 0.437);
+}
+
+#createwords:not([disabled]):hover {
+  box-shadow: 0 0 2rem rgba(255, 255, 255, 0.812), -.125rem -.125rem 2rem rgba(255, 97, 171, 0.929), .125rem .125rem 2rem rgba(255, 77, 148, 0.437);
+}
+
+.input{
+  padding:100px; 
+  transform:scale(2);
+  font-size: 0.4rem;
+  font-family: "Fjord one";
+  margin-top: 0px;
+  text-align: center;
+  align-items: center;
+  justify-content:center;
+  display: flex;
+}
+}
 </style>

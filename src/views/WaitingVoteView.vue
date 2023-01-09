@@ -1,17 +1,11 @@
 <template>
-    <body>
-        <header class="header">
-            <h1>Waiting for players to vote...</h1> 
-        </header>
-      <div>
-        <!--<h2 class="wait">Waiting for players to vote..</h2>-->
-          <!--<div v-for="(wordExplanation, key) in explanations" v-bind:key="'wordExplanation'+key">
-          #{{key}}: <dd>{{wordExplanation.wordExplanation}}</dd>
-          </div>-->
+    <div id="background">
 
-          <button>show leaderboard</button>
-      </div>
-    </body>
+        <div id="waitingVote">
+            <h1>{{ uiLabels.waitingVote }}</h1> 
+        </div>
+    
+    </div>
   
   </template>
   
@@ -25,6 +19,7 @@
   
     data: function () {
       return {
+        pollId: "",
         lang: "en",
         uiLabels: {},
         wordExplanation: null,
@@ -34,6 +29,7 @@
     },
     created: function () {
       this.pollId = this.$route.params.id;
+      this.lang = this.$route.params.lang;
       socket.emit("pageLoaded", this.lang);
       socket.on("dataUpdate", (update) => {
         this.submittedAnswers = update.a;
@@ -43,29 +39,62 @@
         this.question = update.q;
         this.data = {};
       })
+      socket.on("init", (labels) => {
+        this.uiLabels = labels
+      })
     }
    }
    </script>
   
-   <style>
+   <style scoped>
   
-  body{
+  #background {
     background-color: rgb(150, 173, 241);
-   }
-  .header{
+    width: 100%;
+    display: grid;
+    min-height: 100vh;
+  }
+  #waitingVote {
     background-color: rgb(36, 70, 196);
     color: white;
     margin-top: 200px;
     padding: 10px;
     margin-left: 300px;
     margin-right: 300px;
+    height: 100px;
+    text-align: center;
+    font-size: 15pt;
+    font-family: "Fjord one";
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
   }
-  .wait{
-    margin-left: 400px;
-    margin-right: 400px;
-    margin-top: 150px;
-    background-color: rgb(194, 191, 191);
-    padding: 20px;
+
+  @media screen and (max-width:50em) {
+
+    #background {
+    background-color: rgb(150, 173, 241);
+    width: 100%;
+    display: grid;
+    min-height: 100vh;
+    position: fixed;
+  }
+  #waitingVote {
+    background-color: rgb(36, 70, 196);
+    color: white;
+    margin-top: 300px;
+    padding: 10px;
+    margin-left: 25px;
+    margin-right: 35px;
+    height: 50px;
+    text-align: center;
+    font-size: 8px;
+    font-family: "Fjord one";
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+  }
+
   }
   
   </style>
