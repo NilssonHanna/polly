@@ -7,6 +7,7 @@
     <div>
     <div id="playervote">
       <h1> {{uiLabels.voting}}</h1>
+      <h5> {{this.nicknameVotes}}</h5>
       
     </div>
 
@@ -16,6 +17,10 @@
       <form>
         <div v-for="(explanation, index) in allexplanations" :key="index+explanation"> 
         <input type="radio" v-bind:value="explanation" v-model="selectedOption"/>
+        <div v-if="selectedOption = nicknameVotes.nExplanations.playerExplanation"
+        nicknameVotes.nVote ++
+        
+        ></div>
         {{ explanation }} 
         </div>
       </form>
