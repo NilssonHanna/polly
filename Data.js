@@ -114,9 +114,33 @@ Data.prototype.submitNicknameVotes=function (pollId, nicknameVotes){
   
   if (typeof poll !== 'undefined') {
     poll.nicknameVotes.push(nicknameVotes);
+
+    //nicknameVotes.nickname, pusha in explanationrad/=
     console.log('i data är nicknameVotes', poll.nicknameVotes) 
   }
+
 }
+
+/* let users = {
+	'radchdel' : {
+		1: {explanation: 'förklaring', votes: 3, voted: 0},
+		2: {explanation: 'förklaring2', votes: 2, voted: 0},
+		3: {explanation: 'förklaring3', votes: 0, voted: 0}
+	},
+	'das' : {
+		1: {explanation: 'förklaring', votes: 1, voted: 20},
+		2: {explanation: 'förklaring2', votes: 4, voted: 0},	
+	}
+}
+
+let totalPoints = {};
+for (let user in users) {
+	totalPoints[user] = 0;
+	let userData = users[user];
+	for ( roundKey in userData) {
+		totalPoints[user] += userData[roundKey].votes + userData[roundKey].voted;
+	}
+}*/
 
 Data.prototype.getNicknameVotes = function(pollId) {
   const poll = this.polls[pollId];
@@ -126,8 +150,6 @@ Data.prototype.getNicknameVotes = function(pollId) {
   }
   return []
 }
-
-
 
 
 // ANSWERS-----------------maybe not working
@@ -150,13 +172,20 @@ Data.prototype.getExplanations=function (pollId){
   console.log("i data i getexplanations vad har vi för poll?, ", this.polls[pollId])
   console.log("i data kommer vi till getExplanations?")
 
+  //let round = 1; //ska vara argument till funktionen
+/*let playerExplanations = []
+for (let user in users) {
+	playerExplanations.push({user: user, explanation: users[user][round].explanation});
+}*/
+
+
   if (typeof poll !== 'undefined') {
     const playerExplanations = poll.questions[poll.currentQuestionIndex].playerExplanations
     
     return [...playerExplanations, poll.questions[poll.currentQuestionIndex].answer]
-
   }
 }
+
 
 
 

@@ -55,7 +55,7 @@ data: function () {
    nicknameId: "",
    word: "",
    playerExplanation: "",
-   nicknameVotes: [],
+   nicknameVotes: {},
  }
 },
 
@@ -107,8 +107,10 @@ const timer = setInterval(() => {
       console.log("wordview submit playerExplanation", this.playerExplanation);
       socket.emit('submitExplanation', { pollId: this.pollId, explanation: this.playerExplanation });
       //this.$router.push('/waitinganswer/'+this.lang+'/'+this.pollId);
-      this.nicknameVotes.push({nickname: this.nicknameId, nExplanations: this.playerExplanation, nVote: 0});
+      this.nicknameVotes.push({nickname: this.nicknameId, nExplanations: this.playerExplanation});
       console.log("i wordview, nicknamevotes",this.nicknameVotes)
+      // skicka nickname och playerExplanation
+      // sätt ihop i data.js
       socket.emit('submitNicknameVotes', {pollId: this.pollId, nicknameVotes: this.nicknameVotes});
     }
   }
