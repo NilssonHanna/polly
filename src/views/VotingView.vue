@@ -27,7 +27,7 @@
    
 
     <div>
-      <button v-on:click="checkResult" class="checkResult" >{{uiLabels.send}}</button>
+      <button v-on:click="checkResult" class="send" >{{uiLabels.send}}</button>
     </div>
 
 
@@ -146,8 +146,6 @@ export default{
   color: rgb(255, 255, 255);
   width:110px;
   padding: 30px;
-  top: 0px;
-  left:60px;
   letter-spacing: 0.1em;
   position: absolute;
   transform: translateX(-50%);
@@ -155,10 +153,12 @@ export default{
   text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
+  left: 110px;
+  top: 20px;
 }
 
 #votes {
-  margin-top: 80px;
+  margin-top: 30px;
   font-size: 15pt;
   font-family: "Fjord one";
   text-transform: uppercase;
@@ -173,10 +173,12 @@ export default{
   font-size: 15pt;
   font-family: "Fjord one";
   text-transform: uppercase;
-  text-align: center;
   white-space: nowrap;
   margin-left: 44%;
   text-align: left;
+  padding: 15px;
+  margin-left: 130px;
+
 }
 
 #options div {
@@ -223,7 +225,7 @@ input[type="radio"]:checked:before {
   opacity: 1;
 }
 
-.checkResult {
+.send {
     grid-area: footer;
     background-color: rgb(238, 85, 203);
     font-size: 1.25rem;
@@ -231,17 +233,17 @@ input[type="radio"]:checked:before {
     color: black;
     text-transform: uppercase;
     padding: 20px;
-    bottom: 80px;
+    bottom: 40px;
     position: absolute;
-    right: 45%;
+    right: 5%;
     font-family: "Fjord one";
     box-shadow: 5px 5px 5px;
     text-decoration: none;
   }
-  .checkResult:not([disabled]):focus {
+  .send:not([disabled]):focus {
   box-shadow: 0 0 2rem rgba(255, 255, 255, 0.812), -.125rem -.125rem 2rem rgba(233, 226, 229, 0.929), .125rem .125rem 2rem rgba(255, 77, 148, 0.437);
 }
-.checkResult:not([disabled]):hover {
+.send:not([disabled]):hover {
   box-shadow: 0 0 2rem rgba(255, 255, 255, 0.812), -.125rem -.125rem 2rem rgba(224, 215, 219, 0.929), .125rem .125rem 2rem rgba(255, 77, 148, 0.437);
 }
 
@@ -268,12 +270,12 @@ input[type="radio"]:checked:before {
 }
 #quit{
   background-color: rgb(255, 6, 52);
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: rgb(255, 255, 255);
-  width:110px;
-  padding: 30px;
-  top: 0px;
-  left:60px;
+  width:40px;
+  padding: 20px;
+  top: 10px;
+  left:50px;
   letter-spacing: 0.1em;
   position: absolute;
   transform: translateX(-50%);
@@ -281,11 +283,13 @@ input[type="radio"]:checked:before {
   text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
+  text-align: center;
+  font-weight: bold;
 }
 
 #votes {
-  margin-top: 80px;
-  font-size: 5px;
+  margin-top: 10px;
+  font-size: 6px;
   font-family: "Fjord one";
   text-transform: uppercase;
   text-align: center;
@@ -296,13 +300,15 @@ input[type="radio"]:checked:before {
 
 #options {
   margin-top: 10px;
-  font-size: 8px;
+  font-size: 10px;
   font-family: "Fjord one";
   text-transform: uppercase;
   text-align: center;
   white-space: nowrap;
   margin-left: 0%;
   text-align: left;
+  white-space: pre-line;
+  padding: 15px;
 }
 
 #options div {
@@ -349,25 +355,26 @@ input[type="radio"]:checked:before {
   opacity: 1;
 }
 
-.checkResult {
+.send {
     grid-area: footer;
     background-color: rgb(238, 85, 203);
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     letter-spacing: 0.1em;
     color: black;
     text-transform: uppercase;
-    padding: 20px;
-    bottom: 150px;
+    padding: 10px;
+    bottom: 10px;
     position: absolute;
-    right: 43%;
+    right: 5%;
     font-family: "Fjord one";
     box-shadow: 5px 5px 5px;
     text-decoration: none;
+    position: fixed;
   }
-  .checkResult:not([disabled]):focus {
+  .send:not([disabled]):focus {
   box-shadow: 0 0 2rem rgba(255, 255, 255, 0.812), -.125rem -.125rem 2rem rgba(233, 226, 229, 0.929), .125rem .125rem 2rem rgba(255, 77, 148, 0.437);
 }
-.checkResult:not([disabled]):hover {
+.send:not([disabled]):hover {
   box-shadow: 0 0 2rem rgba(255, 255, 255, 0.812), -.125rem -.125rem 2rem rgba(224, 215, 219, 0.929), .125rem .125rem 2rem rgba(255, 77, 148, 0.437);
 }
 

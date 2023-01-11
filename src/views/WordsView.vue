@@ -2,7 +2,7 @@
   <div id="background">
 
     <div>
-      <router-link v-bind:to="'/'" class="quit">{{uiLabels.quitGame}}</router-link>
+      <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
     </div>
 
       <div class="timer">{{ counter }} s 
@@ -20,9 +20,6 @@
         <h2> {{uiLabels.formulate}}</h2>
     </div>
        
-    <div>
-      <button v-on:click="nextQuestion" id="playnextword">{{uiLabels.nextWord}}</button>
-    </div>
 
   </div>
 </template>
@@ -34,7 +31,7 @@
     name: 'WordsView',  
     data: function () {
       return {
-        counter: 20,
+        counter: 40,
         lang: "en",
         questions: [],
         explanations: "",
@@ -79,9 +76,7 @@
   
     },
     methods: {
-      nextQuestion: function () {
-        socket.emit("getNextQuestionIndex", this.pollId);
-      },
+  
     }}
 
    </script>
@@ -89,7 +84,7 @@
 <style scoped>
    
   #background {
-    background-color: lightyellow;
+    background-color: rgb(246, 246, 144);
     display: grid;
     grid-template-columns: 2em auto;
     min-height: 100vh;
@@ -141,18 +136,16 @@
     text-align: center;
     white-space: nowrap;
     margin-left: 400px;
-    bottom: 100px;
+    margin-bottom: 150px;
     
   }
 
-.quit {
+#quit {
   background-color: rgb(255, 6, 52);
   font-size: 1.5rem;
   color: rgb(255, 255, 255);
   width:110px;
   padding: 30px;
-  top: 0px;
-  left:60px;
   letter-spacing: 0.1em;
   position: absolute;
   transform: translateX(-50%);
@@ -160,6 +153,8 @@
   text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
+  left: 110px;
+  top: 20px;
 }
     
   #playnextword {
@@ -201,7 +196,7 @@
     font-family: "Fjord one"; 
     text-align: center;
     position: relative;
-    top: 60px;
+    top: 80px;
     border-radius: 100%;
     padding: 10px;
     background: rgb(0, 0, 0);
@@ -220,7 +215,7 @@
   .gamecode {
     font-family: "Fjord one";
     font-size: 8px;
-    margin-top: 30px;
+    margin-top: 80px;
     text-transform: uppercase;
     margin-left: 150px;
   }
@@ -232,7 +227,7 @@
     align-items: center;
     justify-content:center;
     margin-right: 30px;
-    margin-top: 100px;
+    margin-top: 150px;
   }
     
   #formulate {
@@ -242,18 +237,19 @@
     text-align: center;
     white-space: nowrap;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 50px;
     margin-left: 30px;
   }
 
-.quit {
+#quit {
   background-color: rgb(255, 6, 52);
-  font-size: 1.5rem;
+  background-color: rgb(255, 6, 52);
+  font-size: 1rem;
   color: rgb(255, 255, 255);
-  width:110px;
-  padding: 30px;
-  top: 0px;
-  left:60px;
+  width:40px;
+  padding: 20px;
+  top: 10px;
+  left:50px;
   letter-spacing: 0.1em;
   position: absolute;
   transform: translateX(-50%);
@@ -261,6 +257,8 @@
   text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
+  text-align: center;
+  font-weight: bold;
 }
     
   #playnextword {

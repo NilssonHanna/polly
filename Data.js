@@ -121,6 +121,14 @@ Data.prototype.getExplanations=function (pollId){
   }
 }
 
+/*let totalPoints = {};
+for (let user in users) {
+	totalPoints[user] = 0;
+	let userData = users[user];
+	for ( roundKey in userData) {
+		totalPoints[user] += userData[roundKey].votes + userData[roundKey].voted;
+	}
+} */
 
 
 

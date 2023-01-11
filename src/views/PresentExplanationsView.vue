@@ -1,5 +1,5 @@
 <template>
-    <body>
+    <div id="background">
       <div>
          <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
        </div>
@@ -12,7 +12,7 @@
         <router-link  v-bind:to="'/answer/'+lang">{{uiLabels.vote}}</router-link>
        </div>
       
-      </body>
+      </div>
     
   </template>
   
@@ -66,7 +66,7 @@
      
      
      <style scoped>
-      body {
+      #background {
       background-color: rgb(113, 255, 144);
        width: 100%;
        min-height: 100vh;
@@ -83,25 +83,59 @@
      white-space: nowrap;
      margin-left: 0%;}
   
-  
-  
-  
-       #quit{
-     background-color: rgb(255, 6, 52);
-     font-size: 1.5rem;
-     color: rgb(255, 255, 255);
-     width:110px;
-     padding: 30px;
-     top: 0px;
-     left:60px;
-     letter-spacing: 0.1em;
-     position: absolute;
-     transform: translateX(-50%);
-     font-family: "Fjord one";
-     text-transform: uppercase;
-     cursor: pointer;
-     text-decoration: none;
+  #quit{
+  background-color: rgb(255, 6, 52);
+  font-size: 1.5rem;
+  color: rgb(255, 255, 255);
+  width:110px;
+  padding: 30px;
+  letter-spacing: 0.1em;
+  position: absolute;
+  transform: translateX(-50%);
+  font-family: "Fjord one";
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  left: 110px;
+  top: 20px;
      }
+
+     @media screen and (max-width:50em) {
+
+#quit{
+  background-color: rgb(255, 6, 52);
+  font-size: 1rem;
+  color: rgb(255, 255, 255);
+  width:40px;
+  padding: 20px;
+  top: 10px;
+  left:50px;
+  letter-spacing: 0.1em;
+  position: absolute;
+  transform: translateX(-50%);
+  font-family: "Fjord one";
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+ }
+
+  .playersjoin {
+ margin-top: 300px;
+ font-size: 12pt;
+ letter-spacing: 0.2rem;
+ text-align: center;
+ font-family: "Fjord one";
+ text-transform: uppercase;
+ text-align: center;
+ white-space: nowrap;
+ margin-left: -30px;
+ white-space: pre-line;
+}
+
+
+}
   
   </style>
   

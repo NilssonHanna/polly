@@ -81,7 +81,8 @@
      text-transform: uppercase;
      text-align: center;
      white-space: nowrap;
-     margin-left: 0%;}
+     margin-left: 0%;
+    }
   
   
   

@@ -1,13 +1,13 @@
 <template>
   <div id="background">
  <div>
-      <router-link v-bind:to="'/'" class="quit">{{uiLabels.quitGame}}</router-link>
+      <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
     </div>
   
     <div>
       <header class="header">
         <h1>{{uiLabels.createWordExplanation}}</h1>
-        <h3>Gamecode: {{pollId}}</h3>
+        <h3> Gamecode: {{pollId}}</h3>
       </header>
     
       <div class="wrapper">
@@ -81,8 +81,11 @@ import io from 'socket.io-client';
       },
 
       addAnswer: function () {
-        this.words.push("");
+        if (this.words.length < 8) {
+          this.words.push("");
         this.explanations.push("");
+
+        }
         
       },
     }
@@ -100,14 +103,12 @@ import io from 'socket.io-client';
   min-height: 120vh;
 }
 
-.quit { 
+#quit { 
   background-color: rgb(255, 6, 52);
   font-size: 1.5rem;
   color: rgb(255, 255, 255);
   width:110px;
   padding: 30px;
-  top: 0px;
-  left:60px;
   letter-spacing: 0.1em;
   position: absolute;
   transform: translateX(-50%);
@@ -115,6 +116,8 @@ import io from 'socket.io-client';
   text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
+  left: 110px;
+  top: 20px;
 }
 .wrapper {  
   width: 500px;
@@ -200,14 +203,14 @@ import io from 'socket.io-client';
   min-height: 120vh;
   position: fixed;
 }
-.quit { 
+#quit { 
   background-color: rgb(255, 6, 52);
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: rgb(255, 255, 255);
-  width:110px;
-  padding: 30px;
-  top: 0px;
-  left:60px;
+  width:40px;
+  padding: 20px;
+  top: 10px;
+  left:50px;
   letter-spacing: 0.1em;
   position: absolute;
   transform: translateX(-50%);
@@ -215,12 +218,14 @@ import io from 'socket.io-client';
   text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
+  text-align: center;
+  font-weight: bold;
 }
 .wrapper {  
   display: grid;
   grid-template-columns: repeat(2, 30%);
   grid-column-gap: 50px;  
-  margin-left: 3%;
+  margin-left: 2%;
   margin-bottom: 100%;
 }
 .header {
@@ -229,7 +234,7 @@ import io from 'socket.io-client';
   align-items: center;
   justify-content:center;
   font-size: 2.5vw;
-  margin-right: 20%;
+  margin-right: 25%;
   margin-top: 20%;
 }
   

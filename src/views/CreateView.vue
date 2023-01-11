@@ -3,7 +3,7 @@
   <div id="background">
 
   <div>
-    <router-link v-bind:to="'/'" class="quit">{{uiLabels.quitGame}}</router-link>
+    <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
   </div>
 
   <div>
@@ -104,14 +104,12 @@
   margin-left: 0%;
 }
 
-.quit {
+#quit {
   background-color: rgb(255, 6, 52);
   font-size: 1.5rem;
   color: rgb(255, 255, 255);
   width:110px;
   padding: 30px;
-  top: 0px;
-  left:60px;
   letter-spacing: 0.1em;
   position: absolute;
   transform: translateX(-50%);
@@ -119,6 +117,8 @@
   text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
+  left: 110px;
+  top: 20px;
 }
 
 #createwords {
@@ -163,19 +163,20 @@
   text-align: center;
   align-items: center;
   justify-content:center;
-  font-size: 2.5vw;
+  font-size: 3vw;
   display: flex;
-  margin-top: 250px;
+  margin-top: 200px;
+  margin-left: -35px;
 }
 
-.quit {
+#quit {
   background-color: rgb(255, 6, 52);
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: rgb(255, 255, 255);
-  width:110px;
-  padding: 30px;
-  top: 0px;
-  left:60px;
+  width:40px;
+  padding: 20px;
+  top: 10px;
+  left:50px;
   letter-spacing: 0.1em;
   position: absolute;
   transform: translateX(-50%);
@@ -183,17 +184,19 @@
   text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
+  text-align: center;
+  font-weight: bold;
 }
 
 #createwords {
   background-color: rgba(255, 22, 197, 0.825);
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   letter-spacing: 0.1em;
   color: rgb(0, 0, 0);
-  width:200px;
+  width:300px;
   top: 50%;
   left: 50%;
-  padding: 20px;
+  padding: 10px;
   margin-top: 100px;
   border-radius: 12px;
   box-shadow: 5px 5px 5px;
@@ -215,9 +218,10 @@
 .input{
   padding:100px; 
   transform:scale(2);
+  margin-left: -35px;
   font-size: 0.4rem;
   font-family: "Fjord one";
-  margin-top: 0px;
+  margin-top: -px;
   text-align: center;
   align-items: center;
   justify-content:center;

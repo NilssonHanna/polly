@@ -1,4 +1,9 @@
 <template>
+
+<!--<audio id="my-player" controls preload="auto">
+  <source src="file:///Users/klarastromqvist/Desktop/whitelotus.mp3" type="audio/mpeg">
+</audio> -->
+
   <div id="background">
 
     <div id="logo">
@@ -10,6 +15,9 @@
         <div id="dialog-2"> {{uiLabels.startexplanation}}
           <div id="right-point"> </div>
         </div>
+
+      <!--  <button id = play v-on:click="playAudio()">Play</button>
+        <button id = pause v-on:click="pauseAudio()">Pause</button> -->
 
     </div>
 
@@ -57,13 +65,15 @@ data: function () {
  return {
    uiLabels: {},
    lang: "en",
-   isHidden: true
+   isHidden: true,
+   //player: null
   }
 },
 created: function () {
-    socket.emit("pageLoaded", this.lang)
+  socket.emit("pageLoaded", this.lang)
   socket.on("init", (labels) => {
     this.uiLabels = labels
+    //this.player = document.getElementById('my-player')
   })
 },
 methods: {
@@ -75,8 +85,20 @@ methods: {
    socket.emit("switchLanguage", this.lang)
    console.log(this.lang)
  },
+
+ /*playAudio: function(){
+      this.player.play();
+      console.log("play")
+      console.log(this.player)
+    },
+    pauseAudio: function(){
+      console.log("pause")
+      console.log(this.player)
+      this.player.pause();
+    }*/
 }
 }
+
 
 </script>
 
@@ -89,6 +111,34 @@ methods: {
   grid-template-columns: 2em auto;
   min-height: 100vh;
   position: fixed;
+}
+
+#play {
+  background-color: rgb(0, 0, 0);
+  font-size: 1.5rem;
+  color: rgb(255, 255, 255);
+  padding: 25px;
+  position: absolute;
+  font-family: "Fjord one";
+  cursor:pointer;
+  font-weight: bold;
+  right: 200px;
+  top: -100px;
+  border-radius: 40%;
+}
+
+#pause {
+  background-color: rgb(0, 0, 0);
+  font-size: 1.5rem;
+  color: rgb(255, 255, 255);
+  padding: 25px;
+  position: absolute;
+  font-family: "Fjord one";
+  cursor:pointer;
+  font-weight: bold;
+  right: 80px;
+  top:-100px;
+  border-radius: 40%;
 }
 
 #logoname {
@@ -114,7 +164,8 @@ methods: {
   font-family: "Fjord one";
   cursor:pointer;
   font-weight: bold;
-  right: 0%;
+  right: 20px;
+  top: 20px;
 }
 .create {
   background-color: rgba(255, 22, 197, 0.825);
@@ -250,13 +301,13 @@ methods: {
   color: rgb(255, 255, 255);
   padding: 25px;
   position: absolute;
-  left: 3px;
-  top: 3px;
+  left: 20px;
+  top: 20px;
 }
 
 #howtoplay {
   font-size: 0.5rem;
-  padding: 15px;
+  padding: 20px;
   background-color: rgb(255, 255, 255);
   font-family: "Fjord one";
   font-size: 10px;
@@ -264,8 +315,9 @@ methods: {
   height: 520px;
   border-radius: 20px;
   margin-left: 0px;
-  margin-top: 100px;
+  margin-top: 150px;
   letter-spacing: 0.1em;
+  text-align:justify;
 }
 
 @media screen and (max-width:50em) {
@@ -294,8 +346,10 @@ methods: {
   font-weight: bold;
   align-items: center;
   justify-content: center;
-  font-size: 5vw;
+  font-size: 4vw;
   display: flex;
+  right: 0px;
+  top: 0px;
 }
 .create {
   background-color: rgba(255, 22, 197, 0.825);
@@ -375,12 +429,12 @@ methods: {
   height:25px;
   cursor:pointer;
   background-color: rgb(0, 0, 0);
-  font-size: 1.5rem;
+  font-size: 4vw;
   color: rgb(255, 255, 255);
-  padding: 25px;
+  padding: 24px;
   position: absolute;
-  left: 3px;
-  top: 3px;
+  left: 0px;
+  top: 0px;
 }
 
 #howtoplay {

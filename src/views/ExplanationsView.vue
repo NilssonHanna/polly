@@ -2,7 +2,7 @@
     <div id="background">
     
     <div>
-      <router-link v-bind:to="'/'" class="quit">{{uiLabels.quitGame}}</router-link>
+      <router-link v-bind:to="'/'" id="quit">{{uiLabels.quitGame}}</router-link>
     </div>
 
     <div id="presentExplanation">
@@ -102,6 +102,7 @@ export default {
   width: 100%;
   min-height: 100vh;
   display: grid;
+  position:fixed;
   }
 
   #nextExplanation {
@@ -124,6 +125,8 @@ export default {
     white-space: nowrap;
     margin-left: 0%;
     font-size: 1.2rem;
+    white-space: pre-line;
+    padding: 20px;
     
   }
 
@@ -132,16 +135,16 @@ export default {
     font-size: 30px;
     margin-top: 70px;
     text-transform: uppercase;
+    white-space: pre-line;
+    padding: 20px;
   }
 
-.quit {
+#quit {
   background-color: rgb(255, 6, 52);
   font-size: 1.5rem;
   color: rgb(255, 255, 255);
   width:110px;
   padding: 30px;
-  top: 0px;
-  left:60px;
   letter-spacing: 0.1em;
   position: absolute;
   transform: translateX(-50%);
@@ -149,6 +152,8 @@ export default {
   text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
+  left: 110px;
+  top: 20px;
 }
 
   #votingTime{
@@ -159,7 +164,7 @@ export default {
     color: black;
     text-transform: uppercase;
     padding: 20px;
-    bottom: 400px;
+    bottom: 50px;
     position: absolute;
     right: 3%;
     font-family: "Fjord one";
@@ -176,13 +181,6 @@ export default {
 
 @media screen and (max-width:50em) {
 
-  #background{
-  background-color: rgb(182, 249, 239);
-  width: 100%;
-  min-height: 100vh;
-  display: grid;
-  position:fixed;
-  }
 
   #nextExplanation {
     padding: 20px;
@@ -191,36 +189,40 @@ export default {
     font-family: "Fjord one";
     font-size: 1.2rem;
     width: 200px;
-    margin-left: 90px;
-    margin-top: 10px;
+    margin-left: -100px;
+    margin-top: -150px;
+    white-space: pre-line;
+    position: fixed;
   }
 
   #presentExplanation {
-    margin-top: 160px;
-    font-size: 9px;
+    margin-top: 10px;
+    font-size: 10px;
+    font-weight: bold;
     font-family: "Fjord one";
     text-transform: uppercase;
     text-align: center;
     white-space: nowrap;
-    margin-right: 70px;
   }
 
   .explanation {
     font-family: "Fjord one";
-    font-size: 30px;
-    margin-top: 30px;
+    font-size: 15px;
+    margin-top: -150px;
     text-transform: uppercase;
-    margin-right: 70px;
+    text-align: center;
+    white-space: pre-line;
+    padding: 20px;
   }
 
-.quit {
+#quit {
   background-color: rgb(255, 6, 52);
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: rgb(255, 255, 255);
-  width:110px;
-  padding: 30px;
-  top: 0px;
-  left:60px;
+  width:40px;
+  padding: 20px;
+  top: 10px;
+  left:50px;
   letter-spacing: 0.1em;
   position: absolute;
   transform: translateX(-50%);
@@ -228,6 +230,8 @@ export default {
   text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
+  text-align: center;
+  font-weight: bold;
 }
 
   #votingTime{
@@ -237,12 +241,14 @@ export default {
     letter-spacing: 0.1em;
     color: black;
     text-transform: uppercase;
-    padding: 20px;
+    padding: 10px;
     position: absolute;
     font-family: "Fjord one";
     box-shadow: 5px 5px 5px; 
-    margin-right: 190px;
-    margin-bottom: -900px;
+    margin-right: 70px; 
+    margin-bottom: -40px;
+    width: 200px;
+    position: fixed;
 
   }
   
