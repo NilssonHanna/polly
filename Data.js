@@ -21,10 +21,13 @@ Data.prototype.createPoll = function(pollId, lang="en") {
     poll.questions = [];
     poll.currentQuestionIndex = 0;
     poll.playerindex=0;              
-    poll.nicknameId=[];              
+    poll.nicknameId=[];  
+    poll.points = {};
 
+    poll.nicknameVotes = [];            
+   
     this.polls[pollId] = poll;
-    console.log("createPoll", poll);
+ 
   }
   return this.polls[pollId];
 }
@@ -36,7 +39,7 @@ Data.prototype.startPoll = function(pollId, questions) {
   }
 }
 
-// QUESTIONS-----------------
+// QUESTIONS----------------- 
 
 Data.prototype.getAllQuestions = function(pollId) {
   const poll = this.polls[pollId];
@@ -59,8 +62,18 @@ Data.prototype.setNextQuestionIndex = function(pollId) {
   return this.polls[pollId].currentQuestionIndex += 1;
 }
 
+
 Data.prototype.setNextPlayerIndex = function(pollId) {
-  return this.polls[pollId].playerindex += 1;
+   this.polls[pollId].playerindex += 1;
+}
+
+Data.prototype.zeroPlayerIndex = function(pollId) {
+ this.polls[pollId].playerindex=0;
+}
+
+
+Data.prototype.returnPlayerIndex = function(pollId) {
+  return this.polls[pollId].playerindex;
 }
 
 // NICKNAMES-----------------
@@ -96,63 +109,100 @@ Data.prototype.getNickname=function (pollId){
   }
 }
 
-// ANSWERS-----------------maybe not working
+
+Data.prototype.submitNicknameVotes=function (pollId, nicknameVotes){
+  const poll = this.polls[pollId];
+  
+  if (typeof poll !== 'undefined') {
+    poll.nicknameVotes.push(nicknameVotes);
+
+
+  }
+
+}
+
+
+Data.prototype.getNicknameVotes = function(pollId) {
+  const poll = this.polls[pollId];
+  if (typeof poll !== 'undefined') {
+    return poll.nicknameVotes;
+  }
+  return []
+}
+
+
+// ANSWERS-----------------
 
 Data.prototype.submitExplanation = function(pollId, explanation) {
-  console.log("data submitexplanation");
 
   const poll = this.polls[pollId];
   const currentQuestion = poll.questions[poll.currentQuestionIndex];
   const playerExplanations = currentQuestion.playerExplanations;
   playerExplanations.push(explanation);
 
-  console.log("data submitExplanation poll", poll);
-  console.log("data submitExplanation poll playerExplanations", poll.questions[poll.currentQuestionIndex].playerExplanations);
-
 }
 
 Data.prototype.getExplanations=function (pollId){
   const poll = this.polls[pollId];
-  console.log("i data i getexplanations vad har vi för poll?, ", this.polls[pollId])
-  console.log("i data kommer vi till getExplanations?")
+
+
 
   if (typeof poll !== 'undefined') {
-    return poll.questions
+    const playerExplanations = poll.questions[poll.currentQuestionIndex].playerExplanations
+
+    let allExplanations = [];
+    
+    return [...playerExplanations, poll.questions[poll.currentQuestionIndex].answer]
   }
 }
 
 
 
 
-//?
-Data.prototype.submitAnswer = function(pollId, explanation) {
+// VOTES -----------
+
+Data.prototype.addVote = function(pollId, vote, nickname) {
   const poll = this.polls[pollId];
-  if (typeof poll !== 'undefined') {
-    let explanations = poll.questions[poll.currentQuestionIndex];
-    if (typeof explanations !== 'object') {
-      explanations = {};
-      explanations[explanation] = 1;
-      poll.explanations.push(explanations);
+  const playerExplanations = poll.questions[poll.currentQuestionIndex].playerExplanations;
+
+  if (vote.text === poll.questions[poll.currentQuestionIndex].answer.text)
+  {
+    
+    poll.questions[poll.currentQuestionIndex].answer.votes += 1;
+    if (poll.points[nickname] > 0) {
+      poll.points[nickname] += 2;
     }
-    else if (typeof explanations[explanation] === 'undefined')
-    explanations[explanation] = 1;
-    else
-    explanations[explanation] += 1
-  }
-}
-
-//?
-Data.prototype.getAnswers = function(pollId) {
-  const poll = this.polls[pollId];
-  if (typeof poll !== 'undefined') {
-    const explanations = poll.questions[poll.currentQuestionIndex];
-    if (typeof poll.questions[poll.currentQuestionIndex] !== 'undefined') {
-      return {q: poll.questions[poll.currentQuestionIndex].q, a: explanations};
+    else {
+      poll.points[nickname] = 2;
     }
   }
-  return {}
+  else
+  {
+
+    for (let e in playerExplanations) {
+      if (playerExplanations[e].player === vote.player)
+      {
+        playerExplanations[e].votes += 1;
+        if (poll.points[vote.player] > 0) {
+          poll.points[vote.player] += 1;
+        }
+        else {
+          poll.points[vote.player] = 1;
+        }
+      }
+    }
+  }
+
 }
+
+Data.prototype.getWinner = function(pollId) {
+  const poll = this.polls[pollId];
+
+  const winner = Object.keys(poll.points).reduce((a, b) => poll.points[a] > poll.points[b] ? a : b); //källa: stackoverflow (https://stackoverflow.com/questions/27376295/getting-key-with-the-highest-value-from-object)
+  console.log("winner", winner)
+
+  return winner;
+}
+
+
 module.exports = Data;
-
-
-

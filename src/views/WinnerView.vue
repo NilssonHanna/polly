@@ -1,125 +1,262 @@
 <template>
-      <body>
-        
-        <!--<router-link id="create" v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link> -->
-      
-      <button id="language" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
+  <div class="background">
+    <div class="firework "></div>
+    <div class="firework "></div>
+    <div class="firework "></div>
 
-      <div class="square">
-            <div class="text">
-            {{uiLabels.winnerAnn}}
-            Bamse
-            <!--okej så här lär det vara en sån {{}} och inuti ska det vara svaret på 
-                  en funktion som har räknat ihop vem som fått flest poäng-->
-            </div>
-      </div>
-    
-      <div>
-        <router-link id="quit" v-bind:to="'/'">{{uiLabels.quitGame}}</router-link> 
-      </div>
-    
-    
-    </body>
+    <div id="winnerHeadline">
+      {{ uiLabels.winnerAnn }}
+    </div>
+
+    <div id="winner">{{ this.winner }} vinnare</div>
+
+    <div>
+      <router-link class="quitWinner" v-bind:to="'/'">{{
+        uiLabels.quitGame
+      }}</router-link>
+    </div>
+  </div>
 </template>
-    
+
 <script>
-    import io from 'socket.io-client';
-    const socket = io();
-    
-    export default {
-      data: function () {
-        return {
-          uiLabels: {},
-          id: "",
-          lang: "en",
-          hideNav: true
-        }
-      },
-      created: function () {
-        socket.on("init", (labels) => {
-          this.uiLabels = labels
-        })
-      },
-      methods: {
-        switchLanguage: function() {
-          if (this.lang === "en")
-            this.lang = "sv"
-          else
-            this.lang = "en"
-          socket.emit("switchLanguage", this.lang)
-        },
-      }
-    }
-/*vore ju skoj att lägga in animationer om möjligt. typ en så att det regnar konfetti
-och en så att man måste klicka för att få fram vinnaren (det sista borde ju va ezzz)*/
+import io from "socket.io-client";
+const socket = io();
+
+export default {
+  data: function () {
+    return {
+      uiLabels: {},
+      id: "",
+      lang: "en",
+      winner: "",
+      pollId: "",
+    };
+  },
+  created: function () {
+    this.pollId = this.$route.params.id;
+    this.lang = this.$route.params.lang;
+
+    socket.emit("getWinner", this.pollId);
+
+    socket.on("init", (labels) => {
+      this.uiLabels = labels;
+    });
+
+    socket.on("returnWinner", (winner) => {
+      this.winner = winner;
+    });
+  },
+
+};
 </script>
 
 <style scoped>
-      body {
-        background-color: rgb(255, 224, 110);
-        width: 100%;
-        display: grid;
-        grid-template-columns: 2em auto;
-        min-height: 100vh;
-      }
-      
-      #language {
-            background-color: rgb(254, 190, 201);
-            font-size: 1.5rem;
-            color: black;
-            padding: 25px;
-            position: absolute;
-            top: -10px;
-            right: 0px;
-            font-family: "Fjord one";
-            cursor: pointer;
-       }
+.background {
+  width: 100%;
+  background-color: rgb(101, 138, 213);
+  display: grid;
+  position: fixed;
+  min-height: 100vh;
+}
 
-       .square{
-            width:400px;
-            height:250px;
-            margin-left:440px;
-            margin-top:100px;
-            background-color: gold;
-            color:white;
-            font-family: "Fjord one";
-            font-size: 3rem;
-       }
 
-       .text{
-            margin-top:20px;
-       }
 
-       #quit {
-            background-color: rgb(90, 58, 64);
-            font-size: 1.5rem;
-            color: rgb(255, 255, 255);
-            padding: 30px;
-            margin-top: 400px;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: "Fjord one";
-       }
-      
+#winnerHeadline {
+  font-size: 3rem;
+  letter-spacing: 0.1em;
+  color: rgb(0, 0, 0);
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 150px;
+  font-family: "Fjord one";
+}
+
+#winner {
+  font-size: 4rem;
+  letter-spacing: 0.1em;
+  color: rgb(0, 0, 0);
+  text-transform: uppercase;
+  text-align: center;
+  font-family: "Fjord one";
+  margin-bottom: 300px;
+}
+
+.quitWinner {
+  background-color: rgb(90, 58, 64);
+  font-size: 1.5rem;
+  color: rgb(255, 255, 255);
+  bottom: 100px;
+  position: absolute;
+  transform: translateX(-50%);
+  font-family: "Fjord one";
+  text-decoration: none;
+  padding: 20px;
+  width: 55px; 
+}
+
+@keyframes firework {
+  0% { transform: translate(var(--x), var(--initialY)); width: var(--initialSize); opacity: 1; }
+  50% { width: 0.5vmin; opacity: 1; }
+  100% { width: var(--finalSize); opacity: 0; }
+}
+
+/* @keyframes fireworkPseudo {
+  0% { transform: translate(-50%, -50%); width: var(--initialSize); opacity: 1; }
+  50% { width: 0.5vmin; opacity: 1; }
+  100% { width: var(--finalSize); opacity: 0; }
+}
+ */
+.firework,
+.firework::before,
+.firework::after
+{
+  --initialSize: 0.5vmin;
+  --finalSize: 150vmin;
+  --particleSize: 0.2vmin;
+  --color1: yellow;
+  --color2: khaki;
+  --color3: white;
+  --color4: lime;
+  --color5: gold;
+  --color6: mediumseagreen;
+  --y: -30vmin;
+  --x: -50%;
+  --initialY: 60vmin;
+  content: "";
+  animation: firework 2s infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, var(--y));
+  width: var(--initialSize);
+  aspect-ratio: 1;
+  background: 
+    /*
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 0% 0%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 100% 0%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 100% 100%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 0% 100%,
+    */
     
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 50% 0%,
+    radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 100% 50%,
+    radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 50% 100%,
+    radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 0% 50%,
     
- /*   @media screen and (max-width:50em) {
-      .logo {
-        font-size: 5vw;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .hamburger::before {
-        content: "☰";
-      }
-      .close::before {
-        content: "✕";
-      }
-      .hide {
-        left:-12em;
-      }
+    /* bottom right */
+    radial-gradient(circle, var(--color5) var(--particleSize), #0000 0) 80% 90%,
+    radial-gradient(circle, var(--color6) var(--particleSize), #0000 0) 95% 90%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 90% 70%,
+    radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 100% 60%,
+    radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 55% 80%,
+    radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 70% 77%,
     
-    }*/
+    /* bottom left */
+    radial-gradient(circle, var(--color5) var(--particleSize), #0000 0) 22% 90%,
+    radial-gradient(circle, var(--color6) var(--particleSize), #0000 0) 45% 90%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 33% 70%,
+    radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 10% 60%,
+    radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 31% 80%,
+    radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 28% 77%,
+    radial-gradient(circle, var(--color5) var(--particleSize), #0000 0) 13% 72%,
+    
+    /* top left */
+    radial-gradient(circle, var(--color6) var(--particleSize), #0000 0) 80% 10%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 95% 14%,
+    radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 90% 23%,
+    radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 100% 43%,
+    radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 85% 27%,
+    radial-gradient(circle, var(--color5) var(--particleSize), #0000 0) 77% 37%,
+    radial-gradient(circle, var(--color6) var(--particleSize), #0000 0) 60% 7%,
+    
+    /* top right */
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 22% 14%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 45% 20%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 33% 34%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 10% 29%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 31% 37%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 28% 7%,
+    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 13% 42%
+    ;
+  background-size: var(--initialSize) var(--initialSize);
+  background-repeat: no-repeat;
+}
+
+.firework::before {
+  --x: -50%;
+  --y: -50%;
+  --initialY: -50%;
+/*   transform: translate(-20vmin, -2vmin) rotate(40deg) scale(1.3) rotateY(40deg); */
+  transform: translate(-50%, -50%) rotate(40deg) scale(1.3) rotateY(40deg);
+/*   animation: fireworkPseudo 2s infinite; */
+}
+
+.firework::after {
+  --x: -50%;
+  --y: -50%;
+  --initialY: -50%;
+/*   transform: translate(44vmin, -50%) rotate(170deg) scale(1.15) rotateY(-30deg); */
+  transform: translate(-50%, -50%) rotate(170deg) scale(1.15) rotateY(-30deg);
+/*   animation: fireworkPseudo 2s infinite; */
+}
+
+.firework:nth-child(2) {
+  --x: 70vmin;
+}
+
+.firework:nth-child(2),
+.firework:nth-child(2)::before,
+.firework:nth-child(2)::after {
+  --color1: pink;
+  --color2: violet;
+  --color3: fuchsia;
+  --color4: orchid;
+  --color5: plum;
+  --color6: lavender;  
+  --finalSize: 40vmin;
+  left: 30%;
+  top: 60%;
+  animation-delay: -0.25s;
+}
+
+.firework:nth-child(3) {
+  --x: -30vmin;
+  --y: -50vmin;
+}
+
+.firework:nth-child(3),
+.firework:nth-child(3)::before,
+.firework:nth-child(3)::after {
+  --color1: cyan;
+  --color2: lightcyan;
+  --color3: lightblue;
+  --color4: PaleTurquoise;
+  --color5: SkyBlue;
+  --color6: lavender;
+  --finalSize: 35vmin;
+  left: 70%;
+  top: 60%;
+  animation-delay: -0.4s;
+}
+
+
+
+/*   @media screen and (max-width:50em) {
+  .logo {
+    font-size: 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hamburger::before {
+    content: "☰";
+  }
+  .close::before {
+    content: "✕";
+  }
+  .hide {
+    left:-12em;
+  }
+
+}*/
 </style>
