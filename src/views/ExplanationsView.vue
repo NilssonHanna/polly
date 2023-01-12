@@ -182,7 +182,7 @@ export default {
 
 
   #nextExplanation {
-    padding: 20px;
+    padding: 15px;
     background-color: black;
     color: white;
     font-family: "Fjord one";
@@ -196,7 +196,7 @@ export default {
 
   #presentExplanation {
     margin-top: 10px;
-    font-size: 10px;
+    font-size: 8px;
     font-weight: bold;
     font-family: "Fjord one";
     text-transform: uppercase;
@@ -221,7 +221,7 @@ export default {
   width:75px;
   padding: 20px;
   top: 10px;
-  left:50px;
+  left:70px;
   letter-spacing: 0.1em;
   position: absolute;
   transform: translateX(-50%);
@@ -236,19 +236,18 @@ export default {
   #votingTime{
     grid-area: footer;
     background-color: rgb(238, 85, 203);
-    font-size: 1rem;
+    font-size: 1.2rem;
     letter-spacing: 0.1em;
     color: black;
     text-transform: uppercase;
     padding: 10px;
+    bottom: -180px;
     position: absolute;
+    right: 100px;
     font-family: "Fjord one";
     box-shadow: 5px 5px 5px; 
-    margin-right: 70px; 
-    margin-bottom: -40px;
     width: 200px;
-    position: fixed;
-
+    font-weight: bold;
   }
   
 #votingTime:not([disabled]):focus {

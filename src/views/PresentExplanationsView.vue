@@ -93,7 +93,7 @@ color: rgb(255, 255, 255);
 width:75px;
 padding: 20px;
 top: 10px;
-left:50px;
+left: 70px;
 letter-spacing: 0.1em;
 position: absolute;
 transform: translateX(-50%);

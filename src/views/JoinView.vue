@@ -188,7 +188,7 @@ box-shadow: 0 0 2rem rgba(255, 255, 255, 0.812), -.125rem -.125rem 2rem rgba(255
   width:75px;
   padding: 20px;
   top: 10px;
-  left:50px;
+  left:70px;
   letter-spacing: 0.1em;
   position: absolute;
   transform: translateX(-50%);

@@ -170,6 +170,10 @@ export default {
 #waitingLine {
   font-size: 2rem;
   font-family: "Fjord one";
+  text-transform: uppercase;
+  margin-top: 300px;
+  letter-spacing: 0.1rem;
+  padding: 30px;
 }
 
 #round {
@@ -235,4 +239,123 @@ export default {
   cursor: pointer;
   text-decoration: none;
 }
+
+@media screen and (max-width: 50em) {
+
+.background {
+background-color: rgb(244, 185, 237);
+width: 100%;
+min-height: 100vh;
+min-width: 100vh;
+}
+
+#waitingLine{
+  font-size: 1rem;
+  font-family: "Fjord one";
+  text-transform: uppercase;
+  margin-top: 200px;
+  letter-spacing: 0.1rem;
+  padding: 30px;
+
+}
+
+#correctExplanationHeadline {
+font-size: 0.8rem;
+letter-spacing: 0.1em;
+color: rgb(0, 0, 0);
+text-transform: uppercase;
+text-align: center;
+margin-top: 100px;
+font-family: "Fjord one";
+}
+
+#correctExplanation {
+font-size: 1.25rem;
+letter-spacing: 0.1em;
+color: rgb(0, 0, 0);
+text-transform: uppercase;
+font-family: "Fjord one";
+text-align: center;
+margin: 0 auto;
+}
+
+#results {
+font-size: 1.5rem;
+letter-spacing: 0.1em;
+color: rgb(0, 0, 0);
+text-align: center;
+margin: 0 auto;
+padding-top: 10px;
+font-family: "Fjord one";
+margin-top: 50px;
+}
+
+#round {
+font-size: 2rem;
+font-family: "Fjord one";
+text-transform: uppercase;
+color: rgb(149, 28, 28);
+margin-bottom: 20px;
+margin-top: 10px;
+}
+
+#explanationVoting {
+font-size: 1.25rem;
+font-family: "Fjord one";
+margin-top: 15px;
+padding-bottom: 10px;
+margin-bottom: 25px;
+}
+
+#explanationVotingHeadline {
+font-size: 1.5rem;
+font-family: "Fjord one";
+font-weight: bold;
+margin-top: 15px;
+padding-bottom: 10px;
+margin-bottom: 25px;
+text-transform: uppercase;
+}
+
+.grid {
+display: grid;
+grid-auto-rows: 50px;
+}
+
+.wrapper {
+border: 2px solid rgb(0, 0, 0);
+font-size: 1.25rem;
+font-family: "Fjord one";
+text-align: center;
+margin: 0 auto;
+width: 700px;
+display: grid;
+grid-template-areas:
+  "header header"
+  "left right"
+  "footer footer";
+grid-column-gap: 10px;
+}
+
+#quit {
+  background-color: rgb(255, 6, 52);
+  font-size: 1rem;
+  color: rgb(255, 255, 255);
+  padding: 20px;
+  top: 10px;
+  left:70px;
+  letter-spacing: 0.1em;
+  position: absolute;
+  transform: translateX(-50%);
+  font-family: "Fjord one";
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  width: 75px;
+}
+
+}
+
 </style>

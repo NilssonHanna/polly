@@ -57,7 +57,7 @@ export default {
   name: "WordView",
   data: function () {
     return {
-      counter: 20,
+      counter: 40,
       lang: "",
       data: {},
       pollId: "",
@@ -141,7 +141,7 @@ export default {
     min-height: 100vh;
     display: grid;
     grid-template-columns: 2em auto;
-    position: fixed;
+    /*position: fixed; */
   }
   #quit {
     background-color: rgb(255, 6, 52);
@@ -162,9 +162,13 @@ export default {
   #word {
   font-family: "Fjord one";
   font-size: 30px;
-  margin-top: 100px;
+  margin-top: 130px;
   text-transform: uppercase;
-  margin-left: 620px;
+  text-align: center;
+  margin-left: 400px;
+  justify-items: center;
+  align-items: center;
+
   }
   #writeNickname {
     margin-top: 120px;
@@ -248,14 +252,15 @@ export default {
     color: #fff;
     }
     @media screen and (max-width:50em) {
+
   #quit {
     background-color: rgb(255, 6, 52);
     font-size: 1rem;
     color: rgb(255, 255, 255);
-    width:40px;
+    width:75px;
     padding: 20px;
     top: 10px;
-    left:50px;
+    left:70px;
     letter-spacing: 0.1em;
     position: absolute;
     transform: translateX(-50%);
@@ -266,12 +271,16 @@ export default {
     text-align: center;
     font-weight: bold;
   }
+ 
   #word {
-  font-family: "Fjord one";
-  font-size: 30px;
-  margin-top: 150px;
-  text-transform: uppercase;
-  margin-left:-10px;
+    font-family: "Fjord one";
+    font-size: 15px;
+    text-transform: uppercase;
+    justify-content:center;
+    margin-left: 50px;
+    margin-top: 150px;
+    align-items: center;
+    justify-content:center;
   }
   #writeNickname {
     margin-top: 120px;
@@ -285,7 +294,7 @@ export default {
   .input{
    transform:scale(2);
    font-size: 0.4rem;
-   margin-left: -30px;
+   margin-left: -50px;
    margin-top:-70px;
   }
   #saveAnswer {
@@ -320,26 +329,22 @@ export default {
      
   .timer {
     font-family: "Fjord one"; 
-      text-align: center;
-      position: relative;
-      top: 120px;
-      border-radius: 100%;
-      padding: 10px;
-      background: rgb(0, 0, 0);
-      border: 10px solid #000;
-      color: rgb(255, 255, 255);
-      width: 100px;
-      height: 100px;
-      line-height: 100px;
-      font-size: 50px;
-      color: #fff;
-      align-items: center;
-      justify-content:center;
-      margin-left: 100px;
-    }
-    #content{
-      margin-top: 70px;
-      margin-left: -30px;
+    text-align: center;
+    position: relative;
+    top: 80px;
+    border-radius: 100%;
+    padding: 10px;
+    background: rgb(0, 0, 0);
+    border: 10px solid #000;
+    color: rgb(255, 255, 255);
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    font-size: 50px;
+    color: #fff;
+    align-items: center;
+    justify-content:center;
+    margin-left: -520px;
     }
     }
        

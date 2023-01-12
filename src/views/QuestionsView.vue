@@ -177,13 +177,6 @@ export default {
     font-family: "Fjord one";
     font-weight: bold;
   }
-  #remove{
-    background-color: rgb(0, 0, 0);
-    color:rgb(255, 255, 255);
-    padding: 10px;
-    margin: 10px;
-    font-family: "Fjord one";
-  }
 
   #word {
     padding: 15px;
@@ -202,7 +195,19 @@ export default {
     font-family: "Fjord one";
     font-size: 1.2rem;
     width: 200px;
-    margin: 50px;
+    margin: 30px;
+    margin-left: 5px;
+  }
+
+  #remove{
+    padding: 20px;
+    background-color: black;
+    color: white;
+    margin-bottom: 200px;
+    font-family: "Fjord one";
+    font-size: 1.2rem;
+    width: 200px;
+    margin: 30px;
   }
     
   #startGame {
@@ -228,6 +233,7 @@ export default {
     box-shadow: 0 0 2rem rgba(255, 255, 255, 0.812), -.125rem -.125rem 2rem rgba(255, 97, 171, 0.929), .125rem .125rem 2rem rgba(255, 77, 148, 0.437);
   }
   @media screen and (max-width:50em) {
+
     #background {
     background-color: rgb(248, 166, 229);
     width: 100%;
@@ -243,7 +249,7 @@ export default {
     width:75px;
     padding: 20px;
     top: 10px;
-    left:50px;
+    left: 70px;
     letter-spacing: 0.1em;
     position: absolute;
     transform: translateX(-50%);
@@ -300,8 +306,20 @@ export default {
     font-size: 1.2rem;
     width: 150px;
     position: fixed;
-    left: 65px;
-    bottom: 30px;
+    left: 210px;
+    bottom: 70px;
+  }
+
+  #remove{
+    padding: 10px;
+    background-color: black;
+    color: white;
+    font-family: "Fjord one";
+    font-size: 1.2rem;
+    width: 150px;
+    position: fixed;
+    left: 5px;
+    bottom: 70px;
   }
     
   #startGame {

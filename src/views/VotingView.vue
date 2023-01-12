@@ -251,7 +251,7 @@ input[type="radio"]:checked:before {
     text-transform: uppercase;
     text-align: center;
     white-space: nowrap;
-    margin-right: 800px;
+    margin-right: 700px;
   }
   #quit {
     background-color: rgb(255, 6, 52);
@@ -260,7 +260,7 @@ input[type="radio"]:checked:before {
     width: 75px;
     padding: 20px;
     top: 10px;
-    left: 50px;
+    left: 70px;
     letter-spacing: 0.1em;
     position: absolute;
     transform: translateX(-50%);
@@ -272,7 +272,7 @@ input[type="radio"]:checked:before {
     font-weight: bold;
   }
   #votes {
-    margin-top: 10px;
+    margin-top: 30px;
     font-size: 6px;
     font-family: "Fjord one";
     text-transform: uppercase;

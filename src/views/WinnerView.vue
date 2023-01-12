@@ -1,5 +1,7 @@
 <template>
   <div class="background">
+    
+
     <div class="firework "></div>
     <div class="firework "></div>
     <div class="firework "></div>
@@ -8,7 +10,7 @@
       {{ uiLabels.winnerAnn }}
     </div>
 
-    <div id="winner">{{ this.winner }} vinnare</div>
+    <div id="winner">{{ this.winner }} </div>
 
     <div>
       <router-link class="quitWinner" v-bind:to="'/'">{{
@@ -57,9 +59,8 @@ export default {
   display: grid;
   position: fixed;
   min-height: 100vh;
+  position: fixed;
 }
-
-
 
 #winnerHeadline {
   font-size: 3rem;
@@ -82,7 +83,7 @@ export default {
 }
 
 .quitWinner {
-  background-color: rgb(90, 58, 64);
+  background-color: rgb(246, 60, 94);
   font-size: 1.5rem;
   color: rgb(255, 255, 255);
   bottom: 100px;
@@ -239,24 +240,53 @@ export default {
   animation-delay: -0.4s;
 }
 
+@media screen and (max-width: 50em) {
+  #winnerHeadline {
+  font-size: 2rem;
+  letter-spacing: 0.1em;
+  color: rgb(0, 0, 0);
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 150px;
+  font-family: "Fjord one";
+  white-space: pre-line;
+  align-items: center;
+  justify-content:center;
+  margin-left: -360px;
+  
+}
 
+#winner {
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+  color: rgb(0, 0, 0);
+  text-transform: uppercase;
+  text-align: center;
+  font-family: "Fjord one";
+  margin-bottom: 150px;
+  white-space: pre-line;
+  align-items: center;
+  justify-content:center;
+  margin-left: -360px;
+}
 
-/*   @media screen and (max-width:50em) {
-  .logo {
-    font-size: 5vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .hamburger::before {
-    content: "☰";
-  }
-  .close::before {
-    content: "✕";
-  }
-  .hide {
-    left:-12em;
-  }
+.quitWinner {
+  background-color: rgb(246, 60, 94);
+  font-size: 1rem;
+  color: rgb(255, 255, 255);
+  bottom: 100px;
+  position: absolute;
+  transform: translateX(-50%);
+  font-family: "Fjord one";
+  text-decoration: none;
+  padding: 20px;
+  width: 55px; 
+  white-space: pre-line;
+  align-items: center;
+  justify-content:center;
+  font-weight: bold;
+  margin-left: -150px;
+}
 
-}*/
+}
 </style>

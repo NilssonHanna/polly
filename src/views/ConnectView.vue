@@ -70,16 +70,15 @@ export default {
   }
 
   .playersjoin {
- margin-top: 150px;
+ margin-top: 40px;
  font-size: 15pt;
  font-family: "Fjord one";
  text-transform: uppercase;
  white-space: nowrap;
- margin-left: 0%;
+ margin-left: 100px;
 }
 .playersjoin1 {
- margin-left: -350px;
- margin-top:-20px;
+ margin-bottom:120px;
 }
 .playersjoin2 {
  margin-left: 437px;
@@ -113,19 +112,19 @@ export default {
  @media screen and (max-width:50em) {
 
   .playersjoin {
-margin-top: 150px;
+margin-top: 70px;
  font-size: 10pt;
  font-family: "Fjord one";
  text-transform: uppercase;
  text-align: center;
  white-space: nowrap;
  margin-left: 0%;
- line-break: auto;
+ white-space: pre-line;
+ padding: 20px;
 }
 .playersjoin1 {
- margin-left: -40px;
- margin-bottom: 70px;
- margin-top: 0px;
+ margin-right: 10px;
+ margin-bottom: 100px;
 }
 .playersjoin2 {
  margin-left: -10px;
@@ -145,7 +144,7 @@ margin-top: 150px;
  width: 75px;
  padding: 20px;
  top: 10px;
- left:50px;
+ left:70px;
  letter-spacing: 0.1em;
  position: absolute;
  transform: translateX(-50%);

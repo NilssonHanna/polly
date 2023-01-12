@@ -169,7 +169,7 @@ export default {
     color: rgb(255, 255, 255);
     padding: 20px;
     top: 10px;
-    left:50px;
+    left:70px;
     letter-spacing: 0.1em;
     position: absolute;
     transform: translateX(-50%);

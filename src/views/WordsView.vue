@@ -31,7 +31,7 @@ export default {
   name: "WordsView",
   data: function () {
     return {
-      counter: 20,
+      counter: 40,
       lang: "en",
       questions: [],
       explanations: "",
@@ -172,7 +172,7 @@ export default {
   }
   @media screen and (max-width:50em) {
   #background {
-    background-color: lightyellow;
+    background-color: rgb(147, 217, 255);
     display: grid;
     grid-template-columns: 2em auto;
     min-height: 100vh;
@@ -207,7 +207,7 @@ export default {
   }
   .word {
     font-family: "Fjord one";
-    font-size: 30px;
+    font-size: 15px;
     text-transform: uppercase;
     align-items: center;
     justify-content:center;
@@ -223,7 +223,7 @@ export default {
     white-space: nowrap;
     align-items: center;
     margin-top: 50px;
-    margin-left: 30px;
+    margin-left: 50px;
   }
 #quit {
   background-color: rgb(255, 6, 52);
@@ -233,7 +233,7 @@ export default {
   width:75px;
   padding: 20px;
   top: 10px;
-  left:50px;
+  left: 70px;
   letter-spacing: 0.1em;
   position: absolute;
   transform: translateX(-50%);
