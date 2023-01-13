@@ -1,5 +1,5 @@
 {	
-	"addWord": "Lägg till ord",
+	"addWord": "Lägg till",
 	"beginToPlay": "Starta spelet",
 	"correctExplanation": "Rätt förklaring är...",
 	"changeLanguage": "Change to English",	
@@ -32,7 +32,7 @@
 	"playersjoin": "Väntar på att spelare ansluter . . .",
 	"presentExplanation": "Dags att presentera förklaringar!",
 	"pressSave": "Spara ditt svar",
-	"remove": "Radera ord",
+	"remove": "Radera",
 	"results": "Såhär röstade ni i",
 	"round": "Runda",
 	"question": "Fråga",

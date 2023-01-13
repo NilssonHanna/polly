@@ -165,7 +165,6 @@ export default {
   margin-top: 10px;
   font-size: 15pt;
   font-family: "Fjord one";
-  text-transform: uppercase;
   white-space: nowrap;
   margin-left: 44%;
   text-align: left;
